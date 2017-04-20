@@ -11,4 +11,9 @@ twitter_username: cyclic-reference
 github_username:  cyclic-reference
 
 # Build settings
-markdown: kramdown
+# Conversion
+markdown:    kramdown
+highlighter: rouge
+lsi:         false
+excerpt_separator: "\n\n"
+incremental: false

@@ -9,7 +9,7 @@ You’ll find this post in your `_posts` directory. Go ahead and edit it and re-
 To add new posts, simply add a file in the `_posts` di
 
 
-```java
+{% highlight java %}
 
 class Goofy {
 
@@ -29,5 +29,4 @@ class Goofy {
     return s;
   }
 }
-
-```
+{% endhighlight %}
