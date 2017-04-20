@@ -13,7 +13,3 @@ github_username:  cyclic-reference
 # Build settings
 # Conversion
 markdown:    kramdown
-highlighter: rouge
-lsi:         false
-excerpt_separator: "\n\n"
-incremental: false
