@@ -1,12 +1,12 @@
 # Site settings
-title: Your awesome title
-email: your-email@domain.com
+title: Acari
+email: alex@acari.io
 description: > # this means to ignore newlines until "baseurl:"
   I can build an maintain a blog using version control. 
   I can also use continuous integration to build and deploy my blog.
   All of this is containerized :))))))).
 baseurl: "" # the subpath of your site, e.g. /blog/
-url: "http://yourdomain.com" # the base hostname & protocol for your site
+url: "http://sandwich" # the base hostname & protocol for your site
 twitter_username: cyclic-reference
 github_username:  cyclic-reference
 
