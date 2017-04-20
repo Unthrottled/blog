@@ -12,4 +12,4 @@ github_username:  cyclic-reference
 
 # Build settings
 # Conversion
-markdown:    kramdown
+markdown: redcarpet
