@@ -4,6 +4,9 @@ layout: default
 <div class="home">
   {% assign imageFiles = site.static_files  %}
   {% for myImage in imageFiles %}
-    <image src="{{myImage.path }}"/>
+   <label>
+     {{ myImage.name }}
+     <image src="{{myImage.path }}"/>
+   </label>
   {% endfor %}
 </div>
