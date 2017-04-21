@@ -23,5 +23,5 @@ defaults:
 
 collections:
    cool_collection:
-    otuput: true
+    output: true
     permalink: /doc/:path/
