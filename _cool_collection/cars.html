@@ -1,0 +1,12 @@
+---
+layout: default
+---
+<ul>
+{% for car in site.data.cars %}
+  <li>
+   <ul>
+    <li> {{ car.make }} </li>
+    <li> {{ car.model }} </li>
+   <ul>
+{% endfor %}
+<ul>

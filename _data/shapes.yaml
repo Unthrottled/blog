@@ -1,0 +1,11 @@
+- type: square
+  color: blue
+
+- type: circle
+  color: green
+
+- type: triangle
+  color: yellow
+
+- type: hexagon
+  color: red
