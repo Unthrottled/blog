@@ -2,7 +2,7 @@
 layout: default
 ---
 <div class="home">
-  {% assign imageFiles = site.static_files | where: "image", true %}
+  {% assign imageFiles = site.static_files  %}
   {% for myImage in imageFiles %}
     <image src="{{myImage.path }}"/>
   {% endfor %}
