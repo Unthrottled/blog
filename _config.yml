@@ -22,6 +22,6 @@ defaults:
       image: true
 
 collections:
-  - cool_collection:
-     otuput: true
-     permalink: /doc/:path/
+   cool_collection:
+    otuput: true
+    permalink: /doc/:path/
