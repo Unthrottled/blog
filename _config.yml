@@ -14,3 +14,9 @@ github_username:  cyclic-reference
 # Conversion
 markdown: kramdown
 highlighter: rouge
+
+defaults:
+  - scope:
+     path: "assets/image"
+    values:
+      image: true
