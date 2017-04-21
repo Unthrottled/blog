@@ -17,6 +17,6 @@ highlighter: rouge
 
 defaults:
   - scope:
-     path: "assets/image"
+     path: "assets/images"
     values:
       image: true
