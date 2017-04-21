@@ -20,3 +20,8 @@ defaults:
      path: "assets/images"
     values:
       image: true
+
+collections:
+  - cool_collection:
+     otuput: true
+     premalink: /doc/:path/
