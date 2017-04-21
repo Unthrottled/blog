@@ -24,4 +24,4 @@ defaults:
 collections:
   - cool_collection:
      otuput: true
-     premalink: /doc/:path/
+     permalink: /doc/:path/
