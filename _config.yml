@@ -25,3 +25,5 @@ collections:
    cool_collection:
     output: true
     permalink: /doc/:path/
+paginate: 4
+
