@@ -111,7 +111,7 @@ The command should output something like the following:
 
 Where `2017-04-24 13:58:07,989 ERROR [stderr] (ServerService Thread Pool -- 11) EJB Singleton Bean Doing Startup Work!` was outputted to standard error (to help distinguish it in the command prompt). This tells us that our Singleton Bean was created on application startup and was able to do work!
 
-When you give the proccess SIGKILL `CTRL+C` you should get this:
+When you give the process SIGKILL `CTRL+C` you should get this:
 
     ...
     ....
@@ -211,7 +211,7 @@ public class StartupServiceProvider implements Extension {
 
 The main goal of this class is to collect all of the JavaBeans who have the annotation `@Startup` and invoke them after the application is started up. We invoke them by calling the `toString()` method to force the creation of the bean.
 
-Note the way it is written now, it will create Singleton, Application Scoped, Request Scoped, and any other JavaBeans.
+**Note:** the way it is written now, it will create Singleton, Application Scoped, Request Scoped, and any other JavaBeans.
 
 Finally, we need to register SPI with the application server, this can be done by creating a file called `javax.enterprise.inject.spi.Extension` with the fully qualified class name of our SPI. For the case of the example it will just contain `io.acari.StartupServiceProvider`.
 The file needs to live in the webapp/META-INF/services/ directory of the archive.
@@ -224,3 +224,47 @@ So to prevent you from having to download and install a Wildfly web server on yo
 Things you will need on your machine:
  - The latest version of Docker (https://www.docker.com/community-edition)
  - One Internet
+
+Once you have your Docker host installed. Open up a command prompt. Run the command `sudo docker pull alexsimons/startup-cdi`. This pulls in the image I have created for your convenience.
+Once the command completes an the docker image is on your host all you have to do is run the container and attach it to see the output of the busy bean.
+Which can be accomplished by `sudo docker run --rm --name=cdi -it alexsimons/startup-cdi`. Here we have a named container of "cdi" and we told docker to attach to the running processes to a [TTY](http://www.abouttty.com/) so we can see the output. The `--rm` flag tells docker to remove the Docker container after the Docker container has stoped 
+ 
+Which should look a bit like this:
+ 
+     ....
+     ....
+     20:12:18,254 INFO  [org.infinispan.configuration.cache.EvictionConfigurationBuilder] (ServerService Thread Pool -- 62) ISPN000152: Passivation configured without an eviction policy being selected. Only manually evicted entities will be passivated.
+     20:12:18,257 INFO  [org.infinispan.configuration.cache.EvictionConfigurationBuilder] (ServerService Thread Pool -- 62) ISPN000152: Passivation configured without an eviction policy being selected. Only manually evicted entities will be passivated.
+     20:12:18,316 INFO  [org.jboss.ws.common.management] (MSC service thread 1-2) JBWS022052: Starting JBossWS 5.1.5.Final (Apache CXF 3.1.6) 
+     20:12:18,642 INFO  [org.jboss.weld.deployer] (MSC service thread 1-5) WFLYWELD0003: Processing weld deployment startup-enterprise-cdi.war
+     20:12:18,697 INFO  [org.hibernate.validator.internal.util.Version] (MSC service thread 1-5) HV000001: Hibernate Validator 5.2.4.Final
+     20:12:18,884 INFO  [org.jboss.weld.Version] (MSC service thread 1-2) WELD-000900: 2.3.5 (Final)
+     20:12:19,524 ERROR [stderr] (MSC service thread 1-1) Enterprise Singleton Bean Doing Startup Work!
+     20:12:19,527 ERROR [stderr] (MSC service thread 1-1) EnterpriseStartupSingletonBean has been jump started!
+     20:12:19,662 INFO  [org.wildfly.extension.undertow] (ServerService Thread Pool -- 62) WFLYUT0021: Registered web context: /startup-enterprise-cdi
+     20:12:19,693 INFO  [org.jboss.as.server] (ServerService Thread Pool -- 34) WFLYSRV0010: Deployed "startup-enterprise-cdi.war" (runtime-name : "startup-enterprise-cdi.war")
+     20:12:19,796 INFO  [org.jboss.as] (Controller Boot Thread) WFLYSRV0060: Http management interface listening on http://127.0.0.1:9990/management
+     20:12:19,797 INFO  [org.jboss.as] (Controller Boot Thread) WFLYSRV0051: Admin console listening on http://127.0.0.1:9990
+     20:12:19,797 INFO  [org.jboss.as] (Controller Boot Thread) WFLYSRV0025: WildFly Full 10.1.0.Final (WildFly Core 2.2.0.Final) started in 4177ms - Started 425 of 673 services (404 services are lazy, passive or on-demand)
+
+
+When you give the process SIGKILL `CTRL+C` you should get this:
+
+    ....
+    ....
+    20:12:19,797 INFO  [org.jboss.as] (Controller Boot Thread) WFLYSRV0025: WildFly Full 10.1.0.Final (WildFly Core 2.2.0.Final) started in 4177ms - Started 425 of 673 services (404 services are lazy, passive or on-demand)
+    ^C*** JBossAS process (57) received INT signal ***
+    20:13:18,704 INFO  [org.jboss.as.server] (Thread-2) WFLYSRV0220: Server shutdown has been requested via an OS signal
+    20:13:18,748 INFO  [org.wildfly.extension.undertow] (ServerService Thread Pool -- 67) WFLYUT0022: Unregistered web context: /startup-enterprise-cdi
+    20:13:18,752 INFO  [org.wildfly.extension.undertow] (MSC service thread 1-3) WFLYUT0019: Host default-host stopping
+    20:13:18,757 ERROR [stderr] (MSC service thread 1-7) Enterprise Singleton Bean Doing Cleanup Work before shutdown!
+    20:13:18,766 INFO  [org.jboss.as.connector.subsystems.datasources] (MSC service thread 1-2) WFLYJCA0010: Unbound data source [java:jboss/datasources/ExampleDS]
+    20:13:18,770 INFO  [org.wildfly.extension.undertow] (MSC service thread 1-2) WFLYUT0008: Undertow HTTP listener default suspending
+    20:13:18,771 INFO  [org.wildfly.extension.undertow] (MSC service thread 1-2) WFLYUT0007: Undertow HTTP listener default stopped, was bound to 0.0.0.0:8080
+    20:13:18,771 INFO  [org.wildfly.extension.undertow] (MSC service thread 1-2) WFLYUT0008: Undertow HTTPS listener https suspending
+    20:13:18,772 INFO  [org.jboss.as.server.deployment] (MSC service thread 1-5) WFLYSRV0028: Stopped deployment startup-enterprise-cdi.war (runtime-name: startup-enterprise-cdi.war) in 60ms
+    20:13:18,772 INFO  [org.wildfly.extension.undertow] (MSC service thread 1-2) WFLYUT0007: Undertow HTTPS listener https stopped, was bound to 0.0.0.0:8443
+    20:13:18,772 INFO  [org.wildfly.extension.undertow] (MSC service thread 1-5) WFLYUT0004: Undertow 1.4.0.Final stopping
+    20:13:18,776 INFO  [org.jboss.as.connector.deployers.jdbc] (MSC service thread 1-2) WFLYJCA0019: Stopped Driver service with driver-name = h2
+    20:13:18,781 INFO  [org.jboss.as] (MSC service thread 1-2) WFLYSRV0050: WildFly Full 10.1.0.Final (WildFly Core 2.2.0.Final) stopped in 51ms
+    *** JBossAS process (57) received TERM signal ***
