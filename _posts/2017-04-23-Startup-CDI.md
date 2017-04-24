@@ -133,3 +133,87 @@ When you give the proccess SIGKILL `CTRL+C` you should get this:
 
 It can be seen that the busy beans `@PreDestroy` method was invoked and it cleaned up after itself from this line: `2017-04-24 14:02:29,512 ERROR [stderr] (ServerService Thread Pool -- 26) EJB Singleton Bean Doing Cleanup Work before shutdown! `
 Again was outputted to standard error to help distinguish it in the command prompt.
+
+
+That is  the easiest way to get a Startup Singleton bean. However, we also have the `javax.inject.Singleton` which almost works like `java.ejb.Singleton`. Both produce singletons, however `javax.inject.Singleton` does not work with `@javax.ejb.Startup`.
+
+If we really need the `javax.inject.Singleton`, we have to jump through a few more hoops. 
+
+The Singleton Class look just about the same:
+
+{% highlight java  %}
+package io.acari;
+
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+import javax.ejb.Startup;
+import javax.inject.Singleton;
+
+@Startup
+@Singleton
+public class EnterpriseStartupSingletonBean {
+    @PostConstruct
+    void initialize(){
+        System.err.println("Enterprise Singleton Bean Doing Startup Work!");
+    }
+
+    @PreDestroy
+    void shutdown(){
+        System.err.println("Enterprise Singleton Bean Doing Cleanup Work before shutdown!");
+    }
+
+    @Override
+    public String toString() {
+        return "EnterpriseStartupSingletonBean";
+    }
+}
+
+{% endhighlight %}
+
+Looks almost the same. Except for the `import javax.inject.Singleton;` and overriding the `toString()` method.
+
+The next thing needed is really obscure. An implemention of a Service Provider Interface (SPI) is necessary. This class will listen to the application container's lifecycle events. 
+The events that are relevant for this use case is the `procesBean` and `AfterDeploymentValidation` events.
+The process bean event is fired for every defined JavaBean in the classpath. The AfterDeploymentValidation event is (as you can probably guess) fired after your artifact has been sucessfully deployed.
+
+The class looks like this:
+
+{% highlight java  %}
+package io.acari;
+
+import javax.ejb.Startup;
+import javax.enterprise.context.spi.CreationalContext;
+import javax.enterprise.event.Observes;
+import javax.enterprise.inject.spi.*;
+import java.util.LinkedHashSet;
+import java.util.Set;
+
+public class StartupServiceProvider implements Extension {
+    private final Set<Bean<?>> startupBeans = new LinkedHashSet<>();
+
+    <T> void onBeanProcess(@Observes ProcessBean<T> processBeanEvent, BeanManager beanManager){
+        if(processBeanEvent.getAnnotated().isAnnotationPresent(Startup.class)){
+            startupBeans.add(processBeanEvent.getBean());
+        }
+    }
+
+    void onApplicationDeploymentValidation(@Observes AfterDeploymentValidation afterDeploymentValidationEvent,
+                                           BeanManager beanManager){
+        startupBeans.forEach(bean -> {
+            CreationalContext<?> creationalContext = beanManager.createCreationalContext(bean);
+            Object startupBeanReference = beanManager.getReference(bean,
+                    bean.getBeanClass(), creationalContext);
+            System.err.println(startupBeanReference.toString() + " has been jump started!");
+        });
+    }
+}
+{% endhighlight %}
+
+The main goal of this class is to collect all of the JavaBeans who have the annotation `@Startup` and invoke them after the application is started up. We invoke them by calling the `toString()` method to force the creation of the bean.
+
+Note the way it is written now, it will create Singleton, Application Scoped, Request Scoped, and any other JavaBeans.
+
+I wanted to use Swarm, but am not willing to spend the time to figure out how to integrate it in. So to prevent you from having to dowload and install a Wildfly web server on your machine, I am just going to get a put the example in a Docker container.
+
+Things you will need on your machine:
+ - The latest version of Docker (https://www.docker.com/community-edition)
