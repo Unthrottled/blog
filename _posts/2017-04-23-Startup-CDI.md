@@ -213,7 +213,14 @@ The main goal of this class is to collect all of the JavaBeans who have the anno
 
 Note the way it is written now, it will create Singleton, Application Scoped, Request Scoped, and any other JavaBeans.
 
-I wanted to use Swarm, but am not willing to spend the time to figure out how to integrate it in. So to prevent you from having to dowload and install a Wildfly web server on your machine, I am just going to get a put the example in a Docker container.
+Finally, we need to register SPI with the application server, this can be done by creating a file called `javax.enterprise.inject.spi.Extension` with the fully qualified class name of our SPI. For the case of the example it will just contain `io.acari.StartupServiceProvider`.
+The file needs to live in the webapp/META-INF/services/ directory of the archive.
+
+I have created a fully functioning example at: https://github.com/cyclic-reference/startup-enterprise-cdi
+
+I wanted to use Swarm, but am not willing to spend the time to figure out how to integrate. 
+So to prevent you from having to download and install a Wildfly web server on your machine, I am just going to get a put the example in a Docker container hosted on Docker Hub.
 
 Things you will need on your machine:
  - The latest version of Docker (https://www.docker.com/community-edition)
+ - One Internet
