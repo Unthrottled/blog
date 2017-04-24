@@ -29,3 +29,40 @@ Gradle
 {% highlight java  %}
 compile 'javax:javaee-api:7.0' //can be version 6 or 7
 {% endhighlight %}
+
+Note: On a personal note. If you are using RedHat's Jboss EAP 6.4 application server, you only have support for all of the items the Java EE 6 api provides. You can have the Java EE 7 on your Jboss EAP 6.4 server, but you cannot use the new feature. Hope that saves somebody some trouble.
+
+If we want to use the EJB singleton provided by the Java EE api then all we have to do is the following:
+
+{% highlight java  %}
+package io.acari;
+
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+import javax.ejb.Lock;
+import javax.ejb.LockType;
+import javax.ejb.Singleton;
+import javax.ejb.Startup;
+
+@Startup
+@Lock(LockType.READ)
+@Singleton
+public class EJBStartupSingletonBean {
+    @PostConstruct
+    void initialize(){
+        System.err.println("EJB Singleton Bean Doing Startup Work!");
+    }
+
+    @PreDestroy
+    void shutdown(){
+        System.err.println("EJB Singleton Bean Doing Cleanup Work before shutdown!");
+    }
+}
+{% endhighlight %}
+
+I have defined a class called EJBStartupSingletonBean and annotated it with the `@Singelton` annotation. Which means that this java bean will be created by the web application container and only one will ever be in existance. I also added the `@Lock` annotation. This is more of a best practice that I wantede to demonstrate. The annotation provides the functionally of have only one thread to have access to any of the singleton's public methods, to which the above example has none.
+The `@Startup` is the money annotation. This tells the framework that at the start of the application the Singleton will be instantiated. When the instance is instantiated the method annotated with `@PostConstruct` will be invoked. 
+This is where you can put your code to set up the state of the application. When the application is shutdown the method annotated with `@PreDestroy` will be invoked allowing for any clean up.
+
+As a forewarning, annotating an _Application Scoped_ bean with the `@Startup` anotation will **NOT** cause an instance of that class to be created at startup.
+
