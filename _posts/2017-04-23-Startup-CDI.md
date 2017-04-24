@@ -109,7 +109,7 @@ The command should output something like the following:
     2017-04-24 13:58:08,096 INFO  [org.jboss.as.server] (main) WFLYSRV0010: Deployed "startup-cdi.war" (runtime-name : "startup-cdi.war")
     2017-04-24 13:58:08,099 INFO  [org.wildfly.swarm] (main) WFSWARM99999: WildFly Swarm is Ready
 
-Where `2017-04-24 13:58:07,989 ERROR [stderr] (ServerService Thread Pool -- 11) EJB Singleton Bean Doing Startup Work!` was outputted to standard error (to help distinguish it in the command prompt). This tells us that our Singleton Bean was created on application startup and was able to do work!
+Where `2017-04-24 13:58:07,989 ERROR [stderr] (ServerService Thread Pool -- 11) EJB Singleton Bean Doing Startup Work!` was outputted to standard error (to help distinguish it in the command prompt) when the `@PreDestroy` method was invoked on the Startup Singleton bean. This tells us that our Singleton Bean was created on application startup and was able to do work!
 
 When you give the process SIGKILL `CTRL+C` you should get this:
 
@@ -247,6 +247,13 @@ Which should look a bit like this:
      20:12:19,797 INFO  [org.jboss.as] (Controller Boot Thread) WFLYSRV0051: Admin console listening on http://127.0.0.1:9990
      20:12:19,797 INFO  [org.jboss.as] (Controller Boot Thread) WFLYSRV0025: WildFly Full 10.1.0.Final (WildFly Core 2.2.0.Final) started in 4177ms - Started 425 of 673 services (404 services are lazy, passive or on-demand)
 
+The two line we care about are 
+            
+    20:12:19,524 ERROR [stderr] (MSC service thread 1-1) Enterprise Singleton Bean Doing Startup Work!
+    20:12:19,527 ERROR [stderr] (MSC service thread 1-1) EnterpriseStartupSingletonBean has been jump started!
+
+The first line is the output `@PostConstruct` method of the singleton. 
+The second line is the output of the SPI implementation telling us that it gave that bean a kick in the pants and got in up and running.
 
 When you give the process SIGKILL `CTRL+C` you should get this:
 
@@ -268,3 +275,5 @@ When you give the process SIGKILL `CTRL+C` you should get this:
     20:13:18,776 INFO  [org.jboss.as.connector.deployers.jdbc] (MSC service thread 1-2) WFLYJCA0019: Stopped Driver service with driver-name = h2
     20:13:18,781 INFO  [org.jboss.as] (MSC service thread 1-2) WFLYSRV0050: WildFly Full 10.1.0.Final (WildFly Core 2.2.0.Final) stopped in 51ms
     *** JBossAS process (57) received TERM signal ***
+
+Where `20:13:18,757 ERROR [stderr] (MSC service thread 1-7) Enterprise Singleton Bean Doing Cleanup Work before shutdown!` was outputted to standard error (to help distinguish it in the command prompt) when the `@PreDestroy` method was invoked on the Startup Singleton bean. This tells us that our Singleton Bean was created on application startup and was able to do work!
