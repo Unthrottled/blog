@@ -126,7 +126,12 @@ The command should output something to the likes of the following:
     2017-04-24 13:58:08,096 INFO  [org.jboss.as.server] (main) WFLYSRV0010: Deployed "startup-cdi.war" (runtime-name : "startup-cdi.war")
     2017-04-24 13:58:08,099 INFO  [org.wildfly.swarm] (main) WFSWARM99999: WildFly Swarm is Ready
 
-Where `2017-04-24 13:58:07,989 ERROR [stderr] (ServerService Thread Pool -- 11) EJB Singleton Bean Doing Startup Work!` was outputted to standard error (to help distinguish it in the command prompt) when the `@PreDestroy` method was invoked on the Startup Singleton bean. This tells us that our Singleton Bean was created on application startup and was able to do work!
+Where: 
+
+    2017-04-24 13:58:07,989 ERROR [stderr] (ServerService Thread Pool -- 11) EJB Singleton Bean Doing Startup Work! 
+
+was outputted to standard error (to help distinguish it in the command prompt) when the `@PreDestroy` method was invoked on the Startup Singleton bean. This tells us that our Singleton Bean was created on application startup and was able to do work!
+
 When you give the process SIGINT `CTRL+C` you should get this:
 
     ...
@@ -231,9 +236,21 @@ Things you will need on your machine:
  - The latest version of [Docker](https://www.docker.com/community-edition)
  - One Internet
 
-Once you have your Docker host installed. Open up a command prompt. Run the command `sudo docker pull alexsimons/startup-cdi`. This pulls in the image I have created for your convenience.
-Once the command completes an the docker image is on your host all you have to do is run the container and attach it to see the output of the busy bean.
-Which can be accomplished by `sudo docker run --rm --name=cdi -it alexsimons/startup-cdi`. Here we have a named container of "cdi" and we told docker to attach to the running processes to a [TTY](http://www.abouttty.com/) so we can see the output. The `--rm` flag tells docker to remove the Docker container after the Docker container has stoped 
+Once you have your Docker host installed. 
+ 
+1. Open up a command prompt. 
+2. Run the command: 
+      ````
+      sudo docker pull alexsimons/startup-cdi`.
+    ````
+    This pulls in the image I have created for your convenience.
+3. Once the command completes an the docker image is on your host all you have to do is run the container and attach it to see the output of the busy bean.
+ Which can be accomplished by: 
+ 
+     ````
+     sudo docker run --rm --name=cdi -it alexsimons/startup-cdi`
+     ````
+     Here we have a named container of "cdi" and we told docker to attach to the running processes to a [TTY](http://www.abouttty.com/) so we can see the output. The `--rm` flag tells docker to remove the Docker container after the Docker container has stopped
  
 Which should look a bit like this:
  
@@ -283,7 +300,11 @@ When you give the process SIGINT `CTRL+C` you should get this:
     20:13:18,781 INFO  [org.jboss.as] (MSC service thread 1-2) WFLYSRV0050: WildFly Full 10.1.0.Final (WildFly Core 2.2.0.Final) stopped in 51ms
     *** JBossAS process (57) received TERM signal ***
     
-Where `20:13:18,757 ERROR [stderr] (MSC service thread 1-7) Enterprise Singleton Bean Doing Cleanup Work before shutdown!` was outputted to standard error (to help distinguish it in the command prompt) when the `@PreDestroy` method was invoked on the Startup Singleton bean. 
+Where: 
+
+    20:13:18,757 ERROR [stderr] (MSC service thread 1-7) Enterprise Singleton Bean Doing Cleanup Work before shutdown!
+ 
+ was outputted to standard error (to help distinguish it in the command prompt) when the `@PreDestroy` method was invoked on the Startup Singleton bean. 
 
 This tells us that our Singleton Bean was created on application startup and was able to do work!
 
