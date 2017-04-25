@@ -4,7 +4,7 @@ title: About
 permalink: /about/
 ---
 
-For those who are curious, Acari (or Acarina) are a taxon of arachnids that contains mites and ticks.
+For those who are curious, [Acari](https://en.wikipedia.org/wiki/Acari) are a taxon of arachnids that contains mites and ticks.
 There are many pronunciations of the word, right or wrong I have chosen [uh-kar-ree].
 
 I am an energetic, effective, and efficient professional Software Engineer (who also likes alliteration).
