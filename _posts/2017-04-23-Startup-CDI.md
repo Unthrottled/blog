@@ -53,8 +53,8 @@ As a forewarning, annotating an _Application Scoped_ bean with the `@Startup` an
 I have provided an functional sample for those who are so inclined.
 To run the sample you will need:
  - Internet Connection (At least the first time it is run)
- - Java 8 runtime
- - Maven 3.x.x
+ - [Java 8 runtime](https://java.com/en/)
+ - [Maven 3.x.x](https://maven.apache.org/install.html)
 It can be reached at : 
 [https://github.com/cyclic-reference/startup-cdi](https://github.com/cyclic-reference/startup-cdi)
 I chose to run it on Wildly Swarm, which is like a full fledged JBoss server, but only contains the libraries necessary to run an application server and deploy artifacts. All of this is nicely packed int a a jar. It a bit like Pivotal's Spring Boot.
@@ -223,5 +223,5 @@ When you give the process SIGINT `CTRL+C` you should get this:
 Where `20:13:18,757 ERROR [stderr] (MSC service thread 1-7) Enterprise Singleton Bean Doing Cleanup Work before shutdown!` was outputted to standard error (to help distinguish it in the command prompt) when the `@PreDestroy` method was invoked on the Startup Singleton bean. This tells us that our Singleton Bean was created on application startup and was able to do work!
 #### Resources:
 ---
-- Gupta, Arun. Java EE 7 Essentials:. Beijing: O'Reilly, 2013. Print. Chapter 9
+- Gupta, Arun. [Java EE 7 Essentials](http://shop.oreilly.com/product/0636920030614.do):. Beijing: O'Reilly, 2013. Print. Chapter 9
 - [http://wildfly-swarm.io/generator/](http://wildfly-swarm.io/generator/)
