@@ -2,13 +2,13 @@
 title: Acari
 email: alex@acari.io
 description: > # this means to ignore newlines until "baseurl:"
-  I can build an maintain a blog using version control. 
-  I can also use continuous integration to build and deploy my blog.
-  All of this is containerized :))))))).
+  This site is a happy little aggregation of knowledge found
+  when scowering the internet to solve bugs and issues. I hope
+  I was able to help!
 baseurl: "" # the subpath of your site, e.g. /blog/
 url: "http://sandwich" # the base hostname & protocol for your site
-twitter_username: cyclic-reference
-github_username:  CyclicReference
+twitter_username: CyclicReference
+github_username:  cyclic-reference
 
 # Build settings
 # Conversion
