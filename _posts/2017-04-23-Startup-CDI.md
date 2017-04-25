@@ -308,6 +308,8 @@ Where:
 
 This tells us that our Singleton Bean was created on application startup and was able to do work!
 
+All of that work for `@javax.inject.Singleton` in place of `@javx.ejb.Singleton`. _It is always the little things._
+
 #### Resources:
 
 ---
