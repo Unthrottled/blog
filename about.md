@@ -24,6 +24,6 @@ To me, health is wellness of the mind and body.
 I am always facing forward, only looking back to help others where I could have done something better. 
 
 When crafting software, sometimes it takes the longest amount of time to find the tiniest bug. 
-I hope that I can provide someone tweezers!
+Hopefully I can provide someone tweezers!
 
 \-Alex Simons 
