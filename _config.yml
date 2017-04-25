@@ -1,3 +1,8 @@
+# Serve Settings
+host: 0.0.0.0
+port: 4000
+
+
 # Site settings
 title: Acari
 email: alex@acari.io
