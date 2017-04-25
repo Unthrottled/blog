@@ -111,7 +111,7 @@ The command should output something like the following:
 
 Where `2017-04-24 13:58:07,989 ERROR [stderr] (ServerService Thread Pool -- 11) EJB Singleton Bean Doing Startup Work!` was outputted to standard error (to help distinguish it in the command prompt) when the `@PreDestroy` method was invoked on the Startup Singleton bean. This tells us that our Singleton Bean was created on application startup and was able to do work!
 
-When you give the process SIGKILL `CTRL+C` you should get this:
+When you give the process SIGINT `CTRL+C` you should get this:
 
     ...
     ....
@@ -255,7 +255,7 @@ The two line we care about are
 The first line is the output `@PostConstruct` method of the singleton. 
 The second line is the output of the SPI implementation telling us that it gave that bean a kick in the pants and got in up and running.
 
-When you give the process SIGKILL `CTRL+C` you should get this:
+When you give the process SIGINT `CTRL+C` you should get this:
 
     ....
     ....
@@ -277,3 +277,9 @@ When you give the process SIGKILL `CTRL+C` you should get this:
     *** JBossAS process (57) received TERM signal ***
 
 Where `20:13:18,757 ERROR [stderr] (MSC service thread 1-7) Enterprise Singleton Bean Doing Cleanup Work before shutdown!` was outputted to standard error (to help distinguish it in the command prompt) when the `@PreDestroy` method was invoked on the Startup Singleton bean. This tells us that our Singleton Bean was created on application startup and was able to do work!
+
+#### Resources:
+
+---
+- Gupta, Arun. Java EE 7 Essentials:. Beijing: O'Reilly, 2013. Print. Chapter 9
+- [http://wildfly-swarm.io/generator/](http://wildfly-swarm.io/generator/)
