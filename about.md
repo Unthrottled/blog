@@ -12,8 +12,8 @@ That is my current job title, you could also call me a software developer, a pro
 
 What drives me everyday is knowing that today, I have the chance to learn something I did not know the day before.
 I spend a lot of my free time consuming knowledge other techno geeks are so kind enough to produce.
-I go though all of these talks, articles, blogs, papers etc, that I want to give back. 
-I have been aggregating a wealth of ideas, concepts, and explanations, I want to give back.
+All the time I spend listening to talks, reading articles, blogs, papers etc, that I want to give back the knowledge I receive. 
+I have been aggregating a wealth of ideas, concepts, and explanations.
 All these cool things I have learned from others should not just be mine. 
 So here we are! 
 I aspire to give a talk one day, just being able to get up in front of someone and gush about something.
