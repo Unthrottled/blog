@@ -6,10 +6,12 @@ port: 4000
 # Site settings
 title: Acari
 email: alex@acari.io
+author: Alex Simons
+icon: reach_purple.png
 description: > # this means to ignore newlines until "baseurl:"
   This site is a happy little aggregation of knowledge found
-  when scowering the internet to solve bugs and issues. I hope
-  I was able to help!
+  when scowering the internet to solve bugs and issues. With a dash cool things I learned
+  I hope I was able to help!
 baseurl: "" # the subpath of your site, e.g. /blog/
 url: "http://sandwich" # the base hostname & protocol for your site
 twitter_username: CyclicReference
