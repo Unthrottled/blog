@@ -5,33 +5,37 @@ date:   2017-4-28
 categories: soap
 ---
 
-There are times when one might be unable to obtain access to SoapUI to help debug/test a deployed SOAP web service.
-While it is vastly easier to interact with your web service's API with the neat Smart Bear gadget, all hope is not lost!
+There are times when one might be unable to obtain access to [SoapUi](https://www.soapui.org/downloads/soapui.html) to help debug/test a deployed SOAP web service.
+While it is vastly easier to interact with your web service's API with the neat Smart Bear gadget, there are other ways. 
+So all hope is not lost!
 
-If you are not familiar with SOAP or want a quick refresher here is a snippet from wikipedia
+If you are not familiar with SOAP or want a quick refresher here is a snippet from wikipedia:
 
 >SOAP (originally Simple Object Access Protocol) is a protocol specification for exchanging structured information 
 in the implementation of web services in computer networks. 
 ...
 It uses XML Information Set for its message format, 
 and relies on application layer protocols, most often Hypertext Transfer Protocol (HTTP)
+...
     
-Having access to a Unix's command line with the curl command already or able to be installed is a work around to not having SoapUI.
+This means that most SOAP services transmit messages via HTTP post. 
+A tool that is able to create and receive HTTP requests should fit the bill.
 
-Curl's manual states:
-
->curl  is  a  tool to transfer data from or to a server, using one of the supported protocols (DICT, FILE, FTP,
-FTPS, GOPHER, HTTP, HTTPS, IMAP, IMAPS, LDAP, LDAPS, POP3, POP3S, RTMP, RTSP,  SCP,  SFTP,  SMB,  SMBS,  SMTP,
-SMTPS, TELNET and TFTP).
-       
-Well look at that, it handles HTTP requests! 
+Unix's command line with the curl command (already or able to be installed) will be than sufficient tool.
 
 If you do not have _curl_ on you machine, all you have to do (assuming you have sudo permission) is run:
 
     sudo apt-get install curl
 
+The curl command manual states:
+
+>curl  is  a  tool to transfer data from or to a server, using one of the supported protocols (DICT, FILE, FTP,
+FTPS, GOPHER, HTTP, HTTPS, IMAP, IMAPS, LDAP, LDAPS, POP3, POP3S, RTMP, RTSP,  SCP,  SFTP,  SMB,  SMBS,  SMTP,
+SMTPS, TELNET and TFTP).
+       
+Well look at that, it sure does fit the bill perfectly! 
     
-Before going any further, I have provided a sample web service that I will be referencing for the rest of the post.
+Before going any further, I have provided a sample Spring Boot web service that will be referenced for the rest of the post.
 
 It can be found on git hub here:
 
@@ -41,7 +45,15 @@ To run the sample you will need:
  - Internet Connection (At least the first time it is run)
  - [Java 8 runtime](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
  - [Gradle 2.3+ ](https://gradle.org/install)
+ 
+Once the repository is on your machine, in order to boot up the server do the following.
 
+1. Open up a command window and make the current working directory the root of the web-service-sample repository
+1. Run the command
+
+        ./gradlew bootRun
+    
+Now there is a server running on your `localhost:8400` provided you did not have a process running on port 8400 before you started the server.
 
 Most web services I have interacted with involve me creating a request from the defined schema and sending them to the web service.
 The act of sending a request has almost always been in the from of an HTTP POST request.
@@ -57,21 +69,20 @@ This can be determined just by looking the headers of a SOAP request. Here is a 
     User-Agent: Apache-HttpClient/4.1.1 (java 1.5)
 
 There is quite a bit going on there, but the important bits will be highlighted.
-The first line denotes that a POST request was sent to the endpoint 
+The first line denotes that a POST request was sent to a server with a endpoint of:
     
     http://sandwich:8400/computer-service 
 
-Where sandwich is the hostname of the server the web service is hosted on (which happens to be the name of my local host).
-The web service is located on port 8400 under the _computer-service_ endpoint 
+Where sandwich is the hostname of the server the web service is hosted on (sandwich happens to be the name of my local host).
 
-The format of the content that this request is expecting xml, which is denoted by
+The format of the content that the client is expecting from the server is XML. 
+Which is denoted by:
 
     Content-Type: text/xml;charset=UTF-8
 
-
-The example service method dose not have a SOAPAction associated with it. 
-Which was denoted by `SOAPAction: ""`. 
-This is important, because if method, you try to call, has a SOAP action associated with it that changes the command we need to run.
+The example service does not have any methods with a SOAPAction associated with it. 
+In the headers, this was denoted by `SOAPAction: ""`. 
+This bit is important, because if method, you try to call, has a SOAP action associated with it that changes the command we need to run.
 
 Lastly, the web service definition is a follows:
 
