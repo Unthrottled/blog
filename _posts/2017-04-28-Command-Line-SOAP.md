@@ -82,9 +82,9 @@ Which is denoted by:
 
 The example service does not have any methods with a SOAPAction associated with it. 
 In the headers, this was denoted by `SOAPAction: ""`. 
-This bit is important, because if method, you try to call, has a SOAP action associated with it that changes the command we need to run.
+This bit is important, because if th method you try to call has a SOAP action associated with it that changes the command we need to run.
 
-Lastly, the web service definition is a follows:
+Lastly, the web service definition, for the sample project, is a follows:
 
 {% highlight xml  %}
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
@@ -167,7 +167,7 @@ Lastly, the web service definition is a follows:
 </wsdl:definitions>
 {% endhighlight %}
 
-A request can be created from the above definition which should look a little like this:
+Now that a definition is present, a request can be created. Which should look a little like this:
 
 {% highlight xml  %}
 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" 
@@ -179,19 +179,22 @@ xmlns:web="http://acari.io/simple/web-service">
 </soapenv:Envelope>
 {% endhighlight %}
 
-This can be save into a file called request.xml or it can be converted into a really long string like so
+This can be saved into a file called request.xml. 
+It does not have to be called that, but the proper file name will have to be referenced in the command.
+Keep that in mind when creating the file.
 
-Now we have every thing we need to create a _curl_ command to make a SOAP request!
-Which should look like this:
+Now everything that is needed to create a _curl_ command to make a SOAP request is present!
+
+Replacing _sandwich_ for the server hosting the (if you are running it on your machine use `localhost`) sample application the command should look like this:
 
     curl --header "content-type: text/xml" -d @request.xml http://sandwich:8400/computer-service
 
 
 Time for a breakdown:
 
-- --header "content-type: text/xml": tells the server that the client will only accept xml as a response.
-- -d @request.xml: -d is the argument for an HTTP POST request and @request.xml tells curl to use the file request.xml in the current working directory.
-- http://sandwich:8400/computer-service is the URL of the deployed web service.
+- `--header "content-type: text/xml"` tells the server that the client will only accept xml as a response.
+- `-d @request.xml` -d is the argument for an HTTP POST request and @request.xml tells curl to use the file request.xml in the current working directory.
+- `http://sandwich:8400/computer-service` is the URL of the deployed web service.
 
 Running the command (provided you have change the url to the fully qualified path to the sample web service and have request.xml in the current working) will output this blob to the command line:
 
