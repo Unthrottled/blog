@@ -76,9 +76,16 @@ This is important, because if method, you try to call, has a SOAP action associa
 Lastly, the web service definition is a follows:
 
 {% highlight xml  %}
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:sch="http://acari.io/simple/web-service" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://acari.io/simple/web-service" targetNamespace="http://acari.io/simple/web-service">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+      xmlns:sch="http://acari.io/simple/web-service" 
+      xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 
+      xmlns:tns="http://acari.io/simple/web-service" 
+      targetNamespace="http://acari.io/simple/web-service">
   <wsdl:types>
-    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://acari.io/simple/web-service">
+    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+        elementFormDefault="qualified" 
+        targetNamespace="http://acari.io/simple/web-service">
 
     <xs:element name="getAllComputerRequest">
         <xs:complexType>
@@ -89,12 +96,11 @@ Lastly, the web service definition is a follows:
     <xs:element name="getAllComputerResponse">
         <xs:complexType>
             <xs:sequence>
-                <xs:element maxOccurs="unbounded" name="computer" type="tns:computer"/>
+                <xs:element maxOccurs="unbounded" 
+                    name="computer" type="tns:computer"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
-
-
 
     <xs:complexType name="computer">
         <xs:sequence>
@@ -163,10 +169,6 @@ xmlns:web="http://acari.io/simple/web-service">
 {% endhighlight %}
 
 This can be save into a file called request.xml or it can be converted into a really long string like so
-
-{% highlight xml  %}
-<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:web="http://acari.io/simple/web-service"><soapenv:Header/><soapenv:Body><web:getAllComputerRequest/></soapenv:Body></soapenv:Envelope>
-{% endhighlight %}
 
 Now we have every thing we need to create a _curl_ command to make a SOAP request!
 Which should look like this:
@@ -238,6 +240,18 @@ Which outputs a nice and indented xml response:
 </SOAP-ENV:Envelope>
 {% endhighlight %}
 
+So lets say that a file cannot be used as the data, that is no problem. 
+A really long string can be used in place of `@request.xml`. 
+Which basically is the contents of request.xml but with all of the `'\n'` characters removed.
+
+{% highlight xml  %}
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:web="http://acari.io/simple/web-service"><soapenv:Header/><soapenv:Body><web:getAllComputerRequest/></soapenv:Body></soapenv:Envelope>
+{% endhighlight %}
+
 Using the really long string instead of the file can be done as such:
 
     curl --header "content-type: text/xml" -d '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:web="http://acari.io/simple/web-service"><soapenv:Header/><soapenv:Body><web:getAllComputerRequest/></soapenv:Body></soapenv:Envelope>' http://sandwich:8400/computer-service | xml_pp
+    
+#### Resources:
+
+- [http://spring.io/guides/gs/producing-web-service/](http://spring.io/guides/gs/producing-web-service/)
