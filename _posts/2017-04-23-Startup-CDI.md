@@ -81,7 +81,7 @@ As a forewarning, annotating an _Application Scoped_ bean with the `@Startup` an
 I have provided an functional sample for those who are so inclined.
 To run the sample you will need:
  - Internet Connection (At least the first time it is run)
- - [Java 8 runtime](https://java.com/en/)
+ - [Java 8 runtime](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
  - [Maven 3.x.x](https://maven.apache.org/install.html)
  
 It can be reached at : 
