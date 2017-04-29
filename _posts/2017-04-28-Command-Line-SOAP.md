@@ -9,6 +9,12 @@ There are times when one might be unable to obtain access to [SoapUi](https://ww
 While it is vastly easier to interact with your web service's API with the neat Smart Bear gadget, there are other ways. 
 So all hope is not lost!
 
+### TL;DR
+
+---
+    curl --header "content-type: text/xml" -d @request.xml http://sandwich:8400/computer-service
+---
+
 If you are not familiar with SOAP or want a quick refresher here is a snippet from wikipedia:
 
 >SOAP (originally Simple Object Access Protocol) is a protocol specification for exchanging structured information 
@@ -185,16 +191,17 @@ Keep that in mind when creating the file.
 
 Now everything that is needed to create a _curl_ command to make a SOAP request is present!
 
-Replacing _sandwich_ for the server hosting the (if you are running it on your machine use `localhost`) sample application the command should look like this:
+The command should look like this:
 
     curl --header "content-type: text/xml" -d @request.xml http://sandwich:8400/computer-service
-
 
 Time for a breakdown:
 
 - `--header "content-type: text/xml"` tells the server that the client will only accept xml as a response.
 - `-d @request.xml` -d is the argument for an HTTP POST request and @request.xml tells curl to use the file request.xml in the current working directory.
 - `http://sandwich:8400/computer-service` is the URL of the deployed web service.
+
+>Replacing _sandwich_ for the server hosting the (if you are running it on your machine use `localhost`) sample application. 
 
 Running the command (provided you have change the url to the fully qualified path to the sample web service and have request.xml in the current working) will output this blob to the command line:
 
@@ -258,6 +265,7 @@ So lets say that a file cannot be used as the data, that is no problem.
 A really long string can be used in place of `@request.xml`. 
 Which basically is the contents of request.xml but with all of the `'\n'` characters removed.
 
+`request.xml` with no newlines:
 {% highlight xml  %}
 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:web="http://acari.io/simple/web-service"><soapenv:Header/><soapenv:Body><web:getAllComputerRequest/></soapenv:Body></soapenv:Envelope>
 {% endhighlight %}
@@ -265,6 +273,10 @@ Which basically is the contents of request.xml but with all of the `'\n'` charac
 Using the really long string instead of the file can be done as such:
 
     curl --header "content-type: text/xml" -d '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:web="http://acari.io/simple/web-service"><soapenv:Header/><soapenv:Body><web:getAllComputerRequest/></soapenv:Body></soapenv:Envelope>' http://sandwich:8400/computer-service | xml_pp
+    
+Thank you for your attention, I hope this helped!
+
+-Alex
     
 #### Resources:
 
