@@ -214,6 +214,10 @@ Lastly, the web service definition, for the sample project, is a follows:
 </wsdl:definitions>
 {% endhighlight %}
 
+To view the WSDL on your local machine, hit the following endpoint:
+
+    http://localhost:8400/computer-service/computers.wsdl
+
 Now that a definition is present, a request can be created. Which should look a little like this:
 
 {% highlight xml  %}
