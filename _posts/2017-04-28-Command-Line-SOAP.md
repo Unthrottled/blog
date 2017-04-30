@@ -68,8 +68,8 @@ This can be determined just by looking the headers of a SOAP request. Here is a 
     POST http://sandwich:8400/computer-service HTTP/1.1 
     Accept-Encoding: gzip,deflate
     Content-Type: text/xml;charset=UTF-8
-    SOAPAction: ""
-    Content-Length: 236
+    SOAPAction: "http://acari.io/simple/web-service/computersByModel"
+    Content-Length: 312
     Host: sandwich:8400
     Connection: Keep-Alive
     User-Agent: Apache-HttpClient/4.1.1 (java 1.5)
@@ -86,42 +86,59 @@ Which is denoted by:
 
     Content-Type: text/xml;charset=UTF-8
 
-The example service does not have any methods with a SOAPAction associated with it. 
+The example service does have methods with and without SOAPAction associated with it. 
 In the headers, this was denoted by `SOAPAction: ""`. 
-This bit is important, because if th method you try to call has a SOAP action associated with it that changes the command we need to run.
+This bit is important, because if the method you try to call has a SOAP action associated with it then that changes the command needed to run.
 
 Lastly, the web service definition, for the sample project, is a follows:
 
 {% highlight xml  %}
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
-      xmlns:sch="http://acari.io/simple/web-service" 
-      xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 
-      xmlns:tns="http://acari.io/simple/web-service" 
-      targetNamespace="http://acari.io/simple/web-service">
+    xmlns:sch="http://acari.io/simple/web-service" 
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 
+    xmlns:tns="http://acari.io/simple/web-service" 
+    targetNamespace="http://acari.io/simple/web-service">
   <wsdl:types>
     <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" 
         elementFormDefault="qualified" 
         targetNamespace="http://acari.io/simple/web-service">
 
-    <xs:element name="getAllComputerRequest">
+    <xs:element name="allComputersRequest">
         <xs:complexType>
             <xs:sequence/>
         </xs:complexType>
     </xs:element>
 
-    <xs:element name="getAllComputerResponse">
+    <xs:element name="allComputersResponse">
         <xs:complexType>
             <xs:sequence>
-                <xs:element maxOccurs="unbounded" 
-                    name="computer" type="tns:computer"/>
+                <xs:element maxOccurs="unbounded" name="computers" type="tns:computer"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
 
+    <xs:element name="computersByModelRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element minOccurs="1" name="model" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="computersByModelResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" name="computers" type="tns:computer"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+
     <xs:complexType name="computer">
         <xs:sequence>
             <xs:element name="model" type="xs:string"/>
+            <xs:element name="subModel" type="xs:string"/>
             <xs:element name="ram" type="xs:int"/>
             <xs:element name="make" type="xs:string"/>
             <xs:element name="cores" type="tns:cores"/>
@@ -137,30 +154,53 @@ Lastly, the web service definition, for the sample project, is a follows:
     </xs:simpleType>
 </xs:schema>
   </wsdl:types>
-  <wsdl:message name="getAllComputerRequest">
-    <wsdl:part element="tns:getAllComputerRequest" name="getAllComputerRequest">
+  <wsdl:message name="allComputersRequest">
+    <wsdl:part element="tns:allComputersRequest" name="allComputersRequest">
     </wsdl:part>
   </wsdl:message>
-  <wsdl:message name="getAllComputerResponse">
-    <wsdl:part element="tns:getAllComputerResponse" name="getAllComputerResponse">
+  <wsdl:message name="computersByModelRequest">
+    <wsdl:part element="tns:computersByModelRequest" name="computersByModelRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="allComputersResponse">
+    <wsdl:part element="tns:allComputersResponse" name="allComputersResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="computersByModelResponse">
+    <wsdl:part element="tns:computersByModelResponse" name="computersByModelResponse">
     </wsdl:part>
   </wsdl:message>
   <wsdl:portType name="ComputersPort">
-    <wsdl:operation name="getAllComputer">
-      <wsdl:input message="tns:getAllComputerRequest" name="getAllComputerRequest">
+    <wsdl:operation name="allComputers">
+      <wsdl:input message="tns:allComputersRequest" name="allComputersRequest">
     </wsdl:input>
-      <wsdl:output message="tns:getAllComputerResponse" name="getAllComputerResponse">
+      <wsdl:output message="tns:allComputersResponse" name="allComputersResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="computersByModel">
+      <wsdl:input message="tns:computersByModelRequest" name="computersByModelRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:computersByModelResponse" name="computersByModelResponse">
     </wsdl:output>
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="ComputersPortSoap11" type="tns:ComputersPort">
     <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
-    <wsdl:operation name="getAllComputer">
-      <soap:operation soapAction=""/> <!-- No SOAP Action, but other might have one! -->
-      <wsdl:input name="getAllComputerRequest">
+    <wsdl:operation name="allComputers">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="allComputersRequest">
         <soap:body use="literal"/>
       </wsdl:input>
-      <wsdl:output name="getAllComputerResponse">
+      <wsdl:output name="allComputersResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="computersByModel">
+      <soap:operation soapAction="http://acari.io/simple/web-service/computersByModel"/>
+      <wsdl:input name="computersByModelRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="computersByModelResponse">
         <soap:body use="literal"/>
       </wsdl:output>
     </wsdl:operation>
@@ -176,11 +216,11 @@ Lastly, the web service definition, for the sample project, is a follows:
 Now that a definition is present, a request can be created. Which should look a little like this:
 
 {% highlight xml  %}
-<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" 
-xmlns:web="http://acari.io/simple/web-service">
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+                  xmlns:web="http://acari.io/simple/web-service">
    <soapenv:Header/>
    <soapenv:Body>
-      <web:getAllComputerRequest/>
+      <web:allComputersRequest/>
    </soapenv:Body>
 </soapenv:Envelope>
 {% endhighlight %}
@@ -206,7 +246,7 @@ Time for a breakdown:
 Running the command (provided you have change the url to the fully qualified path to the sample web service and have request.xml in the current working) will output this blob to the command line:
 
 {% highlight xml  %}
-<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"><SOAP-ENV:Header/><SOAP-ENV:Body><ns2:getAllComputerResponse xmlns:ns2="http://acari.io/simple/web-service"><ns2:computer><ns2:model>Blade Stealth</ns2:model><ns2:ram>16</ns2:ram><ns2:make>Razer</ns2:make><ns2:cores>TWO</ns2:cores></ns2:computer><ns2:computer><ns2:model>Blade Pro</ns2:model><ns2:ram>16</ns2:ram><ns2:make>Razer</ns2:make><ns2:cores>FOUR</ns2:cores></ns2:computer><ns2:computer><ns2:model>Macbook Air</ns2:model><ns2:ram>8</ns2:ram><ns2:make>Apple</ns2:make><ns2:cores>FOUR</ns2:cores></ns2:computer><ns2:computer><ns2:model>Macbook Pro</ns2:model><ns2:ram>16</ns2:ram><ns2:make>Apple</ns2:make><ns2:cores>EIGHT</ns2:cores></ns2:computer><ns2:computer><ns2:model>XPS 13</ns2:model><ns2:ram>8</ns2:ram><ns2:make>Dell</ns2:make><ns2:cores>TWO</ns2:cores></ns2:computer></ns2:getAllComputerResponse></SOAP-ENV:Body></SOAP-ENV:Envelope>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"><SOAP-ENV:Header/><SOAP-ENV:Body><ns2:allComputersResponse xmlns:ns2="http://acari.io/simple/web-service"><ns2:computers><ns2:model>Blade</ns2:model><ns2:subModel>Pro</ns2:subModel><ns2:ram>16</ns2:ram><ns2:make>Razer</ns2:make><ns2:cores>FOUR</ns2:cores></ns2:computers><ns2:computers><ns2:model>Macbook</ns2:model><ns2:subModel>Pro</ns2:subModel><ns2:ram>16</ns2:ram><ns2:make>Apple</ns2:make><ns2:cores>EIGHT</ns2:cores></ns2:computers><ns2:computers><ns2:model>XPS</ns2:model><ns2:subModel>13</ns2:subModel><ns2:ram>8</ns2:ram><ns2:make>Dell</ns2:make><ns2:cores>TWO</ns2:cores></ns2:computers><ns2:computers><ns2:model>Macbook</ns2:model><ns2:subModel>Air</ns2:subModel><ns2:ram>8</ns2:ram><ns2:make>Apple</ns2:make><ns2:cores>FOUR</ns2:cores></ns2:computers><ns2:computers><ns2:model>Blade</ns2:model><ns2:subModel>Stealth</ns2:subModel><ns2:ram>16</ns2:ram><ns2:make>Razer</ns2:make><ns2:cores>TWO</ns2:cores></ns2:computers></ns2:allComputersResponse></SOAP-ENV:Body></SOAP-ENV:Envelope>
 {% endhighlight %}
 
 There are tools to pretty print xml on the command line. 
@@ -223,41 +263,46 @@ Which outputs a nice and indented xml response:
 
 {% highlight xml  %}
 <SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
-  <SOAP-ENV:Header/>
-  <SOAP-ENV:Body>
-    <ns2:getAllComputerResponse xmlns:ns2="http://acari.io/simple/web-service">
-      <ns2:computer>
-        <ns2:model>Blade Stealth</ns2:model>
-        <ns2:ram>16</ns2:ram>
-        <ns2:make>Razer</ns2:make>
-        <ns2:cores>TWO</ns2:cores>
-      </ns2:computer>
-      <ns2:computer>
-        <ns2:model>Blade Pro</ns2:model>
-        <ns2:ram>16</ns2:ram>
-        <ns2:make>Razer</ns2:make>
-        <ns2:cores>FOUR</ns2:cores>
-      </ns2:computer>
-      <ns2:computer>
-        <ns2:model>Macbook Air</ns2:model>
-        <ns2:ram>8</ns2:ram>
-        <ns2:make>Apple</ns2:make>
-        <ns2:cores>FOUR</ns2:cores>
-      </ns2:computer>
-      <ns2:computer>
-        <ns2:model>Macbook Pro</ns2:model>
-        <ns2:ram>16</ns2:ram>
-        <ns2:make>Apple</ns2:make>
-        <ns2:cores>EIGHT</ns2:cores>
-      </ns2:computer>
-      <ns2:computer>
-        <ns2:model>XPS 13</ns2:model>
-        <ns2:ram>8</ns2:ram>
-        <ns2:make>Dell</ns2:make>
-        <ns2:cores>TWO</ns2:cores>
-      </ns2:computer>
-    </ns2:getAllComputerResponse>
-  </SOAP-ENV:Body>
+   <SOAP-ENV:Header/>
+   <SOAP-ENV:Body>
+      <ns2:allComputersResponse xmlns:ns2="http://acari.io/simple/web-service">
+         <ns2:computers>
+            <ns2:model>Blade</ns2:model>
+            <ns2:subModel>Pro</ns2:subModel>
+            <ns2:ram>16</ns2:ram>
+            <ns2:make>Razer</ns2:make>
+            <ns2:cores>FOUR</ns2:cores>
+         </ns2:computers>
+         <ns2:computers>
+            <ns2:model>Macbook</ns2:model>
+            <ns2:subModel>Pro</ns2:subModel>
+            <ns2:ram>16</ns2:ram>
+            <ns2:make>Apple</ns2:make>
+            <ns2:cores>EIGHT</ns2:cores>
+         </ns2:computers>
+         <ns2:computers>
+            <ns2:model>XPS</ns2:model>
+            <ns2:subModel>13</ns2:subModel>
+            <ns2:ram>8</ns2:ram>
+            <ns2:make>Dell</ns2:make>
+            <ns2:cores>TWO</ns2:cores>
+         </ns2:computers>
+         <ns2:computers>
+            <ns2:model>Macbook</ns2:model>
+            <ns2:subModel>Air</ns2:subModel>
+            <ns2:ram>8</ns2:ram>
+            <ns2:make>Apple</ns2:make>
+            <ns2:cores>FOUR</ns2:cores>
+         </ns2:computers>
+         <ns2:computers>
+            <ns2:model>Blade</ns2:model>
+            <ns2:subModel>Stealth</ns2:subModel>
+            <ns2:ram>16</ns2:ram>
+            <ns2:make>Razer</ns2:make>
+            <ns2:cores>TWO</ns2:cores>
+         </ns2:computers>
+      </ns2:allComputersResponse>
+   </SOAP-ENV:Body>
 </SOAP-ENV:Envelope>
 {% endhighlight %}
 
@@ -267,13 +312,15 @@ Which basically is the contents of request.xml but with all of the `'\n'` charac
 
 `request.xml` with no newlines:
 {% highlight xml  %}
-<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:web="http://acari.io/simple/web-service"><soapenv:Header/><soapenv:Body><web:getAllComputerRequest/></soapenv:Body></soapenv:Envelope>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:web="http://acari.io/simple/web-service"><soapenv:Header/><soapenv:Body><web:allComputersRequest/></soapenv:Body></soapenv:Envelope>
 {% endhighlight %}
 
 Using the really long string instead of the file can be done as such:
 
-    curl --header "content-type: text/xml" -d '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:web="http://acari.io/simple/web-service"><soapenv:Header/><soapenv:Body><web:getAllComputerRequest/></soapenv:Body></soapenv:Envelope>' http://sandwich:8400/computer-service | xml_pp
+    curl --header "content-type: text/xml" -d '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:web="http://acari.io/simple/web-service"><soapenv:Header/><soapenv:Body><web:allComputersRequest/></soapenv:Body></soapenv:Envelope>' http://sandwich:8400/computer-service | xml_pp
     
+//TODO: SOAP ACTION
+
 Thank you for your attention, I hope this helped!
 
 -Alex
