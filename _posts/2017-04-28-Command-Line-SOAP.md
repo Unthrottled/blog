@@ -68,7 +68,7 @@ This can be determined just by looking the headers of a SOAP request. Here is a 
     POST http://sandwich:8400/computer-service HTTP/1.1 
     Accept-Encoding: gzip,deflate
     Content-Type: text/xml;charset=UTF-8
-    SOAPAction: "http://acari.io/simple/web-service/computersByModel"
+    SOAPAction: ""
     Content-Length: 312
     Host: sandwich:8400
     Connection: Keep-Alive
@@ -319,7 +319,70 @@ Using the really long string instead of the file can be done as such:
 
     curl --header "content-type: text/xml" -d '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:web="http://acari.io/simple/web-service"><soapenv:Header/><soapenv:Body><web:allComputersRequest/></soapenv:Body></soapenv:Envelope>' http://sandwich:8400/computer-service | xml_pp
     
-//TODO: SOAP ACTION
+Thats all which is needed to accomplish a SOAP request for a method with no soap action.
+When it comes time to invoke a method with a SOAP action, the only thing that needs to be added is a piece to the header.
+The `computersByModel` method of the computer service has a SOAP action of:
+
+    http://acari.io/simple/web-service/computersByModel
+
+Here is a header sample from a SOAP request to the `computersByModel` method:
+
+    POST http://sandwich:8400/computer-service HTTP/1.1
+    Accept-Encoding: gzip,deflate
+    Content-Type: text/xml;charset=UTF-8
+    SOAPAction: "http://acari.io/simple/web-service/computersByModel"
+    Content-Length: 312
+    Host: sandwich:8400
+    Connection: Keep-Alive
+    User-Agent: Apache-HttpClient/4.1.1 (java 1.5)
+ 
+A request to the `computersByModel` can be derived from the WSDL provided above.
+Which should look something like this:
+
+{% highlight xml  %}
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" 
+                  xmlns:web="http://acari.io/simple/web-service">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <web:computersByModelRequest>
+         <web:model>Blade</web:model>
+      </web:computersByModelRequest>
+   </soapenv:Body>
+</soapenv:Envelope>
+{% endhighlight %}
+
+This can be saved into a file called request_soap_action.xml. 
+Again, it does not have to be called that, but the proper file name will have to be referenced in the command.
+
+    curl --header "content-type: text/xml" --header 'SOAPAction: "http://acari.io/simple/web-service/computersByModel"' -d @request_soap_action.xml http://sandwich:8400/computer-service | xml_pp
+
+This outputs:
+
+{% highlight xml  %}
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+   <SOAP-ENV:Header/>
+   <SOAP-ENV:Body>
+      <ns2:computersByModelResponse xmlns:ns2="http://acari.io/simple/web-service">
+         <ns2:computers>
+            <ns2:model>Blade</ns2:model>
+            <ns2:subModel>Pro</ns2:subModel>
+            <ns2:ram>16</ns2:ram>
+            <ns2:make>Razer</ns2:make>
+            <ns2:cores>FOUR</ns2:cores>
+         </ns2:computers>
+         <ns2:computers>
+            <ns2:model>Blade</ns2:model>
+            <ns2:subModel>Stealth</ns2:subModel>
+            <ns2:ram>16</ns2:ram>
+            <ns2:make>Razer</ns2:make>
+            <ns2:cores>TWO</ns2:cores>
+         </ns2:computers>
+      </ns2:computersByModelResponse>
+   </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
+{% endhighlight %}
+
+You should now be armed, dangerous, and able to make command line SOAP requests.
 
 Thank you for your attention, I hope this helped!
 
