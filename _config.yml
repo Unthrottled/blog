@@ -13,7 +13,7 @@ description: > # this means to ignore newlines until "baseurl:"
   when scowering the internet to solve bugs and issues. With a dash of cool things I learned
   I hope I was able to help!
 baseurl: "" # the subpath of your site, e.g. /blog/
-url: "http://sandwich" # the base hostname & protocol for your site
+url: "http://sandwich:4000" # the base hostname & protocol for your site
 twitter_username: CyclicReference
 github_username:  cyclic-reference
 
