@@ -92,3 +92,6 @@ public class Computer implements Serializable {
 
 >All of the metrics where gathered on a Razer Blade Stealth Ultrabook, 7th Generation Intel Core i7, running Ubuntu 16.04. As a forewarning, I learned about benchmarking frameworks, such as [JMH](http://openjdk.java.net/projects/code-tools/jmh/) after writing the example code base for this post.
 
+Given these classes, writing 40000 Programmers ten times took an average of 243.1 milliseconds. 
+While reading 40000 Programmers ten times took an average of 432.6 milliseconds.
+This shows that, out of the box, read heavy use-cases of Hazelcast will a bit slower than write heavy applications.
