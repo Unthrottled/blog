@@ -28,3 +28,9 @@ public class BestClass implements Serializable {
 
 {% endhighlight %}
 
+That is all that has to be done to have any plain old Java object (pojo) stored in any of Hazelcast's distributed data structures.
+Following this branch of object serialization, reflection is used to both serialize (encode to binary) and deserialize (decode from binary) pojos.
+This means, for serialization, that all fields of the pojo are written in to byte arrays via iterating over them via reflection. 
+Deserializaion requires the pojo to have an empty constructor so that the class may be created and all of non-transient fields filled via reflection.
+
+Lets take a look at an example.
