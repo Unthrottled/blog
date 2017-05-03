@@ -10,7 +10,7 @@ However, there are some nob, buttons, and levers that can be pushed, pulled, and
 
 Hazelcast, being a distributed in-memory data-grid, has to be able to store and send objects over networks. 
 Meaning that all items put into a hazelcast instance must be stored in a byte array.
-A byte array is a data structure that is able to be sent across networks.
+The coressponding byte array is is able to be sent across networks and shared with other nodes in the cluster.
 This allows all  nodes in a given cluster to share information. 
 
 The process of converting of a Java object int a byte array (or anything really such as XML) is called _Serialization_.
@@ -208,3 +208,10 @@ public class ExternalizableComputer implements Externalizable {
 }
 
 {% endhighlight %}
+
+All the extra work payed off in the end.
+Writing 40000 externalizable programmers ten times yielded an average of 163.8 milliseconds.
+While reading 40000 externalizable programmers ten iterations gave an average of 126.3 milliseconds.
+That is a savings of ~80 ms writing object into memory and a ~300ms drop in wait time while reading!
+
+While this work could possibly be transferred to other applications which require object serialization, there are even _faster_ Hazelcast specific options!
