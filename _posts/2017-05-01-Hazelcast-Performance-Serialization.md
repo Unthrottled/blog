@@ -95,3 +95,116 @@ public class Computer implements Serializable {
 Given these classes, writing 40000 Programmers ten times took an average of 243.1 milliseconds. 
 While reading 40000 Programmers ten times took an average of 432.6 milliseconds.
 This shows that, out of the box, read heavy use-cases of Hazelcast will a bit slower than write heavy applications.
+
+There is a non-Hazelcast dependent optimization for the object serialization process.
+This means that work done to code will remain portable to other cache implementations.
+Implementing the `Externalizable` interface will allow java to use overridden methods in each pojo to serialize and deserialize objects.
+Preventing the need for classes to be created from reflection, but adds the need for extra work.
+
+Here are the new Externalizable pojos:
+
+{% highlight java %}
+package acari.io.pojo;
+
+import java.io.Externalizable;
+import java.io.IOException;
+import java.io.ObjectInput;
+import java.io.ObjectOutput;
+import java.util.ArrayList;
+import java.util.List;
+
+public class ExternalizableProgrammer implements Externalizable {
+    private static final long serialVersionUID = 6757860161913660513L;
+    private String name;
+    private int age;
+    private ExternalizableComputer computer;
+    private List<String> languages;
+
+    public ExternalizableProgrammer() {
+    }
+
+    public ExternalizableProgrammer(Programmer programmer) {
+        this.name = programmer.getName();
+        this.age = programmer.getAge();
+        this.computer = new ExternalizableComputer(programmer.getComputer());
+        this.languages = programmer.getLanguages();
+    }
+
+    @Override
+    public void writeExternal(ObjectOutput out) throws IOException {
+        out.writeUTF(name);
+        out.writeInt(age);
+        int size = languages == null ? -1 : languages.size();
+        out.writeInt(size);
+
+        for (int i = 0; i < size; ++i) {
+            out.writeUTF(languages.get(i));
+        }
+        computer.writeExternal(out);
+    }
+
+    @Override
+    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
+        name = in.readUTF();
+        age = in.readInt();
+        int size = in.readInt();
+        if (size > -1) {
+            languages = new ArrayList<>(size);
+            for (int i = 0; i < size; ++i) {
+                languages.add(i, in.readUTF());
+            }
+        }
+        computer = new ExternalizableComputer();
+        computer.readExternal(in);
+    }
+    
+    //ACCESSOR METHODS OMITTED
+
+}
+{% endhighlight %}
+
+{% highlight java %}
+package acari.io.pojo;
+
+import java.io.Externalizable;
+import java.io.IOException;
+import java.io.ObjectInput;
+import java.io.ObjectOutput;
+
+public class ExternalizableComputer implements Externalizable {
+    private static final long serialVersionUID = -6235153548793669030L;
+    private String model;
+    private String subModel;
+    private int ram;
+    private String make;
+
+    public ExternalizableComputer() {
+    }
+
+    public ExternalizableComputer(Computer computer) {
+        this.model = computer.getModel();
+        this.subModel = computer.getSubModel();
+        this.ram = computer.getRam();
+        this.make = computer.getMake();
+    }
+
+    @Override
+    public void writeExternal(ObjectOutput objectOutput) throws IOException {
+        objectOutput.writeUTF(model);
+        objectOutput.writeUTF(subModel);
+        objectOutput.writeInt(ram);
+        objectOutput.writeUTF(make);
+    }
+
+    @Override
+    public void readExternal(ObjectInput objectInput) throws IOException, ClassNotFoundException {
+        model = objectInput.readUTF();
+        subModel = objectInput.readUTF();
+        ram = objectInput.readInt();
+        make = objectInput.readUTF();
+    }
+    
+    //ACCESSOR METHODS OMMITTED
+}
+
+{% endhighlight %}
