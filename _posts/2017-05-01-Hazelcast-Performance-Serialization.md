@@ -221,3 +221,66 @@ That is a savings of ~80 ms writing object into memory and a ~300ms drop in wait
 
 While this work could possibly be transferred to other applications, which require object serialization, there are even _faster_ Hazelcast specific options!
 
+The first example is the DataSerializable interface, which is looks a whole lot like the Externalizable interface.
+
+Here are the new pojos:
+
+{% highlight java %}
+package acari.io.pojo;
+
+import com.hazelcast.nio.ObjectDataInput;
+import com.hazelcast.nio.ObjectDataOutput;
+import com.hazelcast.nio.serialization.DataSerializable;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+public class DataSerializableProgrammer implements DataSerializable {
+    public static final int NULL_LIST = -1;
+    private String name;
+    private int age;
+    private DataSerializableComputer computer;
+    private List<String> languages;
+
+    public DataSerializableProgrammer() {
+    }
+
+    public DataSerializableProgrammer(Programmer programmer) {
+        this.name = programmer.getName();
+        this.age = programmer.getAge();
+        this.computer = new DataSerializableComputer(programmer.getComputer());
+        this.languages = programmer.getLanguages();
+    }
+
+    @Override
+    public void writeData(ObjectDataOutput out) throws IOException {
+        out.writeUTF(name);
+        out.writeInt(age);
+        int size = languages == null ? NULL_LIST : languages.size();
+        out.writeInt(size);
+        for (int i = 0; i < size; ++i) {
+            out.writeUTF(languages.get(i));
+        }
+        computer.writeData(out);
+    }
+
+    @Override
+    public void readData(ObjectDataInput in) throws IOException {
+        name = in.readUTF();
+        age = in.readInt();
+        int size = in.readInt();
+        if (size > NULL_LIST) {
+            languages = new ArrayList<>(size);
+            for (int i = 0; i < size; ++i) {
+                languages.add(i, in.readUTF());
+            }
+        }
+        computer = new DataSerializableComputer();
+        computer.readData(in);
+    }
+    //ACCESSOR METHODS OMITTED
+  }
+    
+}
+{% endhighlight %}
