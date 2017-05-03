@@ -34,3 +34,61 @@ This means, for serialization, that all fields of the pojo are written in to byt
 Deserializaion requires the pojo to have an empty constructor so that the class may be created and all of non-transient fields filled via reflection.
 
 Lets take a look at an example.
+
+Suppose we have the two following pojos.
+
+
+{% highlight java %}
+package acari.io.pojo;
+
+import java.io.Serializable;
+import java.util.List;
+
+public class Programmer implements Serializable {
+    private static final long serialVersionUID = 7026171646349890369L;
+    private final String name;
+    private final int age;
+    private final Computer computer;
+    private final List<String> languages;
+
+    public Programmer(String name, int age, Computer computer, List<String> languages) {
+        this.name = name;
+        this.age = age;
+        this.computer = computer;
+        this.languages = languages;
+    }
+    
+    //ACCESSOR METHODS OMITTED
+}
+
+
+{% endhighlight %}
+
+
+{% highlight java %}
+package acari.io.pojo;
+
+import java.io.Serializable;
+
+public class Computer implements Serializable {
+    private static final long serialVersionUID = -2198928914280590576L;
+    private final String model;
+    private final String subModel;
+    private final int ram;
+    private final String make;
+
+    public Computer(int ram, String make, String model, String subModel) {
+        this.model = model;
+        this.subModel = subModel;
+        this.ram = ram;
+        this.make = make;
+    }
+
+    //ACCESSOR METHODS OMITTED
+}
+
+
+{% endhighlight %}
+
+>All of the metrics where gathered on a Razer Blade Stealth Ultrabook, 7th Generation Intel Core i7, running Ubuntu 16.04. As a forewarning, I learned about benchmarking frameworks, such as [JMH](http://openjdk.java.net/projects/code-tools/jmh/) after writing the example code base for this post.
+
