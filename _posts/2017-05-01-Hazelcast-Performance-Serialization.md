@@ -115,6 +115,7 @@ import java.util.List;
 
 public class ExternalizableProgrammer implements Externalizable {
     private static final long serialVersionUID = 6757860161913660513L;
+    public static final int NULL_LIST = -1;
     private String name;
     private int age;
     private ExternalizableComputer computer;
@@ -134,7 +135,7 @@ public class ExternalizableProgrammer implements Externalizable {
     public void writeExternal(ObjectOutput out) throws IOException {
         out.writeUTF(name);
         out.writeInt(age);
-        int size = languages == null ? -1 : languages.size();
+        int size = languages == null ? NULL_LIST : languages.size();
         out.writeInt(size);
 
         for (int i = 0; i < size; ++i) {
@@ -148,7 +149,7 @@ public class ExternalizableProgrammer implements Externalizable {
         name = in.readUTF();
         age = in.readInt();
         int size = in.readInt();
-        if (size > -1) {
+        if (size > NULL_LIST) {
             languages = new ArrayList<>(size);
             for (int i = 0; i < size; ++i) {
                 languages.add(i, in.readUTF());
@@ -162,6 +163,10 @@ public class ExternalizableProgrammer implements Externalizable {
 
 }
 {% endhighlight %}
+
+The first thing that catches the eye, is the fact that the list is iterated through, in favor of calling the slower `writeObject` and `readObject` of th ObjectOutput's and ObjectInput's API respectively.
+In the `readExternal` method, it can be seen that the convenient reflective creation of the Computer field was overridden by manual creation.
+This saves time, but is a few extra lines of code.
 
 {% highlight java %}
 package acari.io.pojo;
@@ -214,4 +219,5 @@ Writing 40000 externalizable programmers ten times yielded an average of 163.8 m
 While reading 40000 externalizable programmers ten iterations gave an average of 126.3 milliseconds.
 That is a savings of ~80 ms writing object into memory and a ~300ms drop in wait time while reading!
 
-While this work could possibly be transferred to other applications which require object serialization, there are even _faster_ Hazelcast specific options!
+While this work could possibly be transferred to other applications, which require object serialization, there are even _faster_ Hazelcast specific options!
+
