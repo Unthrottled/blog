@@ -39,7 +39,7 @@ Suppose we have the two following pojos.
 
 
 {% highlight java %}
-package acari.io.pojo;
+package io.acari.pojo;
 
 import java.io.Serializable;
 import java.util.List;
@@ -50,13 +50,6 @@ public class Programmer implements Serializable {
     private final int age;
     private final Computer computer;
     private final List<String> languages;
-
-    public Programmer(String name, int age, Computer computer, List<String> languages) {
-        this.name = name;
-        this.age = age;
-        this.computer = computer;
-        this.languages = languages;
-    }
     
     //ACCESSOR METHODS OMITTED
 }
@@ -66,7 +59,7 @@ public class Programmer implements Serializable {
 
 
 {% highlight java %}
-package acari.io.pojo;
+package io.acari.pojo;
 
 import java.io.Serializable;
 
@@ -77,13 +70,6 @@ public class Computer implements Serializable {
     private final int ram;
     private final String make;
 
-    public Computer(int ram, String make, String model, String subModel) {
-        this.model = model;
-        this.subModel = subModel;
-        this.ram = ram;
-        this.make = make;
-    }
-
     //ACCESSOR METHODS OMITTED
 }
 
@@ -92,8 +78,8 @@ public class Computer implements Serializable {
 
 >All of the metrics where gathered on a Razer Blade Stealth Ultrabook, 7th Generation Intel Core i7, running Ubuntu 16.04. As a forewarning, I learned about benchmarking frameworks, such as [JMH](http://openjdk.java.net/projects/code-tools/jmh/) after writing the example code base for this post.
 
-Given these classes, writing 40000 Programmers ten times took an average of 243.1 milliseconds. 
-While reading 40000 Programmers ten times took an average of 432.6 milliseconds.
+Given these classes, writing 40000 Programmers ten times took an average of ~243 milliseconds. 
+While reading 40000 Programmers ten times took an average of ~433 milliseconds.
 This shows that, out of the box, read heavy use-cases of Hazelcast will a bit slower than write heavy applications.
 
 There is a non-Hazelcast dependent optimization for the object serialization process.
@@ -104,7 +90,7 @@ Preventing the need for classes to be created from reflection, but adds the need
 Here are the new Externalizable pojos:
 
 {% highlight java %}
-package acari.io.pojo;
+package io.acari.pojo;
 
 import java.io.Externalizable;
 import java.io.IOException;
@@ -121,14 +107,15 @@ public class ExternalizableProgrammer implements Externalizable {
     private ExternalizableComputer computer;
     private List<String> languages;
 
+    /**
+     * No Arguments constructor is needed only if
+     * the class does not have one and a constructor
+     * with one or more arguments is present.
+     * <p>
+     * If no constructors are provided the java compiler
+     * will automagically put the no args constructor in.
+     */
     public ExternalizableProgrammer() {
-    }
-
-    public ExternalizableProgrammer(Programmer programmer) {
-        this.name = programmer.getName();
-        this.age = programmer.getAge();
-        this.computer = new ExternalizableComputer(programmer.getComputer());
-        this.languages = programmer.getLanguages();
     }
 
     @Override
@@ -169,7 +156,7 @@ In the `readExternal` method, it can be seen that the convenient reflective crea
 This saves time, but is a few extra lines of code.
 
 {% highlight java %}
-package acari.io.pojo;
+package io.acari.pojo;
 
 import java.io.Externalizable;
 import java.io.IOException;
@@ -183,14 +170,15 @@ public class ExternalizableComputer implements Externalizable {
     private int ram;
     private String make;
 
+    /**
+     * No Arguments constructor is needed only if
+     * the class does not have one and a constructor
+     * with one or more arguments is present.
+     * <p>
+     * If no constructors are provided the java compiler
+     * will automagically put the no args constructor in.
+     */
     public ExternalizableComputer() {
-    }
-
-    public ExternalizableComputer(Computer computer) {
-        this.model = computer.getModel();
-        this.subModel = computer.getSubModel();
-        this.ram = computer.getRam();
-        this.make = computer.getMake();
     }
 
     @Override
@@ -215,8 +203,8 @@ public class ExternalizableComputer implements Externalizable {
 {% endhighlight %}
 
 All the extra work payed off in the end.
-Writing 40000 externalizable programmers ten times yielded an average of 163.8 milliseconds.
-While reading 40000 externalizable programmers ten iterations gave an average of 126.3 milliseconds.
+Writing 40000 externalizable programmers ten times yielded an average of ~164 milliseconds.
+While reading 40000 externalizable programmers ten iterations gave an average of ~126 milliseconds.
 That is a savings of ~80 ms writing object into memory and a ~300ms drop in wait time while reading!
 
 While this work could possibly be transferred to other applications, which require object serialization, there are even _faster_ Hazelcast specific options!
@@ -226,7 +214,7 @@ The first example is the DataSerializable interface, which is looks a whole lot 
 Here are the new pojos:
 
 {% highlight java %}
-package acari.io.pojo;
+package io.acari.pojo;
 
 import com.hazelcast.nio.ObjectDataInput;
 import com.hazelcast.nio.ObjectDataOutput;
@@ -243,14 +231,15 @@ public class DataSerializableProgrammer implements DataSerializable {
     private DataSerializableComputer computer;
     private List<String> languages;
 
+    /**
+     * No Arguments constructor is needed only if
+     * the class does not have one and a constructor
+     * with one or more arguments is present.
+     * <p>
+     * If no constructors are provided the java compiler
+     * will automagically put the no args constructor in.
+     */
     public DataSerializableProgrammer() {
-    }
-
-    public DataSerializableProgrammer(Programmer programmer) {
-        this.name = programmer.getName();
-        this.age = programmer.getAge();
-        this.computer = new DataSerializableComputer(programmer.getComputer());
-        this.languages = programmer.getLanguages();
     }
 
     @Override
@@ -284,3 +273,66 @@ public class DataSerializableProgrammer implements DataSerializable {
     
 }
 {% endhighlight %}
+
+There is only one big difference from the externalizable class is the switch from `java.io.ObjectInput` and `java.io.ObjectOutput` to `com.hazelcast.nio.ObjectDataInput` and `com.hazelcast.nio.ObjectDataOutput` respectively.
+
+Hazelcast already has an optimized convience method for reading and writing the `ArrayList` class called `com.hazelcast.internal.serialization.impl.ArrayListStreamSerializer`.
+That class does what the `writeData` and `readData` of `DataSerializableProgrammer` does for the `ArrayList`, but encapsulates it into the `out.writeObject(list)` and `in.readObject` does respectively.
+However using the readObject _and_  writeObject methods come at a performance cost of ~20ms. 
+
+Just about the same goes for the DataSerializable Computer class as well.
+
+{% highlight java %}
+package io.acari.pojo;
+
+import com.hazelcast.nio.ObjectDataInput;
+import com.hazelcast.nio.ObjectDataOutput;
+import com.hazelcast.nio.serialization.DataSerializable;
+
+import java.io.IOException;
+
+public class DataSerializableComputer implements DataSerializable {
+    private String model;
+    private String subModel;
+    private int ram;
+    private String make;
+
+    /**
+     * No Arguments constructor is needed only if
+     * the class does not have one and a constructor
+     * with one or more arguments is present.
+     * <p>
+     * If no constructors are provided the java compiler
+     * will automagically put the no args constructor in.
+     */
+    public DataSerializableComputer() {
+    }
+
+    @Override
+    public void writeData(ObjectDataOutput out) throws IOException {
+        out.writeUTF(model);
+        out.writeUTF(subModel);
+        out.writeInt(ram);
+        out.writeUTF(make);
+    }
+
+    @Override
+    public void readData(ObjectDataInput in) throws IOException {
+        model = in.readUTF();
+        subModel = in.readUTF();
+        ram = in.readInt();
+        make = in.readUTF();
+    }
+    //ACCESSOR METHODS OMITTED
+}
+
+{% endhighlight %}
+
+The numbers are in and they look good!
+Writing 40000 DataSerializable Programmers ten iterations took an average of ~128 milliseconds, a savings of ~36ms.
+Reading 40000 Data Serializable Programmers ten times took averaged of a total operation time of ~83 milliseconds! 
+That is 43ms quicker than the already ~306ms cheaper Externalizable read!
+
+Since the Externalizable class, the `Computer` instance has not been provided by reflection.
+There is one last bit of slower reflection that can be dropped, which is the creation of the `Programmer` instance.
+The Hazelcast specific `IdentifiedDataSerializable` interface is that such method.
