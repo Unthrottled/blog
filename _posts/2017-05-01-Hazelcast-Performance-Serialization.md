@@ -420,5 +420,19 @@ public class HazelcastConfig {
 {% endhighlight%}
 
 A Hazelcast xml configuration file is loaded from the classpath (can be found in the src/main/resources directory).
-Once the configuration file is loaded, a DataSerializeableFactory of id 9000 is added, with a lambda acting as the implmentation, which returns a IdentifiedDataSerializableProgrammer when given 9001 and null for all other cases. 
+Once the configuration file is loaded, a DataSerializeableFactory of id 9000 is added, with a lambda acting as the implementation, which returns a IdentifiedDataSerializableProgrammer when given 9001 and null for all other cases. 
 Side skirting the need for a concrete implementation.
+
+The same thing can also be accomplished if the Hazelcast Server is not running on the same process as the application that consumes it.
+A Hazelcast client can be created with a DataSerializableFactory.
+
+The snippet below demonstrates the following requirement (assuming that a hazelcast-client.xml is in the classpath and the server tries to connect to is running):
+ 
+ {% highlight java %}
+   //...
+   ClientConfig clientConfig = new XmlClientConfigBuilder("hazelcast-client.xml").build();
+   clientConfig.getSerializationConfig().addDataSerializableFactory(IdentifiedDataSerializableProgrammer.FACTORY_ID,
+         DATA_SERIALIZABLE_FACTORY);
+   HazelcastInstance hz = HazelcastClient.newHazelcastClient(clientConfig);
+//...
+ {% endhighlight %}    
