@@ -419,6 +419,6 @@ public class HazelcastConfig {
 }
 {% endhighlight%}
 
-A Hazelcast xml configuration file is loaded from the classpath (can be found in the src/main/java/resources directory).
+A Hazelcast xml configuration file is loaded from the classpath (can be found in the src/main/resources directory).
 Once the configuration file is loaded, a DataSerializeableFactory of id 9000 is added, with a lambda acting as the implmentation, which returns a IdentifiedDataSerializableProgrammer when given 9001 and null for all other cases. 
 Side skirting the need for a concrete implementation.
