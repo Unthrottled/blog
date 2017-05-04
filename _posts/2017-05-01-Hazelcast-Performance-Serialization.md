@@ -336,3 +336,89 @@ That is 43ms quicker than the already ~306ms cheaper Externalizable read!
 Since the Externalizable class, the `Computer` instance has not been provided by reflection.
 There is one last bit of slower reflection that can be dropped, which is the creation of the `Programmer` instance.
 The Hazelcast specific `IdentifiedDataSerializable` interface is that such method.
+
+Which looks like the following.
+
+{% highlight java %}
+package io.acari.pojo;
+
+import com.hazelcast.nio.serialization.IdentifiedDataSerializable;
+
+public class IdentifiedDataSerializableProgrammer extends DataSerializableProgrammer implements IdentifiedDataSerializable {
+
+    public static final int FACTORY_ID = 9000;
+    public static final int OBJECT_ID = 9001;
+
+    /**
+     * No Arguments constructor is needed only if
+     * the class does not have one and a constructor
+     * with one or more arguments is present.
+     * <p>
+     * If no constructors are provided the java compiler
+     * will automagically put the no args constructor in.
+     */
+    public IdentifiedDataSerializableProgrammer() {
+        super();
+    }
+
+    public IdentifiedDataSerializableProgrammer(Programmer programmer) {
+        super(programmer);
+    }
+
+    @Override
+    public int getFactoryId() {
+        return FACTORY_ID;
+    }
+
+    @Override
+    public int getId() {
+        return OBJECT_ID;
+    }
+}
+{% endhighlight %}
+
+IdentifiedDataSerializable extends DataSerializable adding the getFactoryId and getId, which will be used by the `DataSerializableFactory`.
+Whose functional API accepts an ID in the form of an integer and returns an instance whose class is associated with that integer.
+
+`IdentifiedDataSerializableProgrammer` needs to have a factory with an ID of nine-thousand configured in the Hazelcast server. 
+ In addition that factory must return an instance of `IdentifiedDataSerializableProgrammer` when given an integer that is over nine-thousand.
+ This allows for one factory to create multiple instances of different classes.
+ As emphasis,IdentifiedDataSerializableProgrammer inherts from DataSerializableProgrammer which creates its own the _DataSerializableComputer_ at deserialization time.
+ Therefore eliminating the need for IdentifiedDataSerializableComputer!
+ 
+ If Spring detects Hazelcast on the classpath, it will try to auto-configure a Hazelcast server instance.
+ Given a `com.hazelcast.config.Config` bean, Spring will use that bean for the creation of Hazelcast instance.
+ Below is an example of the very thing.
+ 
+{% highlight java%}
+package io.acari;
+
+import io.acari.pojo.IdentifiedDataSerializableProgrammer;
+import com.hazelcast.config.ClasspathXmlConfig;
+import com.hazelcast.config.Config;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+public class HazelcastConfig {
+
+    @Bean
+    public Config config() {
+        Config serverConfig = new ClasspathXmlConfig("hazelcast.xml");
+        serverConfig.getSerializationConfig().addDataSerializableFactory(IdentifiedDataSerializableProgrammer.FACTORY_ID,
+                i -> {
+                    switch (i) {
+                        case IdentifiedDataSerializableProgrammer.OBJECT_ID:
+                            return new IdentifiedDataSerializableProgrammer();
+                        default:
+                            return null;
+                    }
+                });
+        return serverConfig;
+    }
+}
+{% endhighlight%}
+
+A Hazelcast xml configuration file is loaded from the classpath (can be found in the src/main/java/resources directory).
+Once the configuration file is loaded, a DataSerializeableFactory of id 9000 is added, with a lambda acting as the implmentation, which returns a IdentifiedDataSerializableProgrammer when given 9001 and null for all other cases. 
+Side skirting the need for a concrete implementation.
