@@ -432,7 +432,14 @@ The snippet below demonstrates the following requirement (assuming that a hazelc
    //...
    ClientConfig clientConfig = new XmlClientConfigBuilder("hazelcast-client.xml").build();
    clientConfig.getSerializationConfig().addDataSerializableFactory(IdentifiedDataSerializableProgrammer.FACTORY_ID,
-         DATA_SERIALIZABLE_FACTORY);
+         i -> {
+             switch (i) {
+                 case IdentifiedDataSerializableProgrammer.OBJECT_ID:
+                     return new IdentifiedDataSerializableProgrammer();
+                 default:
+                     return null;
+             }
+         });
    HazelcastInstance hz = HazelcastClient.newHazelcastClient(clientConfig);
 //...
  {% endhighlight %}    
