@@ -2,7 +2,7 @@
 layout: post
 title:  "Boosted Hazelcast"
 categories: java
-headerImage: rail.jpg
+headerImage: cereal/rail.jpg
 ---
 
 Do not be deceived, as distributed caches go, vanilla Hazelcast has really quick response times. 
@@ -443,3 +443,5 @@ The snippet below demonstrates the following requirement (assuming that a hazelc
    HazelcastInstance hz = HazelcastClient.newHazelcastClient(clientConfig);
 //...
  {% endhighlight %}    
+ 
+ ![graph.jpg]({{site.url}}/assets/images/cereal/times.png)
