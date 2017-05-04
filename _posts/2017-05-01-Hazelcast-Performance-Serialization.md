@@ -421,7 +421,7 @@ public class HazelcastConfig {
 
 A Hazelcast xml configuration file is loaded from the classpath (can be found in the src/main/resources directory).
 Once the configuration file is loaded, a DataSerializeableFactory of id 9000 is added, with a lambda acting as the implementation, which returns a IdentifiedDataSerializableProgrammer when given 9001 and null for all other cases. 
-Side skirting the need for a concrete implementation.
+Side skirting the need for a concrete implementation of the interface.
 
 The same thing can also be accomplished if the Hazelcast Server is not running on the same process as the application that consumes it.
 A Hazelcast client can be created with a DataSerializableFactory.
@@ -444,4 +444,11 @@ The snippet below demonstrates the following requirement (assuming that a hazelc
 //...
  {% endhighlight %}    
  
+ The following is a graph showing the performance summaries of all the interfaces disscussed.
+ 
  ![graph.jpg]({{site.url}}/assets/images/cereal/times.png)
+ 
+ There are a few other options that can be done toward object seriailzaiton and Hazelcast.
+ However they are not as performant as the last two discussed, so I will provide a [link to my resource for this post.](http://docplayer.net/35092370-Webinar-maximizing-hazelcast-performance-with-serialization.html)
+ There all the options are explored by one of the founders of Hazelcast, who knows a lot more on the topic than I do!
+ 
