@@ -26,7 +26,8 @@ Upon running the container, I was notified of port collision.
 Having port collisions on 8080 or 80 would have ben expected, but port 53, really?
 
 Ubuntu is my operating system of choice, so I am able to use unix commands.
-The following is satisfactory for finding the proccess id (PID) running on a port. Provided you have sudoer permissions:
+The following is satisfactory for finding the proccess id (PID) running on a port. 
+Provided you have sudoer permissions (this works for OSX and UNIX machines):
 
     sudo lsof -n -i | grep :53
 

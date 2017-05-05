@@ -13,3 +13,8 @@ So let us explore the many ways we can install/upgrade Gradle, _another_ technol
 
 
 ![All Them Elephants]({{site.imageDir}}gradle/elephants.png)
+
+I am sure that there are more examples of pachyderms pictures, but these are the ones I know of the top of my head.
+
+Anyways, I need to converge back to the topic at hand.
+
