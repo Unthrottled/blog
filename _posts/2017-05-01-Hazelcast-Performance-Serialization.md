@@ -446,7 +446,7 @@ The snippet below demonstrates the following requirement (assuming that a hazelc
  
  The following is a graph showing the performance summaries of all the interfaces disscussed.
  
- ![graph.jpg]({{site.url}}/assets/images/cereal/times.png)
+ ![graph.jpg]({{site.imageDir}}cereal/times.png)
  
  There are a few other options that can be done toward object serialization and Hazelcast.
  However they are not as performant as the last two discussed, so I will provide a [link to my resource for this post.](http://docplayer.net/35092370-Webinar-maximizing-hazelcast-performance-with-serialization.html)

@@ -14,6 +14,7 @@ description: > # this means to ignore newlines until "baseurl:"
   I hope I was able to help!
 baseurl: "" # the subpath of your site, e.g. /blog/
 url: "http://sandwich:4000" # the base hostname & protocol for your site
+imageDir: "http://sandwich:4000/assets/images/"
 twitter_username: CyclicReference
 github_username:  cyclic-reference
 
