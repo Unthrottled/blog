@@ -448,7 +448,7 @@ The snippet below demonstrates the following requirement (assuming that a hazelc
  
  ![graph.jpg]({{site.url}}/assets/images/cereal/times.png)
  
- There are a few other options that can be done toward object seriailzaiton and Hazelcast.
+ There are a few other options that can be done toward object serialization and Hazelcast.
  However they are not as performant as the last two discussed, so I will provide a [link to my resource for this post.](http://docplayer.net/35092370-Webinar-maximizing-hazelcast-performance-with-serialization.html)
  There all the options are explored by one of the founders of Hazelcast, who knows a lot more on the topic than I do!
  
