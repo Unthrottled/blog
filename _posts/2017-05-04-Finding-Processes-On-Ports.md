@@ -57,3 +57,42 @@ Without grep the command spits out a bunch of output like this:
     spotify 12375 alex  119u  IPv4  92565111      0t0  UDP *:34539 
     spotify 12375 alex  120u  IPv4  92565112      0t0  UDP *:57885 
     ...
+
+Now that all the information is on the table, there can only be one process on the port I want!
+The PID is in the second column and for example I want port 4381. 
+That means I have to turn my music off.
+
+    kill -9 12375
+    
+This will send the SIGINT signal to tell the Spotify process that it is time to shut down.
+
+This is great and all, but what if you are on windows?
+All hope is not lost, for it has the `netstat` command, which looks a bit like this:
+
+    netstat -a -n -o
+    
+It is almost the same as the lsof command.The `-a` argument ask for all of the processes associated  with a port.
+`-n` option prevents DNS lookup for all addresses found. 
+Whie the `-o` argument includes the PID in the output.
+Which looks something like this:
+
+    Active Connections
+      Proto  Local Address      	Foreign Address    	State       	PID
+      TCP	127.0.0.1:1315     	127.0.0.1:1316     	ESTABLISHED 	4780
+      TCP	127.0.0.1:1316     	127.0.0.1:1315     	ESTABLISHED 	4780
+      TCP	127.0.0.1:1326     	127.0.0.1:1327     	ESTABLISHED 	3364
+      TCP	127.0.0.1:1327     	127.0.0.1:1326     	ESTABLISHED 	3364
+      ...
+
+Most of the information about the netstat command can be provided by executing
+`netstat /?`.
+
+If the Windows process 4780 needs to be terminated the `taskkill` should come in handy.
+
+    taskkill /F /PID 4780
+    
+If the processes existed befor running the command, it does not now!
+The `/F` tells the command to force terminate ande the `/PID` allows for process id inputed.
+
+So now if you should now be armed and dangerous. 
+Do not let some obscure process hog the port you want to use, show it whose boss!
