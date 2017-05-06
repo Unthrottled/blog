@@ -67,9 +67,16 @@ Run the gradle version command to verify that the installation went well:
       
       Groovy:       2.4.10
       Ant:          Apache Ant(TM) version 1.9.6 compiled on June 29 2015
-      JVM:          9-ea (Oracle Corporation 9-ea+167)
+      JVM:          1.8.0_131 (Oracle Corporation 25.131-b11)
       OS:           Linux 4.8.0-49-generic amd64
 
+
 #### Boom, Gradle, Done!
+
+If you happen to be a MacOS or Windows enthusiast I can point you to the [gradle install page](https://gradle.org/install). 
+Come back though, I miss you already!
+
+Now that you are back, or never left, you probably still do not have Gradle, because you do not want or cannot put neet installer tools on your machine.
+Fear not brave Programmer, there are still many ways to install gradle!
     
 https://services.gradle.org/distributions/gradle-3.5-bin.zip
