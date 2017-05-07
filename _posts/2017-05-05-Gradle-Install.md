@@ -19,7 +19,7 @@ So let us explore the many ways we can install/upgrade Gradle, _another_ technol
 
 I am sure that there are more examples of pachyderms pictures, but these are the ones I know of the top of my head.
 
-Anyways, I need to converge back to the topic at hand.
+Anyways, I need to get back to the topic at hand.
 
 For starters, if it was not picked up already, a Java Runtime Environment (JRE) needs to be set up.
 In fact just continue on to the next section and take it from there!
@@ -124,6 +124,33 @@ Either close and reopen a new terminal or just run the following command
 
     bash
     
-Now you should be able to do a `gradle  -v` and be successfull!
+Now you should be able to do a `gradle  -v` and be successful!
  
 **Note:** To upgrade a manual installation you need to follow all of the same steps previously mentioned, but the path should ONLY contain the newest gradle binary directory.
+
+#### Alternate Ubuntu Gradle install
+
+If manual install and upgrade sound like too much work, then the `apt` package management system.
+
+First, the repository provided by cwchien needs to be added:
+
+    sudo add-apt-repository ppa:cwchien/gradle
+
+Second, Then an package management system needs to be updated to register the new repo.
+
+    sudo apt-get update
+    
+Third, to install the current gradle version the following command is sufficient.
+
+    sudo apt-get install gradle-ppa
+    
+That's it! If when a new gradle is posted and you want it, just start at the Second step and enjoy your new gradle!
+
+Go forth and conquer!
+
+#### -Alex
+
+### Resources:
+
+- [https://gradle.org/install](https://gradle.org/install)
+- [https://wtanaka.com/node/8079](https://wtanaka.com/node/8079)
