@@ -107,5 +107,23 @@ Next use wget to download the gradle 3.5 zip file from the Gradle site.
     
 After compressed file exists on the target machine, it now needs to be uncompressed.
 
-    unzip gradle-3.5-bin.zip
+    unzip gradle-3.5-bin.zip -d gradle-3.5
 
+The `-d` argument tells unzip to move all of the files contained in the gradle-3.5-bin.zip file into the new gradle-3.5 directory, provided gradle-3.5 in the current working directory.
+
+Lastly, we need to tell everyone where gradle can be found so that it can be used!
+This is done by appending the gradle-3.5/bin to the path variable.
+Accomplishing this can be done by the following steps
+
+1. The file ~/.profile. (Where ~ is your home directory).
+1. Add the following line to the end of the file "PATH=$PATH:/home/alex/gradle-3.5/bin" (Replacing /home/alex with absolute path of the directory containg the  gradle-3.5 directory).
+1. Save the file.
+
+Provided you have not closed the current command line that was used to get and unzip gradle, the new path variable has available to the terminal instance, _yet_.
+Either close and reopen a new terminal or just run the following command
+
+    bash
+    
+Now you should be able to do a `gradle  -v` and be successfull!
+ 
+**Note:** To upgrade a manual installation you need to follow all of the same steps previously mentioned, but the path should ONLY contain the newest gradle binary directory.
