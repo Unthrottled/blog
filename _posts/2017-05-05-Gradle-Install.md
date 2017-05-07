@@ -24,7 +24,7 @@ Anyways, I need to converge back to the topic at hand.
 For starters, if it was not picked up already, a Java Runtime Environment (JRE) needs to be set up.
 In fact just continue on to the next section and take it from there!
 
-Automatic Installers
+Automatic Install
 ---
 
 For Linux users, if able to, install [SDKMAN](http://sdkman.io/install.html).
@@ -76,7 +76,18 @@ Run the gradle version command to verify that the installation went well:
 If you happen to be a MacOS or Windows enthusiast I can point you to the [gradle install page](https://gradle.org/install). 
 Come back though, I miss you already!
 
-Now that you are back, or never left, you probably still do not have Gradle, because you do not want or cannot put neet installer tools on your machine.
+Manual Install
+---
+Now that you are back, or never left, you probably still do not have Gradle, because you do not want or cannot put neat installer tools on your machine.
 Fear not brave Programmer, there are still many ways to install gradle!
+
+What will need to be accomplished for manual installation are the following steps, _regardless of operating system_.
+
+1. Download the compressed Gradle binaries.
+1. Uncompress the Gradle binaries somewhere on the target machine
+1. Add the binary sub-directory of newly created Gradle directory to the PATH environment variable.
+1. ????
+1. *Gradle!*
+
     
 https://services.gradle.org/distributions/gradle-3.5-bin.zip
