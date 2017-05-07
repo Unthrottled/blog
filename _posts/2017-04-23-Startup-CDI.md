@@ -3,6 +3,7 @@ layout: post
 title:  "Startup JavaBeans"
 date:   2017-4-23
 categories: java
+headerImage: beans/bean.png
 ---
 Are you in charge of developing or maintaining a stateful web application with the Java EE API? 
 Do you want some set of events to be triggered on your applications startup and shutdown? 
