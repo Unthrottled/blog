@@ -89,5 +89,23 @@ What will need to be accomplished for manual installation are the following step
 1. ????
 1. *Gradle!*
 
+##### Ubuntu Manual Install
+
+The manual install steps can be done many ways, the following will be done using the command line.
+According to the steps provided above, the Gradle binaries need to get on our machine.
+To accomplish the following step, we need wget.
+If wget is not installed on your machine just run the install command, provided sudoer permissions.
+
+    sudo apt-get install wget
     
-https://services.gradle.org/distributions/gradle-3.5-bin.zip
+**Make sure that the the current working directory is where you want gradle to be installed**.
+
+Next use wget to download the gradle 3.5 zip file from the Gradle site.
+(Note: at the time of this post 3.5 is the most current version, feel free to use the a more current version if available)
+
+    wget https://services.gradle.org/distributions/gradle-3.5-bin.zip
+    
+After compressed file exists on the target machine, it now needs to be uncompressed.
+
+    unzip gradle-3.5-bin.zip
+
