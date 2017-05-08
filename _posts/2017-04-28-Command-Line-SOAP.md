@@ -51,8 +51,8 @@ It can be found on git hub here:
 
 To run the sample you will need:
  - Internet Connection (At least the first time it is run)
- - [Java 8 runtime](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
- - [Gradle 2.3+ ](https://gradle.org/install)
+ - [Java 8 runtime]({% post_url 2017-05-05-Gradle-Install %})
+ - [Gradle 2.3+ ]({% post_url 2017-05-05-Gradle-Install %})
  
 Once the repository is on your machine, in order to boot up the server do the following.
 

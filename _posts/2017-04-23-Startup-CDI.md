@@ -82,8 +82,8 @@ As a forewarning, annotating an _Application Scoped_ bean with the `@Startup` an
 I have provided an functional sample for those who are so inclined.
 To run the sample you will need:
  - Internet Connection (At least the first time it is run)
- - [Java 8 runtime](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
- - [Maven 3.x.x](https://maven.apache.org/install.html)
+ - [Java 8 runtime]({% post_url 2017-05-05-Gradle-Install %})
+ - [Maven 3.x.x]({% post_url 2017-05-05-Gradle-Install %})
  
 It can be reached at : 
 [https://github.com/cyclic-reference/startup-cdi](https://github.com/cyclic-reference/startup-cdi)
