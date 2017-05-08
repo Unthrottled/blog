@@ -12,6 +12,11 @@ Such as Gradle, which is groovy based.
 One of the the positives, in my opinion, is that more can be done with less code.
 Also the fact that Groovy scripts can be written is a plus, its like a less verbose Java!
 
+#### Things you can expect from this post:
+- How to install Java 8.
+- How to install Gradle.
+
+
 So let us explore the many ways we can install/upgrade Gradle, _another_ technology with an elephant based mascot.
 
 
