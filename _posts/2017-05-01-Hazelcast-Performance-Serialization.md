@@ -10,7 +10,7 @@ However, there are some nob, buttons, and levers that can be pushed, pulled, and
 
 Hazelcast, being a distributed in-memory data-grid, has to be able to store and send objects over networks. 
 Meaning that all items put into a hazelcast instance must be stored in a byte array.
-The coressponding byte array is is able to be sent across networks and shared with other nodes in the cluster.
+The corresponding byte array is is able to be sent across networks and shared with other nodes in the cluster.
 This allows all  nodes in a given cluster to share information. 
 
 The process of converting of a Java object int a byte array (or anything really such as XML) is called _Serialization_.
@@ -28,14 +28,14 @@ public class BestClass implements Serializable {
 
 {% endhighlight %}
 
-That is all that has to be done to have any plain old Java object (pojo) stored in any of Hazelcast's distributed data structures.
-Following this branch of object serialization, reflection is used to both serialize (encode to binary) and deserialize (decode from binary) pojos.
-This means, for serialization, that all fields of the pojo are written in to byte arrays via iterating over them via reflection. 
-Deserializaion requires the pojo to have an empty constructor so that the class may be created and all of non-transient fields filled via reflection.
+That is all that has to be done to have any plain old Java object (POJO) stored in any of Hazelcast's distributed data structures.
+Following this branch of object serialization, reflection is used to both serialize (encode to binary) and deserialize (decode from binary) POJOs.
+This means, for serialization, that all fields of the POJO are written in to byte arrays via iterating over them via reflection. 
+Deserializaion requires the POJO to have an empty constructor so that the class may be created and all of non-transient fields filled via reflection.
 
 Lets take a look at an example.
 
-Suppose we have the two following pojos.
+Suppose we have the two following POJOs.
 
 
 {% highlight java %}
@@ -84,10 +84,10 @@ This shows that, out of the box, read heavy use-cases of Hazelcast will a bit sl
 
 There is a non-Hazelcast dependent optimization for the object serialization process.
 This means that work done to code will remain portable to other cache implementations.
-Implementing the `Externalizable` interface will allow java to use overridden methods in each pojo to serialize and deserialize objects.
+Implementing the `Externalizable` interface will allow java to use overridden methods in each POJO to serialize and deserialize objects.
 Preventing the need for classes to be created from reflection, but adds the need for extra work.
 
-Here are the new Externalizable pojos:
+Here are the new Externalizable POJOs:
 
 {% highlight java %}
 package io.acari.pojo;
@@ -211,7 +211,7 @@ While this work could possibly be transferred to other applications, which requi
 
 The first example is the DataSerializable interface, which is looks a whole lot like the Externalizable interface.
 
-Here are the new pojos:
+Here are the new POJOs:
 
 {% highlight java %}
 package io.acari.pojo;
