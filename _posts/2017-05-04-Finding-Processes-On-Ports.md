@@ -2,6 +2,7 @@
 layout: post
 title: Processes running on ports.
 categories: sysadmin
+headerImage: port/port.jpg
 ---
 
 There comes a time during exploratory development.
