@@ -8,75 +8,18 @@ There will come a time when the need arises to have Java objects persist without
 Simply put, reading and writing an object to a local file.
 Let us explore how this can be accomplished and find some reason this is helpful in the first place.
 
+#### What can expected from this post:
+1. How to read and write Serializable objects to a file.
+1. How to read and write Non-Serializable objects to a file.
+1. Why would we want to read and write objects to a file.
+
 Here is the how.
+
+**Writing Serializable objects to a file.**
 
 The first thing that is needed is an object to write to a file. 
 It will need to implement the `java.io.Serializable` or `java.io.Externalizable` interface.
 For more information about serializable objects, checkout [this post on java serialization performance!]({% post_url 2017-05-01-Hazelcast-Performance-Serialization %})
-
-{% highlight java %}
-package io.acari;
-
-import io.acari.pojo.ExternalizableProgrammer;
-import io.acari.pojo.Programmer;
-import io.acari.repositories.ProgrammerRepository;
-
-import java.io.EOFException;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.stream.Stream;
-
-public class Main {
-
-    public static void main(String[] args) throws IOException {
-        ProgrammerRepository programmerRepository = ProgrammerRepository.newProgrammerRepository();
-        readWriteObject(programmerRepository.getProgrammers(), Programmer.class);
-        readWriteObject(programmerRepository.getProgrammers().map(ExternalizableProgrammer::new), ExternalizableProgrammer.class);
-    }
-
-    private static <T> void readWriteObject(Stream<T> objectStream, Class<T> tClass) throws IOException {
-        String simpleName = tClass.getSimpleName();
-        Path fileToWrite = Paths.get(simpleName + ".data");
-        if (Files.notExists(fileToWrite)) {
-            Files.createFile(fileToWrite);
-        }
-        try (ObjectOutputStream out = new ObjectOutputStream(
-                Files.newOutputStream(fileToWrite, StandardOpenOption.TRUNCATE_EXISTING))) {
-            objectStream.forEach(object -> {
-                try {
-                    out.writeObject(object);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            });
-        }
-
-
-        try (ObjectInputStream in = new ObjectInputStream(Files.newInputStream(fileToWrite, StandardOpenOption.READ))) {
-            List<T> programmers = new LinkedList<>();
-            try {
-                while (true) {
-                    programmers.add((T) in.readObject());
-                }
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            } catch (EOFException ignored) {
-            }
-            System.out.format("%d %s read from file!\n", programmers.size(), simpleName);
-        }
-    }
-}
-
-
-{% endhighlight %}
-
 
 {% highlight java %}
 package io.acari.pojo;
@@ -93,8 +36,6 @@ public class Programmer implements Serializable {
     
     //ACCESSOR METHODS OMITTED
 }
-
-
 {% endhighlight %}
 
 
@@ -176,10 +117,6 @@ public class ExternalizableProgrammer implements Externalizable {
 }
 {% endhighlight %}
 
-The first thing that catches the eye, is the fact that the list is iterated through, in favor of calling the slower `writeObject` and `readObject` of th ObjectOutput's and ObjectInput's API respectively.
-In the `readExternal` method, it can be seen that the convenient reflective creation of the Computer field was overridden by manual creation.
-This saves time, but is a few extra lines of code.
-
 {% highlight java %}
 package io.acari.pojo;
 
@@ -224,6 +161,69 @@ public class ExternalizableComputer implements Externalizable {
     
     //ACCESSOR METHODS OMMITTED
 }
+
+{% endhighlight %}
+
+{% highlight java %}
+package io.acari;
+
+import io.acari.pojo.ExternalizableProgrammer;
+import io.acari.pojo.Programmer;
+import io.acari.repositories.ProgrammerRepository;
+
+import java.io.EOFException;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.stream.Stream;
+
+public class Main {
+
+    public static void main(String[] args) throws IOException {
+        ProgrammerRepository programmerRepository = ProgrammerRepository.newProgrammerRepository();
+        readWriteObject(programmerRepository.getProgrammers(), Programmer.class);
+        readWriteObject(programmerRepository.getProgrammers().map(ExternalizableProgrammer::new), ExternalizableProgrammer.class);
+    }
+
+    private static <T> void readWriteObject(Stream<T> objectStream, Class<T> tClass) throws IOException {
+        String simpleName = tClass.getSimpleName();
+        Path fileToWrite = Paths.get(simpleName + ".data");
+        if (Files.notExists(fileToWrite)) {
+            Files.createFile(fileToWrite);
+        }
+        try (ObjectOutputStream out = new ObjectOutputStream(
+                Files.newOutputStream(fileToWrite, StandardOpenOption.TRUNCATE_EXISTING))) {
+            objectStream.forEach(object -> {
+                try {
+                    out.writeObject(object);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
+        }
+
+
+        try (ObjectInputStream in = new ObjectInputStream(Files.newInputStream(fileToWrite, StandardOpenOption.READ))) {
+            List<T> programmers = new LinkedList<>();
+            try {
+                while (true) {
+                    programmers.add((T) in.readObject());
+                }
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            } catch (EOFException ignored) {
+            }
+            System.out.format("%d %s read from file!\n", programmers.size(), simpleName);
+        }
+    }
+}
+
 
 {% endhighlight %}
 
