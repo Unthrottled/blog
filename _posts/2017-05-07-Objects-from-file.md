@@ -88,7 +88,7 @@ public class Main {
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             } catch (EOFException ignored) {
-                /**
+                /*
                  * Reached the end of the file.
                  * No more objects to read
                  */
@@ -98,6 +98,8 @@ public class Main {
     }
 }
 {% endhighlight %}
+
+
 
 {% highlight java %}
 package io.acari.pojo;
