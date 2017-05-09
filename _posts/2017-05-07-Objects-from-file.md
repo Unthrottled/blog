@@ -105,11 +105,23 @@ Otherwise a pretty little `NotSerializableException` gets throw when writing to 
 Another handy fact is that the `ObjectInputStream` will throw an `EOFException` (End-of-File) when the data stream has no more bytes to read.
 Which will allows the infinite loop, created in the method, to break.
 
-A complete functioning project using this code can be found at the following repository:
+A complete functioning project using this code can be found at the following repository listed below.
+The repository contains a README file that will help get the project up and running!
 
 [https://github.com/cyclic-reference/object-to-file](https://github.com/cyclic-reference/object-to-file)
 
-The repository contains a README file that will help get the project up and running!
+**Writing Non-Serializable objects to a file.**
+
+**Disclamer**: This does not mean, SERIALIZE ALL THE THINGS!
+Some classes are not serializable for a good reason. 
+Such as FutureTask, Thread, and Executor. 
+These are very complex and stateful objects that have no use becoming stagnate in a file.
+
+An important question to ask is: why in the world would this ever be a thing in the first place?
+
+Which is a really good question. 
+There are some things that are out of our control.
+Which really chaffs my chaps sometimes. I mean come on, we are programmers! We bend computers to our will such that nothing should be impossible,
 
 Before delving into the why of writing objects to a file, it would be nice to mention some more concrete persistence APIs.
 
