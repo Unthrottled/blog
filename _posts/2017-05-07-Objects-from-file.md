@@ -132,13 +132,82 @@ Suppose that is far easier to create this domain object by using dedicated appli
 However, the issue here is that the object is not serializable or easily serializable (has complex types).
 
 One way around this issue is mapping the object to a JSON String. 
-This is viable if we have access to a Javascript Object Notation object mapper library.
+This is viable if have access to a Javascript Object Notation object mapper library is permitted.
 Such libraries include but are not limited to:
 
 - [Google GSON](https://github.com/google/gson)
 - [Jackson FasterXML](https://www.mkyong.com/java/jackson-2-convert-java-object-to-from-json/)
 
+The following example will be done using GSON, Google's POJO to JSON mapping tool.
 
+{% highlight java %}
+package io.acari;
+
+import com.google.gson.Gson;
+import io.acari.pojo.NonSerializableProgrammer;
+import io.acari.repositories.ProgrammerRepository;
+
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.function.Consumer;
+
+import static io.acari.repositories.ProgrammerRepository.newProgrammerRepository;
+
+public class TestDataCreater {
+    private static final Path TEST_JSON_DATA_FILE = Paths.get("src", "test", "resources", "programmers.json").toAbsolutePath();
+    private static final Gson GSON = new Gson();
+
+    public Path fetchJSONFile(){
+        if (needToWriteToFile(TEST_JSON_DATA_FILE)) {
+            Consumer<Path> jsonWriter = path -> {
+                try (BufferedWriter out = Files.newBufferedWriter(path)) {
+                    newProgrammerRepository().getProgrammers()
+                            .map(NonSerializableProgrammer::new)
+                            .forEach(programmer -> {
+                                try {
+                                    out.write(GSON.toJson(programmer));
+                                    out.newLine();
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                            });
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            };
+            createData(TEST_JSON_DATA_FILE, jsonWriter);
+        }
+        return TEST_JSON_DATA_FILE;
+    }
+
+    private void createData(Path testDataFile, Consumer<Path> consumer) {
+        try {
+            if (Files.size(testDataFile) == 0) {
+                consumer.accept(testDataFile);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private boolean needToWriteToFile(Path testDataFile) {
+        try {
+            if (Files.notExists(testDataFile)) {
+                Files.createFile(testDataFile);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+}
+
+{% endhighlight %}
 
 Before delving into the how and why of writing objects to a file, it would be nice to mention some more concrete persistence APIs.
 
