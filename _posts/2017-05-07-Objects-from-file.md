@@ -157,7 +157,7 @@ import java.util.function.Consumer;
 
 import static io.acari.repositories.ProgrammerRepository.newProgrammerRepository;
 
-public class TestDataCreater {
+public class TestDataCreator {
     private static final Path TEST_JSON_DATA_FILE = Paths.get("src", "test", "resources", "programmers.json").toAbsolutePath();
     private static final Gson GSON = new Gson();
 
@@ -208,6 +208,60 @@ public class TestDataCreater {
 }
 
 {% endhighlight %}
+
+Running `fetchJSONFile()`, provided proper permissions, will create a file whose relative path is test-objects-from-file/src/test/resources/programmers.json.
+Having the file in the resources directory will allow the build to put it directly into the classpath, next time the build happens.
+Meaning that this class is really just good for one run, after that the file it created will be package into the executable .jar file.
+This can change how the test data resource is accessed in the created program.
+
+Here is how to use the resource via absolute path, using TestDataCreator:
+
+{% highlight java %}
+package io.acari;
+
+import com.google.gson.Gson;
+import io.acari.pojo.NonSerializableProgrammer;
+import io.acari.pojo.Programmer;
+
+import java.io.EOFException;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.Collections;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+
+public class TestDataProvider {
+    private static Map<String, NonSerializableProgrammer> nonSerialProgrammers = new LinkedHashMap<>();
+    private static final Gson GSON = new Gson();
+
+    static {
+        TestDataCreator testDataCreator = new TestDataCreator();
+        Path path = testDataCreator.fetchSerializableObjectFile();
+        nonSerialProgrammers = createProgrammersFromJSON(testDataCreator.fetchJSONFile());
+    }
+
+    private static Map<String, NonSerializableProgrammer> createProgrammersFromJSON(Path path) {
+        if (Files.exists(path)) {
+            try {
+                return Files.lines(path)
+                        .map(programmerJson -> GSON.fromJson(programmerJson, NonSerializableProgrammer.class))
+                        .collect(Collectors.toMap(NonSerializableProgrammer::getName, Function.identity()));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return Collections.emptyMap();
+    }
+
+    public static Map<String, NonSerializableProgrammer> getNonSerialProgrammers() {
+        return nonSerialProgrammers;
+    }
+}
+{% endhiglight %}
 
 Before delving into the how and why of writing objects to a file, it would be nice to mention some more concrete persistence APIs.
 
