@@ -123,6 +123,14 @@ Which is a really good question.
 There are some things that are out of our control.
 Which really chaffs my chaps sometimes. I mean come on, we are programmers! We bend computers to our will such that nothing should be impossible,
 
+Lets say that we have to consume a third-party (someone else other than us) library to consume a web-service. 
+This library contains a domain object that is vital to the core application logic.
+The object is _very_ large and complex. 
+In order to unit-test the classes that interface with the third party library, these domain objects need to be created.
+Since they are so large and complex that creating different permutations these objects from hand is time consuming and error prone.
+Suppose that is far easier to create this domain object by using dedicated application.
+However, the issue here is that the object is not serializable or easily serializable (has complex types).
+
 Before delving into the why of writing objects to a file, it would be nice to mention some more concrete persistence APIs.
 
 As relation databases go there are many to choose from, here is a small sample:
