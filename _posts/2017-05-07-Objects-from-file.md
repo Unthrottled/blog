@@ -131,7 +131,16 @@ Since they are so large and complex that creating different permutations these o
 Suppose that is far easier to create this domain object by using dedicated application.
 However, the issue here is that the object is not serializable or easily serializable (has complex types).
 
-Before delving into the why of writing objects to a file, it would be nice to mention some more concrete persistence APIs.
+One way around this issue is mapping the object to a JSON String. 
+This is viable if we have access to a Javascript Object Notation object mapper library.
+Such libraries include but are not limited to:
+
+- [Google GSON](https://github.com/google/gson)
+- [Jackson FasterXML](https://www.mkyong.com/java/jackson-2-convert-java-object-to-from-json/)
+
+
+
+Before delving into the how and why of writing objects to a file, it would be nice to mention some more concrete persistence APIs.
 
 As relation databases go there are many to choose from, here is a small sample:
 
