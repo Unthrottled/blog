@@ -15,11 +15,11 @@ Let us explore how this can be accomplished and find some reason this is helpful
 
 **Writing Serializable objects to a file.**
 
-The first thing that is needed is an object to write to a file. 
+The first thing that will be needed is an object to write to a file. 
 It will need to implement the `java.io.Serializable` or `java.io.Externalizable` interface.
 For more information about serializable objects, checkout [this post on java serialization performance!]({% post_url 2017-05-01-Hazelcast-Performance-Serialization %})
 
-Here is the how.
+This is one way of reading and writing objects to and from a file.
 
 {% highlight java %}
 package io.acari;
@@ -125,19 +125,23 @@ These are very complex and stateful objects that have no use becoming stagnate i
 An important question to ask is: why in the world would this ever be a thing in the first place?
 
 Which is a really good question. 
-There are some things that are out of our control.
-Which really chaffs my chaps sometimes. I mean come on, we are programmers! We bend computers to our will such that nothing should be impossible,
+There happens to be some things that are out of our control.
+Which really chaffs my chaps sometimes. 
+I mean come on, we are programmers! 
+We bend computers to our will such that nothing should be impossible,
 
 Lets say that we have to consume a third-party (someone else other than us) library to consume a web-service. 
-This library contains a domain object that is vital to the core application logic.
+This library contains a domain object that is vital to the core application logic that we are building.
 The object is _very_ large and complex. 
-In order to unit-test the classes that interface with the third party library, these domain objects need to be created.
-Since they are so large and complex that creating different permutations these objects from hand is time consuming and error prone.
-Suppose that is far easier to create this domain object by using dedicated application.
-However, the issue here is that the object is not serializable or easily serializable (has complex types).
+In order to thoroughly unit-test the classes that interface with the third party library, these domain objects need to be created.
+Since they are so large and complex that creating different permutations these objects from hand is very time consuming and error prone.
+Suppose that is far easier to create this domain object by using dedicated tool outside our codebase.
+However, the issue here is that the complex domain object does not implment the Serializable interface. 
+It could even be Serializable, but have really complex data types to create.
+So we cannot viably persist the object with the methods we know right now.
 
-One way around this issue is mapping the object to a JSON String. 
-This is viable if have access to a Javascript Object Notation object mapper library is permitted.
+One way around this issue is mapping the object to a JSON (Javascript Object Notation) string.
+This is viable option only if access to a JSON object mapper library is permitted.
 Such libraries include but are not limited to:
 
 - [Google GSON](https://github.com/google/gson)
@@ -150,10 +154,14 @@ This repository also contains a README file that will help get the project up an
 
 The following example will be done using GSON, Google's POJO to JSON mapping tool.
 The goal is to write a JSON object string to a file. 
-As each of the objects get written, they will be separated a new line character.
-Allowing the evenual parsing by the java NIO (Non-blocking input output) files method `Files.lines()`.
+As each of the objects get serialized into JSON and written, they will be separated a new line character.
+Allowing the eventual parsing by the java NIO (Non-blocking input output) `java.nio.file.Files` method `Stream<String> lines(Path path)`.
 Which accepts a `Path` as an argument an returns a Stream of lines, or in this case JSON objects.
 That in turn can be deserialized back into the POJO it was created from.
+
+Here is how that could be done.
+
+---
 
 {% highlight java %}
 package io.acari;
