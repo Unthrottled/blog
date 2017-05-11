@@ -234,9 +234,13 @@ public class TestDataCreator {
 
 {% endhighlight %}
 
-For clarity, `newProgrammerRepository().getProgrammers().map(NonSerializableProgrammer::new)` code snippet is just a chain of methods that randomly creates some programmers, exposes them as a stream, and converts each programmer into a non-serializable version of the object.
+For clarity, the `newProgrammerRepository().getProgrammers().map(NonSerializableProgrammer::new)` code snippet is just a chain of methods that: 
 
-Running _fetchJSONFile()_, provided proper permissions, will create a file whose relative path is test-objects-from-file/src/test/resources/programmers.json.
+1. Randomly creates some programmers
+2. Exposes them as a stream.
+3. Converts each programmer into a non-serializable version of the object.
+
+Running _fetchJSONFile()_, provided proper permissions to modify contents in the current working directory, will create a file whose relative path is test-objects-from-file/src/test/resources/programmers.json.
 The contents of the file could look something like the following:
 
 {% highlight javascript %}
@@ -248,8 +252,7 @@ The contents of the file could look something like the following:
 {"name":"4rsohi17kqvou7mm26m4bfj5mt","age":32,"computer":{"model":"Blade","subModel":"Pro","ram":16,"make":"Razer"},"languages":["Java","Groovy","Clojure","Lisp","C++","C","C#","R","Matlab"]}
 {% endhighlight %}
 
-
-Having the file in the resources directory will allow the build to put it directly into the classpath, next time the build happens.
+Having the file in the resources directory will allow the gradle build to put it directly into the classpath, next time a build is run.
 Meaning that this class is really just good for one run, after that the file it created will be package into the executable .jar file.
 This can change how the test data resource is accessed in the created program.
 
@@ -343,7 +346,7 @@ While having files to read and write a small subset of objects, it has really no
 
 Feel free to check these handy tools out!
 
-If you want a relation database there are many to choose from, here is a small sample:
+If you want a relational database there are many to choose from, here is a small sample:
 
 - [MySQL](https://www.mysql.com/)
 - [PostgreSQL](https://www.postgresql.org/about/)
