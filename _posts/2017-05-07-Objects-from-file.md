@@ -40,9 +40,12 @@ import java.util.stream.Stream;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        ProgrammerRepository programmerRepository = ProgrammerRepository.newProgrammerRepository();
-        readWriteObject(programmerRepository.getProgrammers(), Programmer.class);
-        readWriteObject(programmerRepository.getProgrammers().map(ExternalizableProgrammer::new), ExternalizableProgrammer.class);
+        ProgrammerRepository programmerRepository = 
+                                    ProgrammerRepository.newProgrammerRepository();
+        readWriteObject(programmerRepository.getProgrammers(), 
+                        Programmer.class);
+        readWriteObject(programmerRepository.getProgrammers().map(ExternalizableProgrammer::new), 
+                        ExternalizableProgrammer.class);
     }
 
     /**
@@ -58,7 +61,8 @@ public class Main {
      * @throws IOException if user has unsufficent privledges to write in
      *                     current working directory.
      */
-    private static <T extends Serializable> void readWriteObject(Stream<T> objectStream, Class<T> tClass) throws IOException {
+    private static <T extends Serializable> void readWriteObject(Stream<T> objectStream, 
+                                                                 Class<T> tClass) throws IOException {
         String simpleName = tClass.getSimpleName();
         Path fileToWrite = Paths.get(simpleName + ".data");
         //Create File (if needed) to write to.
@@ -79,7 +83,8 @@ public class Main {
         }
 
         //Read objects from file.
-        try (ObjectInputStream in = new ObjectInputStream(Files.newInputStream(fileToWrite, StandardOpenOption.READ))) {
+        try (ObjectInputStream in = new ObjectInputStream(Files.newInputStream(fileToWrite, 
+                                                                  StandardOpenOption.READ))) {
             List<T> programmers = new LinkedList<>();
             try {
                 while (true) {
@@ -158,7 +163,9 @@ import java.util.function.Consumer;
 import static io.acari.repositories.ProgrammerRepository.newProgrammerRepository;
 
 public class TestDataCreator {
-    private static final Path TEST_JSON_DATA_FILE = Paths.get("src", "test", "resources", "programmers.json").toAbsolutePath();
+    private static final Path TEST_JSON_DATA_FILE = 
+                                    Paths.get("src", "test", "resources", "programmers.json")
+                                         .toAbsolutePath();
     private static final Gson GSON = new Gson();
 
     public Path fetchJSONFile(){
@@ -248,8 +255,12 @@ public class TestDataProvider {
         if (Files.exists(path)) {
             try {
                 return Files.lines(path)
-                        .map(programmerJson -> GSON.fromJson(programmerJson, NonSerializableProgrammer.class))
-                        .collect(Collectors.toMap(NonSerializableProgrammer::getName, Function.identity()));
+                        .map(programmerJson -> 
+                        GSON.fromJson(programmerJson, 
+                                      NonSerializableProgrammer.class))
+                        .collect(Collectors.toMap(
+                                 NonSerializableProgrammer::getName, 
+                                 Function.identity()));
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -261,7 +272,16 @@ public class TestDataProvider {
         return nonSerialProgrammers;
     }
 }
-{% endhiglight %}
+{% endhighlight %}
+
+{% highlight javascript %}
+{"name":"14kk1qadp1gtloea6r7iljurpi","age":41,"computer":{"model":"Blade","subModel":"Stealth","ram":16,"make":"Razer"},"languages":["Groovy","Go","Lisp","Ruby","C","C#","Perl","Cobol"]}
+{"name":"5rrgdb3j8git645m7p04tah0jo","age":20,"computer":{"model":"Blade","subModel":"Pro","ram":16,"make":"Razer"},"languages":["Groovy","Go","Clojure","Javascript","C#","Cobol","R","Matlab"]}
+{"name":"3fmn5dfq32vtt7f9vgif4dc7ql","age":51,"computer":{"model":"Blade","subModel":"Pro","ram":16,"make":"Razer"},"languages":["Lisp","Ruby","Javascript","C","C#","Perl","Cobol","R","Matlab"]}
+{"name":"7he5loei1ne71l4o3ltumgs5a5","age":36,"computer":{"model":"Macbook","subModel":"Air","ram":8,"make":"Apple"},"languages":["Java","Ruby","C","Perl","R","Matlab"]}
+{"name":"40rr4ta6hf44s6dana116cdj3n","age":0,"computer":{"model":"Blade","subModel":"Pro","ram":16,"make":"Razer"},"languages":["Java","Groovy","Clojure","C","C#","Perl","Cobol","R"]}
+{"name":"4rsohi17kqvou7mm26m4bfj5mt","age":32,"computer":{"model":"Blade","subModel":"Pro","ram":16,"make":"Razer"},"languages":["Java","Groovy","Clojure","Lisp","C++","C","C#","R","Matlab"]}
+{% endhighlight %}
 
 Before delving into the how and why of writing objects to a file, it would be nice to mention some more concrete persistence APIs.
 
