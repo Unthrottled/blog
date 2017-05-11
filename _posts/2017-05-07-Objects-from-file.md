@@ -245,20 +245,19 @@ Having the file in the resources directory will allow the build to put it direct
 Meaning that this class is really just good for one run, after that the file it created will be package into the executable .jar file.
 This can change how the test data resource is accessed in the created program.
 
-Here is how to use the resource via absolute path, using TestDataCreator:
+Here is how to use the resource via absolute path using TestDataCreator, and reading from the classpath resources:
 
 {% highlight java %}
 package io.acari;
 
 import com.google.gson.Gson;
 import io.acari.pojo.NonSerializableProgrammer;
-import io.acari.pojo.Programmer;
+import org.springframework.core.io.ClassPathResource;
 
-import java.io.EOFException;
 import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -270,39 +269,42 @@ public class TestDataProvider {
     private static final Gson GSON = new Gson();
 
     static {
-        TestDataCreator testDataCreator = new TestDataCreator();
-        //This is the first time running the code
-        //So there is no JSON File created, so we will create it in the resources directory
-        //of the project and return the reference to the newly created file to the following
-        //method that in turn create the objects from the created file.
-        nonSerialProgrammers = createProgrammersFromJSON(testDataCreator.fetchJSONFile());
-        try {
-            //This assumes that there is JSON File created in the resources directory
-            //of the project and returns the reference to the file to the following
-            //method that in turn creates the objects from the JSON string(s).
-            //The resource directory is located in the following file structure
-            // src
-            // |
-            // --test
-            //   |  
-            //   --resources
-            nonSerialProgrammers = createProgrammersFromJSON(
-                    Paths.get(TestDataProvider.class.getResource("programmers.json")
-                            .toURI()));
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
+        ClassPathResource resource = new ClassPathResource("programmers.json");
+        if(resource.exists()) {
+            try {
+                //This assumes that there is JSON File created in the resources directory
+                //of the project and returns the reference to the file to the following
+                //method that in turn creates the objects from the JSON string(s).
+                //The resource directory is located in the following file structure
+                // src
+                // |
+                // --test
+                //   |  
+                //   --resources
+                nonSerialProgrammers = createProgrammersFromJSON(Paths.get(resource.getURI()));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            TestDataCreator testDataCreator = new TestDataCreator();
+            //This is the first time running the code
+            //So there is no JSON File created, so we will create it in the resources directory
+            //of the project and return the reference to the newly created file to the following
+            //method that in turn create the objects from the created file.
+            nonSerialProgrammers = createProgrammersFromJSON(testDataCreator.fetchJSONFile());
         }
+       
     }
 
     private static Map<String, NonSerializableProgrammer> createProgrammersFromJSON(Path path) {
         if (Files.exists(path)) {
             try {
                 return Files.lines(path)
-                        .map(programmerJson -> 
-                                 GSON.fromJson(programmerJson, NonSerializableProgrammer.class))
+                        .map(programmerJson ->
+                                GSON.fromJson(programmerJson, NonSerializableProgrammer.class))
                         .collect(Collectors.toMap(
-                                 NonSerializableProgrammer::getName, 
-                                 Function.identity()));
+                                NonSerializableProgrammer::getName,
+                                Function.identity()));
             } catch (IOException e) {
                 e.printStackTrace();
             }
