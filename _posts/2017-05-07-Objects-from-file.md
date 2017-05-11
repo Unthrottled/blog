@@ -143,7 +143,17 @@ Such libraries include but are not limited to:
 - [Google GSON](https://github.com/google/gson)
 - [Jackson FasterXML](https://www.mkyong.com/java/jackson-2-convert-java-object-to-from-json/)
 
+A full project is provided for the example below.
+This repository also contains a README file that will help get the project up and running!
+
+[https://github.com/cyclic-reference/test-objects-from-file](https://github.com/cyclic-reference/test-objects-from-file)
+
 The following example will be done using GSON, Google's POJO to JSON mapping tool.
+The goal is to write a JSON object string to a file. 
+As each of the objects get written, they will be separated a new line character.
+Allowing the evenual parsing by the java NIO (Non-blocking input output) files method `Files.lines()`.
+Which accepts a `Path` as an argument an returns a Stream of lines, or in this case JSON objects.
+That in turn can be deserialized back into the POJO it was created from.
 
 {% highlight java %}
 package io.acari;
@@ -216,7 +226,9 @@ public class TestDataCreator {
 
 {% endhighlight %}
 
-Running `fetchJSONFile()`, provided proper permissions, will create a file whose relative path is test-objects-from-file/src/test/resources/programmers.json.
+For clarity, `newProgrammerRepository().getProgrammers().map(NonSerializableProgrammer::new)` code snippet is just a chain of methods that randomly creates some programmers, exposes them as a stream, and converts each programmer into a non-serializable version of the object.
+
+Running _fetchJSONFile()_, provided proper permissions, will create a file whose relative path is test-objects-from-file/src/test/resources/programmers.json.
 The contents of the file could look something like the following:
 
 {% highlight javascript %}
@@ -259,8 +271,27 @@ public class TestDataProvider {
 
     static {
         TestDataCreator testDataCreator = new TestDataCreator();
-        Path path = testDataCreator.fetchSerializableObjectFile();
+        //This is the first time running the code
+        //So there is no JSON File created, so we will create it in the resources directory
+        //of the project and return the reference to the newly created file to the following
+        //method that in turn create the objects from the created file.
         nonSerialProgrammers = createProgrammersFromJSON(testDataCreator.fetchJSONFile());
+        try {
+            //This assumes that there is JSON File created in the resources directory
+            //of the project and returns the reference to the file to the following
+            //method that in turn creates the objects from the JSON string(s).
+            //The resource directory is located in the following file structure
+            // src
+            // |
+            // --test
+            //   |  
+            //   --resources
+            nonSerialProgrammers = createProgrammersFromJSON(
+                    Paths.get(TestDataProvider.class.getResource("programmers.json")
+                            .toURI()));
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
     }
 
     private static Map<String, NonSerializableProgrammer> createProgrammersFromJSON(Path path) {
