@@ -318,9 +318,24 @@ public class TestDataProvider {
 }
 {% endhighlight %}
 
-Before delving into the how and why of writing objects to a file, it would be nice to mention some more concrete persistence APIs.
+Lastly, when the data is created, each object is mapped to a unique identifier.
+Meaning that access to a favorite test object or scenario involving an object with a certain state is just a simple key away!
+No more having to create a really complex object by hand every time a new scenario needs to be tested.
 
-As relation databases go there are many to choose from, here is a small sample:
+One of the downsides to this is that this file could get really big, really fast.
+Potentially slowing down the test suite. 
+When tests start to take for ever, they get run less.
+Test that are built and not run is just as bad as not having tests in the first place!
+
+Anyways I could go on and on about this subject.
+Which I might do in a future post.
+
+Before leaving, it would be nice to mention some more concrete persistence APIs.
+While having files to read and write a small subset of objects, it has really no place for real work.
+
+Feel free to check these handy tools out!
+
+If you want a relation database there are many to choose from, here is a small sample:
 
 - [MySQL](https://www.mysql.com/)
 - [PostgreSQL](https://www.postgresql.org/about/)
@@ -328,9 +343,13 @@ As relation databases go there are many to choose from, here is a small sample:
 
 On the other hand, there are also quite a few NoSQL databases to choose from as well.
 The primary difference between SQL and NoSQL databases is that there is no relational setup between objects stored in NoSQL databases.
-Items in a NoSQL database are stored as Key-Value pairs. 
+Items in a NoSQL database are usually stored Key-Value pairs. 
 Here is a small subset of NoSQL databases:
 
 - [MongoDB](https://www.mongodb.com/what-is-mongodb)
 - [Redis](https://redis.io/topics/introduction)
 - [Cassandra](http://cassandra.apache.org/)
+
+### Thank you for your attention!
+
+#### -Alex
