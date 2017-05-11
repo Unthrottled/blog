@@ -117,7 +117,8 @@ The repository contains a README file that will help get the project up and runn
 
 **Writing Non-Serializable objects to a file.**
 
-**Disclamer**: This does not mean, SERIALIZE ALL THE THINGS!
+**Disclamer**: This does not mean, SERIALIZE ALL THE THINGS! ![things]({{site.imageDir}}cereal/things.png)
+
 Some classes are not serializable for a good reason. 
 Such as FutureTask, Thread, and Executor. 
 These are very complex and stateful objects that have no use becoming stagnate in a file.
@@ -132,7 +133,7 @@ We bend computers to our will such that nothing should be impossible,
 
 Lets say that we have to consume a third-party (someone else other than us) library to consume a web-service. 
 This library contains a domain object that is vital to the core application logic that we are building.
-The object is _very_ large and complex. 
+The object is _very_ large and complex.
 In order to thoroughly unit-test the classes that interface with the third party library, these domain objects need to be created.
 Since they are so large and complex that creating different permutations these objects from hand is very time consuming and error prone.
 Suppose that is far easier to create this domain object by using dedicated tool outside our codebase.
