@@ -13,8 +13,8 @@ description: > # this means to ignore newlines until "baseurl:"
   when scowering the internet to solve bugs and issues. With a dash of cool things I learned
   I hope I was able to help!
 baseurl: "" # the subpath of your site, e.g. /blog/
-url: "http://sandwich:4000" # the base hostname & protocol for your site
-imageDir: "http://sandwich:4000/assets/images/"
+url: "http://blog.acari.io" # the base hostname & protocol for your site
+imageDir: "http://blog.acari.io/assets/images/"
 twitter_username: CyclicReference
 github_username:  cyclic-reference
 
@@ -30,4 +30,4 @@ defaults:
       image: true
 
 
-paginate: 4
+paginate: 8
