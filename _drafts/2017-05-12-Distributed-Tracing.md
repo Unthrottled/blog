@@ -43,7 +43,7 @@ How's the saying go? It only takes one bad apple to ruin the bunch?
 Having to wait one whole second to look at funny pictures might not seem up to par with total gastro-evacuation, but it might cause loss of users.
 Sure the first time, they might just chalk it up to just Comcast for providing third world internet connection speed. 
 However, that blaming a slow ISP, for inhibiting a quality does of funny cat photos, can only go so far .
-If the website in contiunousy slow, people might not want to use it at all. 
+If the website in continuously slow, people will give up and search for a better alternative. 
 It is not worth having to wait internet eons to get what they want, and people will move on.
 
 So what does this have to do with distributed tracing?
@@ -51,16 +51,17 @@ Well as it turns out, a whole bunch!
 Distributed tracing allows for an in-depth break down of a latency tree in a micro-service architecture.
 Essentally, a profiler, such as [yourkit](https://www.yourkit.com/), for the cloud.
 It enables a more granular break down a service call.
-Showing the interactions between services that are made and how long each one takes after they have recieved a request and finished with a response.
+Showing the interactions between services that are made and how long each one takes after they have received a request and finished with a response.
 Painting a more clear picture of a transaction.
-Hopefully, leading to a paths where optimiziations can be wired in to reduce response times.
+Hopefully, leading to a paths where optimizations can be wired in to reduce response times.
 
 Continuing off of the previous example: we have Service Alpha. 
 Service Alpha has a dependencies on both Service Bravo and Service Charlie.
-Charlie has a dependency Service Zulu.
+Service Charlie has a dependency Service Zulu.
 We know that it takes around 100ms (with the occasional tail latency of 1000ms), but do not know the break down of time spent with dependent interacting with one another.
-For instance, it might be the case that Alpha, Bravo, and Charlie all repsond in a reasonable amount of time of lets say 10ms.
+For instance, it might be the case that Alpha, Bravo, and Charlie all respond in a reasonable amount of time of lets say 10ms.
 It might be Zulu that takes an average of 70ms, with a chance of being bogged down and taking 930ms.
+
 This currently is all conjecture at the moment, just a bunch of guesses.
 There exits many cool tools and methodologies that allow for this kind of insight in place of, "well it could be this".
 **Knowing is way better than guessing!**
