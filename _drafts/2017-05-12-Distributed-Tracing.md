@@ -44,6 +44,17 @@ However, that can only go so far.
 If the website in contiunousy slow, people might not want to use it at all.
 
 So what does this have to do with distributed tracing?
-Well as it turns out, everything!
-Distributed tracing allows for break down of the latency tree in a micro-service archetecture.
+Well as it turns out, a whole bunch!
+Distributed tracing allows for break down of the latency tree in a micro-service architecture.
 Essentally, a profiler, such as [yourkit](https://www.yourkit.com/), for web-service suite.
+It enables a more granular break down of the calls that are made and how long each one takes when an interaction with a service occurs.
+Allowing for a more clear picture as to where things can be optimized for every transaction.
+
+Continuing off of the previous example: we have Service Alpha. 
+Service Alpha has a dependencies on both Service Bravo and Service Charlie.
+Charlie has a dependency Service Zulu.
+We know that it takes around 100ms (with the occasional tail latency of 1000ms), but do not know the break down of time spent with dependent interacting with one another.
+For instance, it might be the case that Alpha, Bravo, and Charlie all repsond in a reasonable amount of time of lets say 10ms.
+It might be Zulu that takes an average of 70ms, with a chance of being bogged down and taking 930ms.
+This currently is all conjecture at the moment.
+There exits many cool tools and methodologies that allow for this kind of insight.
