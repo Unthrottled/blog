@@ -20,6 +20,8 @@ Such as the time it takes for chemical reactions to take place, the length in ti
 Tail-latency is the classification of the reactions that took longest to occur.
 The far end of the bell-curve of response times. 
 
+![Bell-Curve]({{site.imageDir}}/tracing/bell-curve.jpg)
+
 Let us say that we are have developed an application that provides users will silly cat pictures.
 It normally takes the application 100 milliseconds(ms) to load a single image an amusing kitty photo.
 Each page consists of an average aggregation of ten photos.
