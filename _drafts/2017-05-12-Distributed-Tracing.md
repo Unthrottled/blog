@@ -69,3 +69,29 @@ There exits many cool tools and methodologies that allow for this kind of insigh
 One such technology is Twitter's [Zipkin](http://zipkin.io/) which is based off of Google's research, on tracing distributed infrastructure, [Dapper paper](https://research.google.com/pubs/pub36356.html).
 Now I have not read the entire paper as of yet. However, I am able to give you a synopsis of what I know, base off of use of Zipkin and presintations on such a subject.
 
+Starting off with the definition of a **Span** in the context of Client-Server.
+- It first starts at the point of the _client sending_ a message to a server (Client Send:CS). 
+- The next event is when the _server eventually receives_ the client's sent message (Server Receive:SR).
+- After that, the serve will eventually send a message back to the client which initiated the request (Server Send:SS).
+- Ending the span when the _client receives_ (CR) the message from the server it contacted (Client Receive:CR).
+
+A **Trace** is a collections of span that compose an entry point request into the infrastructure we happen to be debugging.
+Given the example stated above and all requests are blocking, a trace would be:
+
+1. Alpha Client sends a message to Alpha Service. CS
+1. Alpha Service receives the message from Alpha Client. SR
+1. Alpha Service sends a message to Bravo Service. CS
+1. Bravo Service receives the message from Alpha Service. SR
+1. Bravo Service sends a message back to Alpha Service. SS
+1. Alpha Service receives the message from Bravo Service. CR
+1. Alpha Service sends a message to Charlie Service. CS
+1. Charlie Service a receives the message from Alpha Service. SR
+1. Charlie Service sends a message to Zulu service. CS
+1. Zulu Service receives the message from Charlie Service. SR
+1. Zulu Service sends a message back to Charlie Service. SS
+1. Charlie Service receives the message from Zulu Service. CR
+1. Charlie Service sends a message back to Alpha Service. SS
+1. Alpha Service recievs the message from Charlie Service CR
+1. Alpha Service sends a message to Alpha Client. SS
+1. Alpha Client receives the message from Alpha Service. CR
+
