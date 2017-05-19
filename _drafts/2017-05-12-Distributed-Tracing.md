@@ -55,9 +55,9 @@ Showing the interactions between services that are made and how long each one ta
 Painting a more clear picture of a transaction.
 Hopefully, leading to a paths where optimizations can be wired in to reduce response times.
 
-Continuing off of the previous example: we have Service Alpha. 
-Service Alpha has a dependencies on both Service Bravo and Service Charlie.
-Service Charlie has a dependency Service Zulu.
+Continuing off of the previous example: we have an Alpha Service. 
+Alpha Service has a dependencies on both Bravo Service and Charlie Service.
+Charlie Service has a dependency Zulu Service.
 We know that it takes around 100ms (with the occasional tail latency of 1000ms), but do not know the break down of time spent with dependent interacting with one another.
 For instance, it might be the case that Alpha, Bravo, and Charlie all respond in a reasonable amount of time of lets say 10ms.
 It might be Zulu that takes an average of 70ms, with a chance of being bogged down and taking 930ms.
@@ -65,3 +65,7 @@ It might be Zulu that takes an average of 70ms, with a chance of being bogged do
 This currently is all conjecture at the moment, just a bunch of guesses.
 There exits many cool tools and methodologies that allow for this kind of insight in place of, "well it could be this".
 **Knowing is way better than guessing!**
+
+One such technology is Twitter's [Zipkin](http://zipkin.io/) which is based off of Google's research, on tracing distributed infrastructure, [Dapper paper](https://research.google.com/pubs/pub36356.html).
+Now I have not read the entire paper as of yet. However, I am able to give you a synopsis of what I know, base off of use of Zipkin and presintations on such a subject.
+
