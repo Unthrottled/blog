@@ -70,12 +70,15 @@ One such technology is Twitter's [Zipkin](http://zipkin.io/) which is based off 
 Now I have not read the entire paper as of yet. However, I am able to give you a synopsis of what I know, base off of use of Zipkin and presintations on such a subject.
 
 Starting off with the definition of a **Span** in the context of Client-Server.
+A Span is really any unit of work that a Client or Service will execute in.
+In the case of Zipkin it can be any of the following.
+
 - It first starts at the point of the _client sending_ a message to a server (Client Send:CS). 
 - The next event is when the _server eventually receives_ the client's sent message (Server Receive:SR).
 - After that, the serve will eventually send a message back to the client which initiated the request (Server Send:SS).
 - Ending the span when the _client receives_ (CR) the message from the server it contacted (Client Receive:CR).
 
-A **Trace** is a collections of span that compose an entry point request into the infrastructure we happen to be debugging.
+A **Trace** is a tree of spans that compose an entry point request into the infrastructure we happen to be debugging.
 Given the example stated above and all requests are blocking, a trace would be:
 
 1. Alpha Client sends a message to Alpha Service. CS
@@ -95,7 +98,8 @@ Given the example stated above and all requests are blocking, a trace would be:
 1. Alpha Service sends a message to Alpha Client. SS
 1. Alpha Client receives the message from Alpha Service. CR
 
-That is quite a bit to take in, fortunately with this information, Zipkin can create a dependency tree!
-The following dependency tree was created by Zipkin UI.
+That is quite a bit to take in, fortunately with this information, Zipkin has the ability to create a graphical depiction of a dependency tree!
+The following dependency tree was created by Zipkin UI from a trace of the example project above.
  
 ![Service Dependency Tree]({{site.imageDir}}/tracing/tree-crop.png)
+
