@@ -95,3 +95,7 @@ Given the example stated above and all requests are blocking, a trace would be:
 1. Alpha Service sends a message to Alpha Client. SS
 1. Alpha Client receives the message from Alpha Service. CR
 
+That is quite a bit to take in, fortunately with this information, Zipkin can create a dependency tree!
+The following dependency tree was created by Zipkin UI.
+ 
+![Service Dependency Tree]({{site.imageDir}}/tracing/tree-crop.png)
