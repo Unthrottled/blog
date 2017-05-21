@@ -101,5 +101,5 @@ Given the example stated above and all requests are blocking, a trace would be:
 That is quite a bit to take in, fortunately with this information, Zipkin has the ability to create a graphical depiction of a dependency tree!
 The following dependency tree was created by Zipkin UI from a trace of the example project above.
  
-![Service Dependency Tree]({{site.imageDir}}/tracing/tree-crop.png)
+![Service Dependency Tree]({{site.imageDir}}/tracing/dependency-tree.png)
 
