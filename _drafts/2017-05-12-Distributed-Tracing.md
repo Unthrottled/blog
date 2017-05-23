@@ -135,7 +135,7 @@ I would highly recommend checking out the documentation to Spring Cloud Sleuth, 
 It is vastly more robust that this blog post, which is supposed to be more of a 10000 foot overview!
 
 One of the great things about Zipkin is that it paints a really clear picture of what is happening in your system.
-Allowing you to wonder, "That's funny, why is it doing that?"
+Allowing you to stand back and think, "That's funny, why is it doing that?"
 
 I have a really good example of that, because I had that moment creating the example project for this blog post!
 My issue was that I was getting the kind of trace below.
@@ -152,3 +152,15 @@ It will automatically be configured to bind a stream to the Zipkin Stream Enable
 So I had to rid myself of using streams, which are really cool.
 Fortunately I saved the code using streams as a branch called "SERVICE_STREAMS" on the repository!
 It shows an example of how to have more than one stream bound to an Spring boot application.
+
+Anyways, I hope that this shows how one can debug/optimize or even start looking into the right direction when dealing with distributed systems.
+
+#### Be sure to visit the project repository!
+
+[https://github.com/cyclic-reference/distributed-tracing](https://github.com/cyclic-reference/distributed-tracing)
+
+Here are all the things (I have not mentioned) which I found really helpful in creating this post!
+
+-[https://spring.io/blog/2016/02/15/distributed-tracing-with-spring-cloud-sleuth-and-spring-cloud-zipkin](https://spring.io/blog/2016/02/15/distributed-tracing-with-spring-cloud-sleuth-and-spring-cloud-zipkin)
+-[https://spring.io/guides/gs/service-registration-and-discovery/](https://spring.io/guides/gs/service-registration-and-discovery/)
+-[http://docs.spring.io/spring-cloud-stream/docs/current/reference/htmlsingle/](http://docs.spring.io/spring-cloud-stream/docs/current/reference/htmlsingle/)
