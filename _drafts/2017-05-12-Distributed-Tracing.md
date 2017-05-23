@@ -14,11 +14,11 @@ That would be like using a grenade launcher to hunt deer.
 Sure it gets the job done, but it is expensive and there is a high probability that it might blow up in your face. 
 Plus, as far as I am aware, deer do not shoot back.
 
-One of the things that has a high probably of unintended friendly fire is, _tail-latency_.
+One of the things that has a high probably of blow-back is, _tail-latency_.
 Latency can be defined as the time it takes for something to respond to an action or event. 
-Such as the time it takes for chemical reactions to take place, the length in time it takes a double-clutch to register a change of gears,or how long it takes for a website to respond when a button is clicked.
+Such as the time it takes for chemical reactions to take place, the length in time it takes a double-clutch to register a change of gears, or how long it takes for a website to respond when a button is clicked.
 Tail-latency is the classification of the reactions that took longest to occur.
-The far end of the bell-curve of response times. 
+Being the far right-end of the bell-curve of response times. 
 
 ![Bell-Curve]({{site.imageDir}}/tracing/bell-curve.jpg)
 
@@ -30,28 +30,32 @@ Meaning that a complete page has a high probability of taking one second to comp
 This one second lag is what we would call our tail-latency. 
 Sure it normally takes 100ms to run, but it is the 1 second that really matters.
 
-People are fickle and tend to only see the the bad.
-Take for instance, lets say you visit a sandwich shop. The first time you order a chicken sandwich on rye, it was good.
+Bad news, people are fickle and tend to only see bad things.
+Meaning that if your app responds really fast 3 times, but is slow for the fourth.
+All the users will really notice is the slow response.
+
+Take for instance, let's say you visit a sandwich shop. The first time you order a chicken sandwich on rye, it was good.
 The next next you go, you order the chicken sandwich again, since knowing that it was pretty good.
-Turns out this sandwich was good as well. However, the preceding visit, we have the chicken sandwich again, but this time something awful happens.
+Turns out this sandwich was good as well. 
+However, on the third visit, we have the chicken sandwich again, but this time something awful happens.
 After consuming the tasty morsel, later that evening you catch the stomach virus going around work. 
-You spend the rest of the night with traumatizing stomach pains, leading up to the evacuation of the sandwich had for lunch.
-The experience was so awful, that it ruined chicken sandwiches entirely. 
-It was not the sandwiches fault that you got sick, but even thinking about eating another is out of the question.
+You spend the rest of the night with traumatizing stomach pains, leading up to the eventual evacuation of the sandwich had for lunch.
+The experience was so awful, that it ruined chicken sandwiches for you entirely. 
+Now it really was not the sandwiches fault that you got sick, but even thinking about eating another is out of the question.
 How's the saying go? It only takes one bad apple to ruin the bunch?
 
 Having to wait one whole second to look at funny pictures might not seem up to par with total gastro-evacuation, but it might cause loss of users.
 Sure the first time, they might just chalk it up to just Comcast for providing third world internet connection speed. 
-However, that blaming a slow ISP, for inhibiting a quality does of funny cat photos, can only go so far .
+However, blaming a slow ISP for inhibiting a quality experience of funny cat photos can go only so far .
 If the website in continuously slow, people will give up and search for a better alternative. 
-It is not worth having to wait internet eons to get what they want, and people will move on.
+To them, it may is not worth having to wait internet eons to get what they want, and people will move on.
 
 So what does this have to do with distributed tracing?
 Well as it turns out, a whole bunch!
 Distributed tracing allows for an in-depth break down of a latency tree in a micro-service architecture.
 Essentally, a profiler, such as [yourkit](https://www.yourkit.com/), for the cloud.
 It enables a more granular break down a service call.
-It can shown the interactions between services that are made and how long each one takes after they have received a request and finished with a response.
+It shows all of the interactions of the all the dependent services of a trace and how long each interaction takes.
 Painting a more clear picture of a transaction.
 Hopefully, leading to a paths where optimizations can be wired in to reduce response times.
 
@@ -98,7 +102,7 @@ Given the example stated above and all requests are blocking, a trace would be:
 1. Zulu Service sends a message back to Charlie Service. SS
 1. Charlie Service receives the message from Zulu Service. CR
 1. Charlie Service sends a message back to Alpha Service. SS
-1. Alpha Service recievs the message from Charlie Service CR
+1. Alpha Service receives the message from Charlie Service CR
 1. Alpha Service sends a message to Alpha Client. SS
 1. Alpha Client receives the message from Alpha Service. CR
 
@@ -124,7 +128,7 @@ Fun fact! Take this excerpt from [Spring cloud docs](https://cloud.spring.io/spr
         
         · the Span will be tagged with that method’s class name and the method name too
 
-That is exactly what I did, I created a method that would allow the asyncronous invocation of REST calls to both bravo and charlie service. 
+That is exactly what I did, I created a method that would allow the asynchronous invocation of REST calls to both bravo and charlie service. 
 Preventing the need to wait for one service to respond before communicating with the next.
 
 I would highly recommend checking out the documentation to Spring Cloud Sleuth, linked above.
@@ -146,4 +150,5 @@ Sleuth has a large list of spans it creates, without needing to use streams.
 So it is sufficient to have the Sleuth Stream Dependency without actually using streams. 
 It will automatically be configured to bind a stream to the Zipkin Stream Enabled Server and send spans regardless.
 So I had to rid myself of using streams, which are really cool.
-Fortunately I save the code using streams as a branch on the repository
+Fortunately I saved the code using streams as a branch called "SERVICE_STREAMS" on the repository!
+It shows an example of how to have more than one stream bound to an Spring boot application.
