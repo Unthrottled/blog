@@ -55,6 +55,10 @@ It can shown the interactions between services that are made and how long each o
 Painting a more clear picture of a transaction.
 Hopefully, leading to a paths where optimizations can be wired in to reduce response times.
 
+#### The rest of the post references a sample project in this repository:
+
+[https://github.com/cyclic-reference/distributed-tracing](https://github.com/cyclic-reference/distributed-tracing)    
+
 Continuing off of the previous example: we have an Alpha Service. 
 Alpha Service has a dependencies on both Bravo Service and Charlie Service.
 Charlie Service has a dependency Zulu Service.
@@ -125,3 +129,21 @@ Preventing the need to wait for one service to respond before communicating with
 
 I would highly recommend checking out the documentation to Spring Cloud Sleuth, linked above.
 It is vastly more robust that this blog post, which is supposed to be more of a 10000 foot overview!
+
+One of the great things about Zipkin is that it paints a really clear picture of what is happening in your system.
+Allowing you to wonder, "That's funny, why is it doing that?"
+
+I have a really good example of that, because I had that moment creating the example project for this blog post!
+My issue was that I was getting the kind of trace below.
+
+![Wonky Trace]({{site.imageDir}}/tracing/v1/trace-crop.png)
+
+I was wondering why does it not look like the previous trace in this post.
+I have all the things I wanted to see, but I was also getting a lot more.
+Turns out extra smaller bits between bravo and charlie, which cascade back to alpha client, were the service streams I created.
+You do not actually need to use Streams for spring cloud sleuth stream to log spans to a Zipkin server.
+Sleuth has a large list of spans it creates, without needing to use streams.
+So it is sufficient to have the Sleuth Stream Dependency without actually using streams. 
+It will automatically be configured to bind a stream to the Zipkin Stream Enabled Server and send spans regardless.
+So I had to rid myself of using streams, which are really cool.
+Fortunately I save the code using streams as a branch on the repository
