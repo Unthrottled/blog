@@ -51,7 +51,7 @@ Well as it turns out, a whole bunch!
 Distributed tracing allows for an in-depth break down of a latency tree in a micro-service architecture.
 Essentally, a profiler, such as [yourkit](https://www.yourkit.com/), for the cloud.
 It enables a more granular break down a service call.
-Showing the interactions between services that are made and how long each one takes after they have received a request and finished with a response.
+It can shown the interactions between services that are made and how long each one takes after they have received a request and finished with a response.
 Painting a more clear picture of a transaction.
 Hopefully, leading to a paths where optimizations can be wired in to reduce response times.
 
@@ -103,3 +103,25 @@ The following dependency tree was created by Zipkin UI from a trace of the examp
  
 ![Service Dependency Tree]({{site.imageDir}}/tracing/dependency-tree.png)
 
+Here is an example of the trace of this example project.
+
+![Trace]({{site.imageDir}}/tracing/trace.png)
+
+There may appear to be a discrepancy of the image and list of spans above. 
+Zipkin states that there are only seven spans within the current depicted trace.
+The dependency tree gives us only _five_ nodes, so there should really only be five, something does not add up right?
+
+Fun fact! Take this excerpt from [Spring cloud docs](https://cloud.spring.io/spring-cloud-sleuth/spring-cloud-sleuth.html#__async_annotated_methods):
+
+
+    If you annotate your method with @Async then we’ll automatically create a new Span with the following characteristics:
+
+        · the Span name will be the annotated method name
+        
+        · the Span will be tagged with that method’s class name and the method name too
+
+That is exactly what I did, I created a method that would allow the asyncronous invocation of REST calls to both bravo and charlie service. 
+Preventing the need to wait for one service to respond before communicating with the next.
+
+I would highly recommend checking out the documentation to Spring Cloud Sleuth, linked above.
+It is vastly more robust that this blog post, which is supposed to be more of a 10000 foot overview!
