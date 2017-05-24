@@ -19,8 +19,13 @@ body {
     line-height: $base-line-height;
     font-weight: 300;
     color: $text-color;
-    background-color: $background-color;
+    background-color: rebeccapurple;
     -webkit-text-size-adjust: 100%;
+    max-width: 1060px;
+    overflow-x: hidden;
+    display: block;
+    margin: auto;
+    padding: 40px 50px;
 }
 
 

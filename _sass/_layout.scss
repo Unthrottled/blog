@@ -10,6 +10,13 @@
     position: relative;
 }
 
+.boxed-content {
+    background: #fff;
+    z-index: 10000;
+    position: relative;
+    width: 99.984%;
+}
+
 .site-title {
     font-size: 26px;
     line-height: 56px;
