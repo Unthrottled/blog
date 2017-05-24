@@ -115,12 +115,11 @@ Here is an example of the trace of this example project.
 
 ![Trace]({{site.imageDir}}/tracing/trace.png)
 
-There may appear to be a discrepancy of the image and list of spans above. 
+There may appear to be a discrepancy between the image and list of dependencies above. 
 Zipkin states that there are only seven spans within the current depicted trace.
 The dependency tree gives us only _five_ nodes, so there should really only be five, something does not add up right?
 
 Fun fact! Take this excerpt from [Spring cloud docs](https://cloud.spring.io/spring-cloud-sleuth/spring-cloud-sleuth.html#__async_annotated_methods):
-
 
     If you annotate your method with @Async then we’ll automatically create a new Span with the following characteristics:
 
@@ -128,7 +127,7 @@ Fun fact! Take this excerpt from [Spring cloud docs](https://cloud.spring.io/spr
         
         · the Span will be tagged with that method’s class name and the method name too
 
-That is exactly what I did, I created a method that would allow the asynchronous invocation of REST calls to both bravo and charlie service. 
+That is exactly what I did, I created a method that would allow the asynchronous invocation of REST calls to both Bravo and Charlie service. 
 Preventing the need to wait for one service to respond before communicating with the next.
 
 I would highly recommend checking out the documentation to Spring Cloud Sleuth, linked above.
@@ -143,14 +142,16 @@ My issue was that I was getting the kind of trace below.
 ![Wonky Trace]({{site.imageDir}}/tracing/v1/trace-crop.png)
 
 I was wondering why does it not look like the previous trace in this post.
-I have all the things I wanted to see, but I was also getting a lot more.
-Turns out extra smaller bits between bravo and charlie, which cascade back to alpha client, were the service streams I created.
+The trace had all the things that I wanted; however, I was also getting a lot more than expected.
+Turns out extra smaller bits between Bravo and Charlie, which cascade back to Alpha client, were the streams I created.
 You do not actually need to use Streams for spring cloud sleuth stream to log spans to a Zipkin server.
-Sleuth has a large list of spans it creates, without needing to use streams.
+Sleuth has a large list of things that it creates spans for without needing to actually use streams.
 So it is sufficient to have the Sleuth Stream Dependency without actually using streams. 
-It will automatically be configured to bind a stream to the Zipkin Stream Enabled Server and send spans regardless.
-So I had to rid myself of using streams, which are really cool.
-Fortunately I saved the code using streams as a branch called "SERVICE_STREAMS" on the repository!
+Spring will automatically be configure to bind to the stream that the ZipkinStreamEnabledServer creates.
+Allowing spans to be sent over to Zipkin and traces to be viewed in the Zipkin UI.
+
+So I had to rid myself of using using the really cool streams, in the name of clearer more concise traces.
+Fortunately, I saved the code using streams as a branch called "SERVICE_STREAMS" on the example repository!
 It shows an example of how to have more than one stream bound to an Spring boot application.
 
 Anyways, I hope that this shows how one can debug/optimize or even start looking into the right direction when dealing with distributed systems.
@@ -164,3 +165,5 @@ Here are all the things (I have not mentioned) which I found really helpful in c
 -[https://spring.io/blog/2016/02/15/distributed-tracing-with-spring-cloud-sleuth-and-spring-cloud-zipkin](https://spring.io/blog/2016/02/15/distributed-tracing-with-spring-cloud-sleuth-and-spring-cloud-zipkin)
 -[https://spring.io/guides/gs/service-registration-and-discovery/](https://spring.io/guides/gs/service-registration-and-discovery/)
 -[http://docs.spring.io/spring-cloud-stream/docs/current/reference/htmlsingle/](http://docs.spring.io/spring-cloud-stream/docs/current/reference/htmlsingle/)
+
+#### -Alex
