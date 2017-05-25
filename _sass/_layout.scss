@@ -2,9 +2,10 @@
  * Site header
  */
 .site-header {
-    border-top: 5px solid $e621-dark-blue;
-    border-bottom: 1px solid $e621-border-blue;
+    border-top: 5px solid $gold;
+    border-bottom: 2px dotted $e621-border-blue;
     min-height: 56px;
+    padding: 5px;
 
     // Positioning context for the mobile navigation icon
     position: relative;
@@ -21,13 +22,13 @@
     font-size: 2.5em;
     font-weight: 400;
     line-height: 56px;
-    letter-spacing: -1px;
     margin-bottom: 0;
     float: left;
     color: $gold;
+    opacity: 0.85;
 
     &:hover {
-        opacity: 0.5;
+        opacity: 1;
     }
     &:visited {
         color: $dark-gold;
@@ -195,6 +196,10 @@
 .post-meta {
     font-size: $small-font-size;
     color: $grey-color;
+}
+
+.post-excerpt {
+    color: $reach-white
 }
 
 .post-link {
