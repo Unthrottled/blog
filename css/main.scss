@@ -61,6 +61,12 @@ $on-laptop:        1000px;
     }
 }
 
+@mixin hexRain(){
+  background-image: url(../assets/images/hex.png) !important;
+  background-position: left bottom !important;
+  background-repeat: repeat-x !important;
+}
+
 
 
 // Import partials from `sass_dir` (defaults to `_sass`)

@@ -8,14 +8,16 @@ layout: default
 
     <ul class="post-list">
         {% for post in paginator.posts %}
-        <li>
-            <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
+        <li class="post-row">
+            <div class="post-container">
+                <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
 
-            <h2>
-                <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-            </h2>
-            <div class="post-excerpt">
-                {{ post.excerpt }}
+                <h2>
+                    <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+                </h2>
+                <div class="post-excerpt">
+                    {{ post.excerpt }}
+                </div>
             </div>
         </li>
         {% endfor %}
