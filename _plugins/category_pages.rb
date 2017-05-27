@@ -18,7 +18,7 @@ module Jekyll
         self.data['title'] = "#{category_title_prefix}#{category}"
         self.data['category_root'] = false # juzraai
       else
-        self.data['title'] = 'Categories:'
+        self.data['title'] = 'Categories'
         self.data['category_root'] = true # juzraai
       end
 
