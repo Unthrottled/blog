@@ -26,7 +26,7 @@ layout: default
     <!-- Pagination links -->
     <div class="pagination">
         {% if paginator.previous_page %}
-        <a href="{{ paginator.previous_page_path }}" class="nav-link">« Previous</a>
+        <a href="{{ paginator.previous_page_path | append: '/index.html'}}" class="nav-link">« Previous</a>
         {% else %}
         <em class="page-current">« Previous</em>
         {% endif %}
@@ -34,13 +34,13 @@ layout: default
             {% if page == paginator.page %}
                 <em class="page-current">{{page}}</em>
             {% elsif page == 1 %}
-                <a class="nav-link" href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">{{ page }}</a>
+                <a class="nav-link" href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/'}}">{{ page }}</a>
             {% else %}
-                <a class="nav-link" href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}">{{ page }}</a>
+                <a class="nav-link" href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page | append: '/index.html' }}">{{ page }}</a>
             {% endif %}
         {% endfor %}
         {% if paginator.next_page %}
-        <a href="{{ paginator.next_page_path}}/index.html" class="nav-link">Next »</a>
+        <a href="{{ paginator.next_page_path | append: '/index.html'}}" class="nav-link">Next »</a>
         {% else %}
         <em class="page-current">Next »</em>
         {% endif %}

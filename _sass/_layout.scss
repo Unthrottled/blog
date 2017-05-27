@@ -112,10 +112,7 @@
   color: $reach-white;
   margin-right: 5px;
   padding: {
-    left: 10px;
-    right: 10px;
-    top: 2px;
-    bottom: 2px;
+
   }
   font-weight: 400;
 }
@@ -125,6 +122,7 @@
  */
 .site-footer {
   border-bottom: 5px solid $e621-dark-blue;
+  border-top: 2px dotted $gold;
   padding: $spacing-unit 0;
 }
 
