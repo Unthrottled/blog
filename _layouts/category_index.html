@@ -1,0 +1,21 @@
+---
+layout: default
+---
+
+<h1 class="category">{{ page.title }} <a href="javascript:window.history.back();">&laquo;</a></h1>
+<ul class="posts">
+
+{% if page.category_root %}
+	{% include taxonomy_sort.html source=site.categories %}
+	{% for taxonomy in sortedtaxonomies %}
+		<h2><a href="{{ page.url | prepend: base_url | replace: "/index.html", "" | append: "/" | replace: "//", "/" }}{{ taxonomy }}/">{{ taxonomy }}</a></h2>
+	{% endfor %}
+{% else %}
+	{% assign catpages = site.categories[page.category] | sort: 'date' %}
+	{% for post in catpages %}
+	    <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
+	    <div>{{ post.date | date_to_html_string }}</div>
+	    <div class="categories">Filed under: {{ post.categories | category_links | join: ' ' }}</div>
+	{% endfor %}
+{% endif %}
+</ul>
