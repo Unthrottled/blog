@@ -4,6 +4,7 @@ title:  "SOAP Requests without SoapUI"
 date:   2017-4-28
 categories: soap
 headerImage: soap/cli-soap.png
+tags: [Java, SOAP, HTTP, Curl, Unix, Spring Boot, SOA, WSDL]
 ---
 
 There are times when one might be unable to obtain access to [SoapUi](https://www.soapui.org/downloads/soapui.html) to help debug/test a deployed SOAP web service.
