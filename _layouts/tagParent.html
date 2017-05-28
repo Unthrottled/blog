@@ -1,8 +1,13 @@
 ---
 layout: tagTemplate
 ---
-
-{% include taxonomy_sort.html source=site.tags %}
-{% for taxonomy in sortedtaxonomies %}
-<h2><a href="{{ page.url | prepend: base_url | replace: '/index.html', '' | append: '/' | replace: '//', '/' }}{{ taxonomy }}/index.html">{{ taxonomy }}</a></h2>
+{% capture tagList %}
+{% for siteTag in site.tags %}
+{{siteTag | first}},
+{% endfor %}
+{% endcapture %}
+{% assign realTagList = tagList %}
+{% for poo in site.tags| sort %}
+{% assign tag = poo | first %}
+<h2><a href="{{ page.url | prepend: base_url | replace: '/index.html', '' | append: '/' | replace: '//', '/' }}{{ tag }}/index.html">{{ tag }}</a></h2>
 {% endfor %}
