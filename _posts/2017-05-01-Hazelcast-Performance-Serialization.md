@@ -3,6 +3,7 @@ layout: post
 title:  "Boosted Hazelcast"
 categories: java
 headerImage: cereal/rail.jpg
+tags: [Java, Serialization, Hazelcast, Performance, Distributed Cache]
 ---
 
 Do not be deceived, as distributed caches go, vanilla Hazelcast has really quick response times. 
