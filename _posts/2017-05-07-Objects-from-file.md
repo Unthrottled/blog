@@ -2,6 +2,7 @@
 layout: post
 title: Java Objects to and from a File
 headerImage: beans/beans-to-file.png
+tags: [Java, Serialization, GSON, JSON, Object Persistence, Tests, Unit Tests]
 ---
 
 There will come a time when the need arises to have Java objects persist without the use of a relational or NoSQL database.
