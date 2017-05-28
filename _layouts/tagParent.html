@@ -1,0 +1,8 @@
+---
+layout: tagTemplate
+---
+
+{% include taxonomy_sort.html source=site.tags %}
+{% for taxonomy in sortedtaxonomies %}
+<h2><a href="{{ page.url | prepend: base_url | replace: '/index.html', '' | append: '/' | replace: '//', '/' }}{{ taxonomy }}/index.html">{{ taxonomy }}</a></h2>
+{% endfor %}

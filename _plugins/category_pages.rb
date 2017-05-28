@@ -1,27 +1,33 @@
 module Jekyll
 
-  class CategoryPage < Page
-    def initialize(site, base, dir, category)
+
+  class TagBase < Page
+    def initialize(site, base, dir, html_file)
       @site = site
       @base = base
       @dir = dir
       @name = 'index.html'
 
       self.process(@name)
-      self.read_yaml(File.join(base, '_layouts'), 'category_index.html')
+      self.read_yaml(File.join(base, '_layouts'), html_file)
 
       self.data['iscat'] = true
+    end
+  end
 
-      if category != 'index.html'
-        self.data['category'] = category
-        category_title_prefix = site.config['category_title_prefix'] || 'Category: '
-        self.data['title'] = "#{category_title_prefix}#{category}"
-        self.data['category_root'] = false # juzraai
-      else
-        self.data['title'] = 'Categories'
-        self.data['category_root'] = true # juzraai
-      end
+  class TagChildPage < TagBase
+    def initialize(site, base, dir, tag)
+      super(site, base, dir, 'tagChild.html')
+      self.data['tag'] = tag
+      category_title_prefix = site.config['category_title_prefix'] || 'Tag: '
+      self.data['title'] = "#{category_title_prefix}#{tag}"
+    end
+  end
 
+  class TagParentPage < TagBase
+    def initialize(site, base, dir)
+      super(site, base, dir, 'tagParent.html')
+      self.data['title'] = 'Posts by Tag'
     end
   end
 
@@ -29,15 +35,12 @@ module Jekyll
     safe true
 
     def generate(site)
-      dir = site.config['category_dir'] || 'categories'
-      if site.layouts.key? 'category_index'
-        site.categories.each_key do |category|
-          newpage = CategoryPage.new(site, site.source, File.join(dir, category), category)
-          site.pages << newpage
-          #categories << newpage.title
-        end
+      tag_root_directory = site.config['tag_dir'] || 'tags'
+      site.tags.each_key do |tag|
+        tag_page = TagChildPage.new(site, site.source, File.join(tag_root_directory, tag), tag)
+        site.pages << tag_page
       end
-      site.pages << CategoryPage.new(site, site.source, dir, "index.html")
+      site.pages << TagParentPage.new(site, site.source, tag_root_directory)
     end
   end
 
