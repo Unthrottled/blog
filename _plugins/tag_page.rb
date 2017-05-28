@@ -9,25 +9,13 @@ module Jekyll
       @tag = tag
       self.ext = '.html'
       self.basename = 'index'
-      self.content = <<-EOS
-{% for post in page.posts %}
-<h3>{{ post.date | date: "%A %d.%m." }} &mdash; <a href="{{ post.url }}">{{ post.title }}</a></h3>
-
-<p>{{ post.content | truncatewords: 20 }}</p>
-
-<p>
-{% if post.categories != empty %}
-In {{ post.categories | array_to_sentence_string }}.
-{% endif %}
-{% if post.tags != empty %}
-Tagged {{ post.tags | array_to_sentence_string }}.
-</p>
-{% endif %}
-{% endfor %}
-EOS
+      @name = 'index.html'
+      self.process(@name)
+      self.read_yaml(File.join(site.source, '_layouts'), "tagChild.html")
       self.data = {
         'layout' => 'default',
         'type' => 'tag',
+        'tag' => 'tag',
         'title' => "Posts tagged #{@tag}",
         'posts' => posts
       }

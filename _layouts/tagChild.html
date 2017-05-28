@@ -2,10 +2,8 @@
 layout: tagTemplate
 ---
 
-
-{% assign tagpages = site.tags[page.tag] | sort: 'date' %}
 <ul class="post-list">
-	{% for post in tagpages %}
+	{% for post in page.posts %}
 	<li class="post-row">
 		<div class="post-container">
 			<span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
@@ -14,7 +12,7 @@ layout: tagTemplate
 				<a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
 			</h2>
 			<div>Date Published: {{ post.date | date_to_long_string }}</div>
-			<div class="categories">Related Tags: {{ post.categories |  tag_links  | join: ' ' }}</div>
+			<div class="categories">Related Tags: {{ post.tags |  tag_links  | join: ' ' }}</div>
 		</div>
 	</li>
 	{% endfor %}
