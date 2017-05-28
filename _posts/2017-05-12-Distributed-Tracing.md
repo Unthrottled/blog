@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Distributed Tracing"
-tags: [ Cloud, Zipkin,Spring Slueth, Streams, RabbitMQ,Spring Boot, Java, Eureka, Netflix OSS, Feign Clients]
+tags: [ Spring Cloud, Zipkin, Spring Slueth, Dapper, Streams, RabbitMQ,Spring Boot, Java, Eureka, Netflix OSS, Feign Clients, Latency]
 ---
 
 The term _microservice_ means difference things to many different people.
