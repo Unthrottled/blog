@@ -104,7 +104,7 @@
     cursor: pointer;
   }
   border-radius: 10px;
-  box-shadow: 2px 2px 5px #07162D;
+  box-shadow: 2px 2px 5px transparentize($dropShadow, 0.8);
   line-height: $base-line-height;
 }
 
@@ -232,6 +232,7 @@
   background: $e621-box-blue;
   border-radius: 5px;
   padding: 10px;
+  box-shadow: 0 4px 8px 0 transparentize($dropShadow, 0.7);
   @include hexRain;
 }
 
@@ -291,7 +292,8 @@
 
 .tag-cloud-container {
   padding: 10px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 5px;
+  box-shadow: 0 5px 8px 0 transparentize($dropShadow, 0.75), 0 6px 20px 0 transparentize($dropShadow, 0.7);
 }
 
 .cloud-tag {

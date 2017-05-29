@@ -26,7 +26,7 @@ $e621-dark-blue:   #031131;
 $dark-gold: #be944b;
 $gold: #fabd2f;
 
-
+$reach-drop-shadow: #8d85d6;
 $reach-dark-purple:#4c3fbe;
 $reach-white: #f9f9f9;
 $reach-light-grey: #afafaf;
@@ -41,6 +41,8 @@ $blue-grey: #B4C7DA;
 $grey-color:       #828282;
 $grey-color-light: lighten($grey-color, 40%);
 $grey-color-dark:  darken($grey-color, 25%);
+
+$dropShadow: $reach-drop-shadow;
 
 // Width of the content area
 $content-width:    1000px;
