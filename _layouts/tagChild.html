@@ -12,9 +12,9 @@ layout: tagTemplate
 				<a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
 			</h2>
 			<div>Date Published: {{ post.date | date_to_long_string }}</div>
-			<div class="categories">Related Tags:
+			<div class="categories">
 				{% for tag in post.tags %}
-				<a class="nav-link" href="/tags/{{tag}}/index.html">{{tag}}</a>
+				<a class="nav-link_tag" href="/tags/{{tag}}/index.html">{{tag}}</a>
 				{% endfor %}
 			</div>
 		</div>

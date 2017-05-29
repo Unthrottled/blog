@@ -108,6 +108,19 @@
   line-height: $base-line-height;
 }
 
+.categories {
+  text-align: right;
+  padding: {
+    top: 5px;
+    bottom: 5px;
+  }
+}
+
+.nav-link_tag {
+  @extend .nav-link;
+  margin-bottom: 2px;
+}
+
 .page-current {
   color: $reach-white;
   margin-right: 5px;
