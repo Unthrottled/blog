@@ -5,4 +5,4 @@ tags: [Java, Hystrix, Hystrix Dashboard, Spring Boot, Spring MVC, AngularJS, Gul
 headerImage: circuit/hystrix-logo.png
 ---
 
-I did a thing for the github dashboard
+I did another a thing for the github dashboard
