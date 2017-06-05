@@ -6,4 +6,4 @@ headerImage: circuit/hystrix-logo.png
 ---
 
 I did another a thing for the github dashboard
-Look at me, i am green
+Trust me I have great things in a pipline, just is taking me a bit.
