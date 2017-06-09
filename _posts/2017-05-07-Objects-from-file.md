@@ -114,7 +114,7 @@ Which will allows the infinite loop, created in the method, to break.
 A complete functioning project using this code can be found at the following repository listed below.
 The repository contains a README file that will help get the project up and running!
 
-[https://github.com/cyclic-reference/object-to-file](https://github.com/cyclic-reference/object-to-file)
+### [https://github.com/cyclic-reference/object-to-file](https://github.com/cyclic-reference/object-to-file)
 
 **Writing Non-Serializable objects to a file.**
 

@@ -10,7 +10,7 @@ author: Alex Simons
 icon: reach_purple.png
 description: > # this means to ignore newlines until "baseurl:"
   This site is a happy little aggregation of knowledge found
-  when scowering the internet to solve bugs and issues. With a dash of cool things I learned
+  when scowering the internet to solve bugs and issues. With a dash of cool things I learned.
   I hope I was able to help!
 baseurl: "" # the subpath of your site, e.g. /blog/
 url: "http://sandwich:4000" # the base hostname & protocol for your site

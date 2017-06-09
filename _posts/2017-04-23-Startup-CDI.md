@@ -87,7 +87,7 @@ To run the sample you will need:
  - [Maven 3.x.x]({% post_url 2017-05-05-Gradle-Install %})
  
 It can be reached at : 
-[https://github.com/cyclic-reference/startup-cdi](https://github.com/cyclic-reference/startup-cdi)
+### [https://github.com/cyclic-reference/startup-cdi](https://github.com/cyclic-reference/startup-cdi)
 
 I chose to run it on Wildly Swarm, which is like a full fledged JBoss server, but only contains the libraries necessary to run an application server and deploy artifacts. 
 All of this is nicely packed int a a jar. It is a bit like Spring Boot, but at the time of this post, with less functionality.

@@ -62,7 +62,7 @@ Hopefully, leading to a paths where optimizations can be wired in to reduce resp
 
 #### The rest of the post references a sample project in this repository:
 
-[https://github.com/cyclic-reference/distributed-tracing](https://github.com/cyclic-reference/distributed-tracing)    
+### [https://github.com/cyclic-reference/distributed-tracing](https://github.com/cyclic-reference/distributed-tracing)    
 
 Continuing off of the previous example: we have an Alpha Service. 
 Alpha Service has a dependencies on both Bravo Service and Charlie Service.
