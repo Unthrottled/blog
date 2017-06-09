@@ -31,7 +31,8 @@ layout: default
     <!-- Pagination links -->
     <div class="pagination">
         {% if paginator.previous_page %}
-        <a href="{{ paginator.previous_page_path | append: '/index.html'}}" class="nav-link">« Previous</a>
+        <!--<a href="{{ paginator.previous_page_path | append: '/index.html'}}" class="nav-link">« Previous</a>-->
+        <a href="{{ paginator.previous_page_path}}" class="nav-link">« Previous</a>
         {% else %}
         <em class="page-current">« Previous</em>
         {% endif %}
