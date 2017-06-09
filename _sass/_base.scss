@@ -27,6 +27,9 @@ body {
     display: block;
     margin: auto;
     padding: 40px 50px;
+    @include media-query($on-palm) {
+        padding: 0 0 0 0;
+    }
 }
 
 
