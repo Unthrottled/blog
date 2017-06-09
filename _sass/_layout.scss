@@ -164,13 +164,13 @@
 }
 
 .footer-col-1 {
-  width: -webkit-calc(25% - (#{$spacing-unit} / 2));
-  width: calc(25% - (#{$spacing-unit} / 2));
+  width: -webkit-calc(30% - (#{$spacing-unit} / 2));
+  width: calc(30% - (#{$spacing-unit} / 2));
 }
 
 .footer-col-2 {
-  width: -webkit-calc(30% - (#{$spacing-unit} / 2));
-  width: calc(30% - (#{$spacing-unit} / 2));
+  width: -webkit-calc(25% - (#{$spacing-unit} / 2));
+  width: calc(25% - (#{$spacing-unit} / 2));
 }
 
 .footer-col-3 {
@@ -299,4 +299,8 @@
 .cloud-tag {
   margin: 4px;
   padding: 2px;
+}
+
+.email {
+  font-size: 9px;
 }
