@@ -2,9 +2,12 @@
  * Syntax highlighting styles
  */
 .highlight {
-    background: #fff;
+    background: $e621-content-blue;
     @extend %vertical-rhythm;
 
+    .kn    { color: skyblue}//modifiers
+    .kd    { color: #8d85d6}//modifiers
+    .nd    { color: yellow; }//annotation
     .c     { color: #998; font-style: italic } // Comment
     .err   { color: #a61717; background-color: #e3d2d2 } // Error
     .k     { font-weight: bold } // Keyword
@@ -39,8 +42,8 @@
     .ni    { color: #800080 } // Name.Entity
     .ne    { color: #900; font-weight: bold } // Name.Exception
     .nf    { color: #900; font-weight: bold } // Name.Function
-    .nn    { color: #555 } // Name.Namespace
-    .nt    { color: #000080 } // Name.Tag
+    .nn    { color: darkorange } // Name.Namespace
+    .nt    { color: limegreen } // Name.Tag
     .nv    { color: #008080 } // Name.Variable
     .ow    { font-weight: bold } // Operator.Word
     .w     { color: #bbb } // Text.Whitespace

@@ -133,10 +133,10 @@ blockquote {
 pre,
 code {
     font-size: 15px;
-    border: 1px solid $grey-color-light;
+    border: 1px solid $e621-link;
     border-radius: 3px;
-    font-family: Courier, Courier New, Helvetica, serif;
-    background-color: #eef;
+    font-family: monospace, serif;
+    background-color: $e621-dark-blue;
 }
 
 code {
