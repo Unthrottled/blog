@@ -15,7 +15,7 @@ module Jekyll
       self.data = {
         'layout' => 'default',
         'type' => 'tag',
-        'tag' => 'tag',
+        'tag' => tag,
         'title' => "Posts tagged #{@tag}",
         'posts' => posts
       }
