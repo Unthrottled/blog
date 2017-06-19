@@ -13,6 +13,14 @@ The repository can be found here:
 
 ### [https://github.com/cyclic-reference/circuit-breaker](https://github.com/cyclic-reference/circuit-breaker)
 
+Let's start of with an example.
+Image that we are tasked with consuming service Zeta, a third party webservice because their API satisifies part of our projects requirements.
+However, Zeta does not have an outstanding track record in terms of performance.
+There will be days when it only takes the Zeta around 100ms to respond, which is okay. 
+However, it also has the habit to randomly increase the latency to past half a second, a minute, even to socket timeout!
+It also seems that there is always some brief window of time that all of the requests sent to Zeta fail fast.
+Almost like it just throws its hands up and refuses to do any work!
+
 #### Resources:
 
 - [https://github.com/Netflix/Hystrix](https://github.com/Netflix/Hystrix)
