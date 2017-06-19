@@ -5,6 +5,12 @@ tags: [Java, Hystrix, Hystrix Dashboard, Spring Boot, Spring MVC, Angular, Webpa
 headerImage: circuit/hystrix-logo.png
 ---
 
+Aside from being hard to spell sometimes, the circuit breaker design pattern is most helpful for protecting your application code from everybody else.
+Not only does it protect your application, it also prevents directing more traffic to a service, that is already having trouble responding, with more requests.
+
+For starters, I have created an example project that utilizes and tries to demonstrate the circuit breaker pattern that is implemented by Hystrix.
+The repository can be found here:
+
 ### [https://github.com/cyclic-reference/circuit-breaker](https://github.com/cyclic-reference/circuit-breaker)
 
 #### Resources:
