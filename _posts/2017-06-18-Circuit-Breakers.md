@@ -21,6 +21,23 @@ However, it also has the habit to randomly increase the latency to past half a s
 It also seems that there is always some brief window of time that all of the requests sent to Zeta fail fast.
 Almost like it just throws its hands up and refuses to do any work!
 
+This is a big issue for our project. 
+Whenever we want to demonstrate any functionality we developed at the end of our development iteration, we have to cross our fingers and hope Zeta works.
+Our application will be the face of all Zeta's issues, even though it is not our fault, we will still get the repercussions.
+So what are we to do? 
+
+We need a way to wrap all of the service calls to Zeta in a protective bubble.
+This bubble will need to fail the request if Zeta takes longer than average to respond, so our application does not take forever to respond.
+It would also be nice when the call fails, that we could fall back to some canned response that is sufficient to no response at all.
+That way we can still display something even when Zeta does not feel like doing it's job.
+We also probably want to not pound Zeta into the ground with constant incoming requests during its fail fast period.
+It should be able to recover faster if we are not constanty filling up its queues with requests its just going to reject.
+The same applies when it takes forever to respond.
+It makes no sense loading up the service with more work than it can handle.
+What we are looking for is a "hands off" period.
+
+This is what I see as Hystrix's main use case.
+
 #### Resources:
 
 - [https://github.com/Netflix/Hystrix](https://github.com/Netflix/Hystrix)
