@@ -31,12 +31,19 @@ This bubble will need to fail the request if Zeta takes longer than average to r
 It would also be nice when the call fails, that we could fall back to some canned response that is sufficient to no response at all.
 That way we can still display something even when Zeta does not feel like doing it's job.
 We also probably want to not pound Zeta into the ground with constant incoming requests during its fail fast period.
-It should be able to recover faster if we are not constanty filling up its queues with requests its just going to reject.
+It should be able to recover faster if we are not constantly filling up its queues with requests its just going to reject.
 The same applies when it takes forever to respond.
 It makes no sense loading up the service with more work than it can handle.
-What we are looking for is a "hands off" period.
+What we are looking for is a "hands off" period for the struggling Zeta.
+Also, having a finger to point at the trouble maker would be nice as well.
 
-This is what I see as Hystrix's main use case.
+This is what I see as Hystrix's main use cases. The following bullet points are taken from the Hystrix wiki, explaining its design in their words:
+
+- Give protection from and control over latency and failure from dependencies accessed (typically over the network) via third-party client libraries.
+- Stop cascading failures in a complex distributed system.
+- Fail fast and rapidly recover.
+- Fallback and gracefully degrade when possible.
+- Enable near real-time monitoring, alerting, and operational control.
 
 #### Resources:
 
