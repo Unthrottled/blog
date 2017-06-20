@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Circuit Breakers"
-tags: [Java, Hystrix, Hystrix Dashboard, Spring Boot, Spring MVC, Angular, Webpack, ReactiveX, Node.js, Netflix OSS]
+tags: [Java, Hystrix, Hystrix Dashboard, Spring Boot, Spring MVC, Angular, Webpack, ReactiveX, Node.js, Netflix OSS, Circuit Breaker]
 headerImage: circuit/hystrix-logo.png
 ---
 
