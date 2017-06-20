@@ -56,6 +56,20 @@ However, once the circuit opens, the monitor circle becomes a nice shade of red.
 The circuit is now open, and using the fall back method.
 Effectively protecting us and the currently dead feign Zeta.
 
+Triggering the power switch back to the on position, you should notice something interesting.
+The requests still keep failing, what the heck?
+Do I not know how to write functioning code?
+That last statement is up for debate, however, this is part of the circuit breaker design pattern.
+When the circuit breaker opens, it will eventually need to close, redirecting traffic back to feign Zeta.
+So after a period of time remaining open, circuit will eventually slide into a "half open" state.
+Meaning that the next call will be routed to feign Zeta, if the call is a success, then all traffic is re-routed back to the service.
+However, if the request fails again, the circuit will go back into the open state.
+This being different that a failed call while closed.
+When the circuit is closed, then there has to be a current certain threshold of failed requests before the circuit opens.
+This period between being fully open and half open will explain the gap of failed messages in the stream, even though feign Zeta is still working.
+
+
+#### [http://www.se-radio.net/2014/12/episode-216-adrian-cockcroft-on-the-modern-cloud-based-platform/](http://www.se-radio.net/2014/12/episode-216-adrian-cockcroft-on-the-modern-cloud-based-platform/)
 
 
 
