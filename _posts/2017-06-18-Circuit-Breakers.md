@@ -14,7 +14,7 @@ The repository can be found here:
 ### [https://github.com/cyclic-reference/circuit-breaker](https://github.com/cyclic-reference/circuit-breaker)
 
 Let's start of with an example.
-Image that we are tasked with consuming service Zeta, a third party webservice because their API satisifies part of our projects requirements.
+Image that we are tasked with consuming service Zeta, a third party webservice because their API satisfies part of our projects requirements.
 However, Zeta does not have an outstanding track record in terms of performance.
 There will be days when it only takes the Zeta around 100ms to respond, which is okay. 
 However, it also has the habit to randomly increase the latency to past half a second, a minute, even to socket timeout!
@@ -44,6 +44,20 @@ This is what I see as Hystrix's main use cases. The following bullet points are 
 - Fail fast and rapidly recover.
 - Fallback and gracefully degrade when possible.
 - Enable near real-time monitoring, alerting, and operational control.
+
+The rest of the post will run of the exampl project demstrating some of Hystrix's functionality.
+
+So let us say that we have our Zeta client wrapping in a Hystrix command now.
+When the application starts, the circuit is in the closed state, our feign Zeta has been behaving well so far.
+However, without changing the number of synchronized requests to Zeta, just turning the power switch off.
+This will result in the volume circle to go from jolly green to sickly yellow and evetually dead red.
+You will notice that before the circle goes to red, the circuit still remains closed, we have not met the triggering threshold.
+However, once the circuit opens, the monitor circle becomes a nice shade of red.
+The circuit is now open, and using the fall back method.
+Effectively protecting us and the currently dead feign Zeta.
+
+
+
 
 #### Resources:
 
