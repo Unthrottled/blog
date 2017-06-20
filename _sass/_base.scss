@@ -99,13 +99,13 @@ h1, h2, h3, h4, h5, h6 {
  * Links
  */
 a {
-    color: $e621-link;
+    color: $link-color;
     font-family: $link-font-family;
     text-decoration: none;
 
 
     &:hover {
-        color: darken($e621-link, 15%);
+        color: darken($link-color, 15%);
         text-decoration: underline;
     }
 }
@@ -117,7 +117,7 @@ a {
  */
 blockquote {
     color: $grey-color;
-    border-left: 4px solid $grey-color-light;
+    border-left: 4px solid $border-color;
     padding-left: $spacing-unit / 2;
     font-size: 18px;
     letter-spacing: -1px;
@@ -136,10 +136,10 @@ blockquote {
 pre,
 code {
     font-size: 15px;
-    border: 1px solid $e621-link;
+    border: 1px solid $border-color;
     border-radius: 3px;
     font-family: monospace, serif;
-    background-color: $e621-dark-blue;
+    background-color: $code-background;
 }
 
 code {
@@ -207,7 +207,7 @@ pre {
         vertical-align: middle;
 
         path {
-            fill: $grey-color;
+            fill: $icon-color;
         }
     }
 }

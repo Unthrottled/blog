@@ -31,11 +31,6 @@ $reach-dark-purple:#4c3fbe;
 $reach-white: #f9f9f9;
 $reach-light-grey: #afafaf;
 
-$text-color:       #111;
-$background-color: $e621-dark-blue;
-$post-color:       orange;
-$brand-color:      #2a7ae2;
-
 $blue-grey: #B4C7DA;
 
 $grey-color:       #828282;
@@ -43,6 +38,22 @@ $grey-color-light: lighten($grey-color, 40%);
 $grey-color-dark:  darken($grey-color, 25%);
 
 $dropShadow: $reach-drop-shadow;
+$icon-color: $grey-color;
+$link-color: $e621-link;
+$border-color: $e621-link;
+$code-background: $e621-dark-blue;
+$header-border: $gold;
+$boxed-content: $e621-content-blue;
+$title-color: $reach-white;
+$link-background: $e621-link;
+$font-color: $reach-white;
+$post-container: $e621-box-blue;
+$meta-color: $grey-color;
+$text-color:       #111;
+$background-color: $e621-dark-blue;
+$post-color:       orange;
+$brand-color:      #2a7ae2;
+
 
 // Width of the content area
 $content-width:    1000px;
