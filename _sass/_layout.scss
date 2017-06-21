@@ -2,12 +2,19 @@
  * Site header
  */
 .site-header {
-  border-top: 5px solid $header-border;
   min-height: 56px;
   padding: 5px;
 
   // Positioning context for the mobile navigation icon
   position: relative;
+}
+.site-border {
+  background: $link-background;
+  background: -webkit-linear-gradient(left,$link-background,$reach-light-purple); /*Safari 5.1-6*/
+  background: -o-linear-gradient(right,$link-background,$reach-light-purple); /*Opera 11.1-12*/
+  background: -moz-linear-gradient(right,$link-background,$reach-light-purple); /*Fx 3.6-15*/
+  background: linear-gradient(to right, $link-background, $reach-light-purple); /*Standard*/
+  height: 10px;
 }
 
 .boxed-content {
@@ -24,6 +31,10 @@
   margin-bottom: 0;
   float: left;
   color: $title-color;
+  text-shadow: -1px -1px 0 #000,
+  1px -1px 0 #000,
+  -1px 1px 0 #000,
+  1px 1px 0 #000;;
   &:hover {
     color: darken($title-color, 20%)
   }
@@ -87,9 +98,8 @@
 }
 
 .nav-link {
-  color: $text-color;
-  background-color: $link-background;
-  border: 1px solid #8899af;
+  color: $link-color;
+  background: $link-background; /* For browsers that do not support gradients */
   margin-right: 5px;
   padding: {
     left: 10px;
@@ -99,12 +109,12 @@
   }
 
   &:hover {
-    background-color: $e621-hover;
+    background: $link-hover;
     color: white;
     cursor: pointer;
   }
   border-radius: 10px;
-  box-shadow: 2px 2px 5px transparentize($dropShadow, 0.8);
+  box-shadow: 2px 2px 5px transparentize($dropShadow, 0.5);
   line-height: $base-line-height;
 }
 
@@ -117,7 +127,24 @@
 }
 
 .nav-link_tag {
-  @extend .nav-link;
+  color: $tag-color;
+  background: $tag-background; /* For browsers that do not support gradients */
+  margin-right: 5px;
+  padding: {
+    left: 10px;
+    right: 10px;
+    top: 2px;
+    bottom: 2px;
+  }
+
+  &:hover {
+    background: $link-hover;
+    color: white;
+    cursor: pointer;
+  }
+  border-radius: 10px;
+  box-shadow: 2px 2px 5px transparentize($dropShadow, 0.5);
+  line-height: $base-line-height;
   margin-bottom: 2px;
 }
 
@@ -134,8 +161,7 @@
  * Site footer
  */
 .site-footer {
-  border-bottom: 5px solid $e621-dark-blue;
-  border-top: 2px dotted $header-border;
+  border-top: 2px dotted $header-border; /*Standard*/
   padding: $spacing-unit 0;
 }
 
@@ -237,10 +263,13 @@
 }
 
 .post-excerpt {
-  color: $reach-white
+  color: $post-excerpt;
+  font-weight: bold;
+
 }
 
 .post-link {
+  color: $post-link-color;
   display: block;
   font-size: 24px;
 }
@@ -250,6 +279,10 @@
  */
 .post-header {
   margin-bottom: $spacing-unit;
+  text-shadow: -1px -1px 0 #000,
+  1px -1px 0 #000,
+  -1px 1px 0 #000,
+  1px 1px 0 #000;;
 }
 
 .post-title {
