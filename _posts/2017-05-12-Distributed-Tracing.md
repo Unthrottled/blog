@@ -4,7 +4,7 @@ title: "Distributed Tracing"
 tags: [ Spring Cloud, Zipkin, Spring Slueth, Dapper, Streams, RabbitMQ,Spring Boot, Java, Eureka, Netflix OSS, Feign Clients, Latency, SOA, Service Discovery]
 ---
 
-The term _microservice_ means difference things to many different people.
+The term _microservice_ means different things to many different people.
 Some, including myself, might call it freedom from the oppressive monolith and chains that must be bore when working on one.
 Allowing developers to spread there wings and fly, without having to worry if the changes they made broke some obscure part of the codebase.
 Enabling the release of code early and often, shedding the fear going to production and delivering code that matters.
