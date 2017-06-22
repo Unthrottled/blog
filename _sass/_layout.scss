@@ -118,7 +118,21 @@
     cursor: pointer;
   }
   border-radius: 10px;
-  box-shadow: 2px 2px 5px transparentize($dropShadow, 0.5);
+  line-height: $base-line-height;
+}
+
+.header-link {
+  color: $header-link-color;
+  background: $header-link-background; /* For browsers that do not support gradients */
+  margin-right: 5px;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
   line-height: $base-line-height;
 }
 
@@ -130,21 +144,43 @@
   }
 }
 
-.nav-link_tag {
-  color: $tag-color;
-  background: $tag-background; /* For browsers that do not support gradients */
-  margin-right: 5px;
-  border: none;
-  padding: 10px 25px;
-  text-align: center;
-  text-decoration: none;
+.nav-link_tag{
+  position:relative;
+  margin:{
+    bottom: 5px;
+  }
   display: inline-block;
-  font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
-  border-radius: 10px;
-  line-height: $base-line-height;
-  margin-bottom: 2px;
+  height:25px;
+  border-radius: 0 5px 5px 0;
+  padding: 0 25px 0 15px;
+  background:$tag-background;
+  color:$tag-color;
+  line-height:23px;
+  font-weight: 400;
+
+}
+.nav-link_tag:after{
+  position:absolute;
+  right:0;
+  margin:1px 7px;
+  font-weight:bold;
+  font-size:19px;
+}
+.nav-link_tag:before{
+  position:absolute;
+  background:$tag-background;
+  content:"\6969";
+  color:$tag-background;
+  font-size:12px;
+  line-height:13px;
+  text-indent:6px;
+  top:3px;
+  left:-10px;
+  width: 18px;
+  height: 18px;
+  transform: rotate(45deg);
+  border-left:1px solid $border-color;
+  border-bottom:1px solid $border-color;
 }
 
 .page-current {
@@ -336,4 +372,9 @@
 
 .email {
   font-size: 9px;
+}
+
+.pagination{
+  text-align: center;
+  padding-bottom: 5px;
 }
