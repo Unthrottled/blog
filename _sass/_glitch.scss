@@ -18,10 +18,10 @@
   z-index: 99;
 }
 .button:after {
-  -moz-box-shadow: rgba(131, 123, 211, 0.75) 0 0 15px 2px;
-  -webkit-box-shadow: rgba(131, 123, 211, 0.75) 0 0 15px 2px;
-  box-shadow: rgba(131, 123, 211, 0.75) 0 0 15px 2px;
-  background: $reach-dark-purple;
+  -moz-box-shadow: $about-line-left 0 0 15px 2px;
+  -webkit-box-shadow: $about-line-left 0 0 15px 2px;
+  box-shadow: $about-line-left 0 0 15px 2px;
+  background: $about-line-left;
   content: "";
   width: 2px;
   position: absolute;
@@ -30,10 +30,10 @@
 }
 
 .button:before {
-  -moz-box-shadow: rgba(131, 123, 211, 0.75) 0 0 15px 2px;
-  -webkit-box-shadow: rgba(131, 123, 211, 0.75) 0 0 15px 2px;
-  box-shadow: rgba(131, 123, 211, 0.75) 0 0 15px 2px;
-  background: $reach-dark-purple;
+  -moz-box-shadow: $about-line-up 0 0 15px 2px;
+  -webkit-box-shadow: $about-line-up 0 0 15px 2px;
+  box-shadow: $about-line-up 0 0 15px 2px;
+  background: $about-line-up;
   content: "";
   position: absolute;
   width: 100%;
