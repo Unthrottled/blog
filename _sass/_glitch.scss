@@ -1,4 +1,4 @@
-.button {
+.glitch-button {
   background: $header-link-background;
   -moz-transition: opacity 300ms;
   -o-transition: opacity 300ms;
@@ -8,8 +8,9 @@
   -moz-border-radius: 0.5em;
   -webkit-border-radius: 0.5em;
   border-radius: 0.5em;
+  color: $header-link-color;
   padding: {
-      left: 10px;
+    left: 10px;
     right: 10px;
   }
   letter-spacing: 0.05em;
@@ -17,7 +18,8 @@
   cursor: pointer;
   z-index: 99;
 }
-.button:after {
+
+.glitch-button:after {
   -moz-box-shadow: $about-line-left 0 0 15px 2px;
   -webkit-box-shadow: $about-line-left 0 0 15px 2px;
   box-shadow: $about-line-left 0 0 15px 2px;
@@ -29,7 +31,7 @@
   opacity: 0;
 }
 
-.button:before {
+.glitch-button:before {
   -moz-box-shadow: $about-line-up 0 0 15px 2px;
   -webkit-box-shadow: $about-line-up 0 0 15px 2px;
   box-shadow: $about-line-up 0 0 15px 2px;
@@ -42,15 +44,16 @@
   opacity: 0;
 }
 
-.button:hover {
+.glitch-button:hover {
   -webkit-animation: glitch 750ms infinite;
 }
 
-.button:hover:before {
+.glitch-button:hover:before {
   -webkit-animation: inverseScan 2s infinite;
   opacity: 1;
 }
-.button:hover:after {
+
+.glitch-button:hover:after {
   -webkit-animation: scan 2s infinite;
   opacity: 1;
 }
@@ -66,7 +69,7 @@
     -moz-transform: matrix(1, 0, 0.5, 1, 150, 0);
     -ms-transform: matrix(1, 0, 0.5, 1, 150, 0);
     -webkit-transform: matrix(1, 0, 0.5, 1, 150, 0);
-    transform:  matrix(1, 0, 0.5, 1, 150, 0);
+    transform: matrix(1, 0, 0.5, 1, 150, 0);
     opacity: 0.75;
   }
   10% {
@@ -122,7 +125,7 @@
     -moz-transform: matrix(-1, 0, -0.5, 1, -150, 0);
     -ms-transform: matrix(-1, 0, -0.5, 1, -150, 0);
     -webkit-transform: matrix(-1, 0, -0.5, 1, -150, 0);
-    transform:  matrix(-1, 0, -0.5, 1, -150, 0);
+    transform: matrix(-1, 0, -0.5, 1, -150, 0);
   }
   80% {
     -moz-transform: skewX(0deg);
@@ -151,6 +154,7 @@
     transform: skewX(0deg);
   }
 }
+
 @-webkit-keyframes scan {
   0% {
     left: 0%;
