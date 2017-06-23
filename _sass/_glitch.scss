@@ -1,12 +1,4 @@
-.stretch, .button:after {
-  bottom: 0;
-  left: 0;
-  position: absolute;
-  right: 0;
-  top: 0;
-}
 .button {
-  background-size: 100%;
   background: $header-link-background;
   -moz-transition: opacity 300ms;
   -o-transition: opacity 300ms;
@@ -31,18 +23,31 @@
   box-shadow: rgba(131, 123, 211, 0.75) 0 0 15px 2px;
   background: $reach-dark-purple;
   content: "";
-  height: 2px;
+  width: 2px;
   position: absolute;
+  height: 100%;
   opacity: 0;
 }
+
 .button:before {
+  -moz-box-shadow: rgba(131, 123, 211, 0.75) 0 0 15px 2px;
+  -webkit-box-shadow: rgba(131, 123, 211, 0.75) 0 0 15px 2px;
+  box-shadow: rgba(131, 123, 211, 0.75) 0 0 15px 2px;
+  background: $reach-dark-purple;
   content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  left: 2px;
   opacity: 0;
 }
+
 .button:hover {
   -webkit-animation: glitch 750ms infinite;
 }
+
 .button:hover:before {
+  -webkit-animation: inverseScan 2s infinite;
   opacity: 1;
 }
 .button:hover:after {
@@ -148,12 +153,44 @@
 }
 @-webkit-keyframes scan {
   0% {
-    top: 0%;
+    left: 0%;
   }
   50% {
-    top: 97%;
+    -moz-transform: skewX(-90deg);
+    -ms-transform: skewX(-90deg);
+    -webkit-transform: skewX(-90deg);
+    transform: skewX(-90deg);
+    left: 97%;
+  }
+  75% {
+    -moz-transform: skewX(0deg);
+    -ms-transform: skewX(0deg);
+    -webkit-transform: skewX(0deg);
+    transform: skewX(0deg);
   }
   100% {
-    top: 0%;
+    left: 0%;
+  }
+}
+
+@-webkit-keyframes inverseScan {
+  0% {
+    bottom: 0%;
+  }
+  50% {
+    -moz-transform: skewX(-90deg);
+    -ms-transform: skewX(-90deg);
+    -webkit-transform: skewX(-90deg);
+    transform: skewX(-90deg);
+    bottom: 97%;
+  }
+  75% {
+    -moz-transform: skewX(0deg);
+    -ms-transform: skewX(0deg);
+    -webkit-transform: skewX(0deg);
+    transform: skewX(0deg);
+  }
+  100% {
+    bottom: 0%;
   }
 }
