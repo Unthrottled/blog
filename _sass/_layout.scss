@@ -300,7 +300,9 @@
 .post-excerpt {
   color: $post-excerpt;
   font-weight: bold;
-
+  a {
+    color: $header-link-color;
+  }
 }
 
 .post-link {
