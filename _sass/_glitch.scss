@@ -66,10 +66,10 @@
     transform: skewX(0deg);
   }
   5% {
-    -moz-transform: matrix(1, 0, 0.5, 1, 150, 0);
-    -ms-transform: matrix(1, 0, 0.5, 1, 150, 0);
-    -webkit-transform: matrix(1, 0, 0.5, 1, 150, 0);
-    transform: matrix(1, 0, 0.5, 1, 150, 0);
+    -moz-transform: matrix(1, 0, 0.5, 1, 10, 0);
+    -ms-transform: matrix(1, 0, 0.5, 1, 10, 0);
+    -webkit-transform: matrix(1, 0, 0.5, 1, 10, 0);
+    transform: matrix(1, 0, 0.5, 1, 10, 0);
     opacity: 0.75;
   }
   10% {
@@ -122,10 +122,10 @@
     opacity: 1;
   }
   75% {
-    -moz-transform: matrix(-1, 0, -0.5, 1, -150, 0);
-    -ms-transform: matrix(-1, 0, -0.5, 1, -150, 0);
-    -webkit-transform: matrix(-1, 0, -0.5, 1, -150, 0);
-    transform: matrix(-1, 0, -0.5, 1, -150, 0);
+    -moz-transform: matrix(-1, 0, -0.5, 1, -10, 0);
+    -ms-transform: matrix(-1, 0, -0.5, 1, -10, 0);
+    -webkit-transform: matrix(-1, 0, -0.5, 1, -10, 0);
+    transform: matrix(-1, 0, -0.5, 1, -10, 0);
   }
   80% {
     -moz-transform: skewX(0deg);
