@@ -5,7 +5,7 @@ permalink: /about/
 ---
 
 For those who are curious, [Acari](https://en.wikipedia.org/wiki/Acari) are a taxon of arachnids that contains mites and ticks.
-There are many pronunciations of the word, right or wrong I have chosen [uh-kar-ree].
+There are many pronunciations of the word, right or wrong I have chosen [ak-uh-ree].
 
 I am an energetic, effective, and efficient professional Software Engineer (who also likes alliteration).
 That is my current job title, you could also call me a software developer, a programmer, tech enthusiast, software craftsman, or anything that tickles your fancy (except late for dinner).
