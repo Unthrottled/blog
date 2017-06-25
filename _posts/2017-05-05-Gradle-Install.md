@@ -3,6 +3,7 @@ layout: post
 title: Get that Gradle
 categories: jvm
 headerImage: gradle/gradle.png
+tags: [Java, Gradle, Build Managment, SDKMAN, Unix]
 ---
 
 When it comes to Java project build management frameworks, there are a few options.

@@ -18,9 +18,18 @@ body {
     font-size: $base-font-size;
     line-height: $base-line-height;
     font-weight: 300;
-    color: $text-color;
+    color: $reach-white;
     background-color: $background-color;
+    background-image: url('../assets/images/stripe.png');
     -webkit-text-size-adjust: 100%;
+    max-width: 1060px;
+    overflow-x: hidden;
+    display: block;
+    margin: auto;
+    padding: 40px 50px;
+    @include media-query($on-palm) {
+        padding: 0 0 0 0;
+    }
 }
 
 
@@ -81,6 +90,7 @@ li {
  */
 h1, h2, h3, h4, h5, h6 {
     font-weight: 300;
+    font-family: $header-font-family;
 }
 
 
@@ -89,16 +99,13 @@ h1, h2, h3, h4, h5, h6 {
  * Links
  */
 a {
-    color: $brand-color;
+    color: $link-color;
+    font-family: $link-font-family;
     text-decoration: none;
 
-    &:visited {
-        color: darken($brand-color, 15%);
-    }
 
     &:hover {
-        color: $text-color;
-        text-decoration: underline;
+        color: darken($link-color, 15%);
     }
 }
 
@@ -109,7 +116,7 @@ a {
  */
 blockquote {
     color: $grey-color;
-    border-left: 4px solid $grey-color-light;
+    border-left: 4px solid $border-color;
     padding-left: $spacing-unit / 2;
     font-size: 18px;
     letter-spacing: -1px;
@@ -128,9 +135,10 @@ blockquote {
 pre,
 code {
     font-size: 15px;
-    border: 1px solid $grey-color-light;
-    border-radius: 3px;
-    background-color: #eef;
+    border-radius: 2px;
+    font-family: monospace, serif;
+    background-color: $code-background;
+    color: $code-base-color;
 }
 
 code {
@@ -198,7 +206,7 @@ pre {
         vertical-align: middle;
 
         path {
-            fill: $grey-color;
+            fill: $icon-color;
         }
     }
 }

@@ -2,6 +2,7 @@
 layout: post
 title: Java Objects to and from a File
 headerImage: beans/beans-to-file.png
+tags: [Java, Serialization, GSON, JSON, Object Persistence, Tests, Unit Tests, JUnit, Spring Boot]
 ---
 
 There will come a time when the need arises to have Java objects persist without the use of a relational or NoSQL database.
@@ -113,7 +114,7 @@ Which will allows the infinite loop, created in the method, to break.
 A complete functioning project using this code can be found at the following repository listed below.
 The repository contains a README file that will help get the project up and running!
 
-[https://github.com/cyclic-reference/object-to-file](https://github.com/cyclic-reference/object-to-file)
+### [https://github.com/cyclic-reference/object-to-file](https://github.com/cyclic-reference/object-to-file)
 
 **Writing Non-Serializable objects to a file.**
 

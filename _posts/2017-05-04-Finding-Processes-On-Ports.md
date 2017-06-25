@@ -3,6 +3,7 @@ layout: post
 title: Processes running on ports.
 categories: sysadmin
 headerImage: port/port.jpg
+tags: [System Adminstration, Consul, Service Discovery, Unix, Windows]
 ---
 
 There comes a time during exploratory development.

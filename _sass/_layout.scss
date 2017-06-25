@@ -2,235 +2,380 @@
  * Site header
  */
 .site-header {
-    border-top: 5px solid $grey-color-dark;
-    border-bottom: 1px solid $grey-color-light;
-    min-height: 56px;
+  min-height: 56px;
+  padding: 5px;
 
-    // Positioning context for the mobile navigation icon
-    position: relative;
+  // Positioning context for the mobile navigation icon
+  position: relative;
+}
+.site-border {
+  background: $link-background;
+  background: -webkit-linear-gradient(left,$link-background,$reach-light-purple); /*Safari 5.1-6*/
+  background: -o-linear-gradient(right,$link-background,$reach-light-purple); /*Opera 11.1-12*/
+  background: -moz-linear-gradient(right,$link-background,$reach-light-purple); /*Fx 3.6-15*/
+  background: linear-gradient(to right, $link-background, $reach-light-purple); /*Standard*/
+  height: 10px;
+}
+
+.boxed-content {
+  background: $boxed-content;
+  z-index: 10000;
+  position: relative;
+  width: 99.984%;
+}
+
+.site-image{
+  height: 56px;
 }
 
 .site-title {
-    font-size: 26px;
-    line-height: 56px;
-    letter-spacing: -1px;
-    margin-bottom: 0;
-    float: left;
+  font-size: 2.5em;
+  font-weight: 400;
+  line-height: 56px;
+  margin-bottom: 0;
+  float: left;
+  color: $title-color;
+  text-shadow: -1px -1px 0 #000,
+  1px -1px 0 #000,
+  -1px 1px 0 #000,
+  1px 1px 0 #000;;
+  &:hover {
+    color: darken($title-color, 20%)
+  }
 
-    &,
-    &:visited {
-        color: $grey-color-dark;
-    }
+  &:visited {
+    color: $title-color;
+  }
 }
 
 .site-nav {
-    float: right;
-    line-height: 56px;
+  float: right;
+  line-height: 56px;
+
+  .menu-icon {
+    display: none;
+  }
+
+  @include media-query($on-palm) {
+    position: absolute;
+    top: 9px;
+    right: 30px;
+    background-color: $background-color;
+    border: 1px solid $border-color;
+    border-radius: 5px;
+    text-align: right;
 
     .menu-icon {
-        display: none;
+      display: block;
+      float: right;
+      width: 36px;
+      height: 26px;
+      line-height: 0;
+      padding-top: 10px;
+      text-align: center;
+
+      > svg {
+        width: 18px;
+        height: 15px;
+
+        path {
+          fill: $icon-color;
+        }
+      }
     }
 
-    .page-link {
-        color: $text-color;
-        line-height: $base-line-height;
-
-        // Gaps between nav items, but not on the first one
-        &:not(:first-child) {
-            margin-left: 20px;
-        }
+    .trigger {
+      clear: both;
+      display: none;
     }
 
-    @include media-query($on-palm) {
-        position: absolute;
-        top: 9px;
-        right: 30px;
-        background-color: $background-color;
-        border: 1px solid $grey-color-light;
-        border-radius: 5px;
-        text-align: right;
-
-        .menu-icon {
-            display: block;
-            float: right;
-            width: 36px;
-            height: 26px;
-            line-height: 0;
-            padding-top: 10px;
-            text-align: center;
-
-            > svg {
-                width: 18px;
-                height: 15px;
-
-                path {
-                    fill: $grey-color-dark;
-                }
-            }
-        }
-
-        .trigger {
-            clear: both;
-            display: none;
-        }
-
-        &:hover .trigger {
-            display: block;
-            padding-bottom: 5px;
-        }
-
-        .page-link {
-            display: block;
-            padding: 5px 10px;
-        }
+    &:hover .trigger {
+      display: block;
+      padding-bottom: 5px;
     }
+
+    .nav-link {
+      display: block;
+      padding: 5px 10px;
+    }
+  }
 }
 
+.nav-link {
+  color: $link-color;
+  background: $link-background; /* For browsers that do not support gradients */
+  margin-right: 5px;
+  padding: {
+    left: 10px;
+    right: 10px;
+    top: 2px;
+    bottom: 2px;
+  }
 
+  &:hover {
+    background: $link-hover;
+    color: white;
+    cursor: pointer;
+  }
+  border-radius: 10px;
+  line-height: $base-line-height;
+}
+
+.header-link {
+  color: $header-link-color;
+  background: $header-link-background; /* For browsers that do not support gradients */
+  margin-right: 5px;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  line-height: $base-line-height;
+}
+
+.categories {
+  text-align: right;
+  padding: {
+    top: 5px;
+    bottom: 5px;
+  }
+}
+
+.nav-link_tag{
+  position:relative;
+  margin:{
+    bottom: 5px;
+  }
+  display: inline-block;
+  height:25px;
+  border-radius: 0 5px 5px 0;
+  padding: 0 25px 0 15px;
+  background:$tag-background;
+  color:$tag-color;
+  line-height:23px;
+  font-weight: 400;
+
+}
+.nav-link_tag:after{
+  position:absolute;
+  right:0;
+  margin:1px 7px;
+  font-weight:bold;
+  font-size:19px;
+}
+.nav-link_tag:before{
+  position:absolute;
+  background:$tag-background;
+  content:"\6969";
+  color:$tag-background;
+  font-size:12px;
+  line-height:13px;
+  text-indent:6px;
+  top:3px;
+  left:-10px;
+  width: 18px;
+  height: 18px;
+  transform: rotate(45deg);
+  border-left:1px solid $border-color;
+  border-bottom:1px solid $border-color;
+}
+
+.page-current {
+  color: $font-color;
+  margin-right: 5px;
+  padding: {
+
+  }
+  font-weight: 400;
+}
 
 /**
  * Site footer
  */
 .site-footer {
-    border-top: 1px solid $grey-color-light;
-    padding: $spacing-unit 0;
+  border-top: 2px dotted $header-border; /*Standard*/
+  padding: $spacing-unit 0;
 }
 
 .footer-heading {
-    font-size: 18px;
-    margin-bottom: $spacing-unit / 2;
+  font-size: 18px;
+  margin-bottom: $spacing-unit / 2;
 }
 
 .contact-list,
 .social-media-list {
-    list-style: none;
-    margin-left: 0;
+  list-style: none;
+  margin-left: 0;
 }
 
 .footer-col-wrapper {
-    font-size: 15px;
-    color: $grey-color;
-    margin-left: -$spacing-unit / 2;
-    @extend %clearfix;
+  font-size: 15px;
+  margin-left: -$spacing-unit / 2;
+  @extend %clearfix;
 }
 
 .footer-col {
-    float: left;
-    margin-bottom: $spacing-unit / 2;
-    padding-left: $spacing-unit / 2;
+  float: left;
+  margin-bottom: $spacing-unit / 2;
+  padding-left: $spacing-unit / 2;
 }
 
 .footer-col-1 {
-    width: -webkit-calc(25% - (#{$spacing-unit} / 2));
-    width:         calc(25% - (#{$spacing-unit} / 2));
+  width: -webkit-calc(30% - (#{$spacing-unit} / 2));
+  width: calc(30% - (#{$spacing-unit} / 2));
 }
 
 .footer-col-2 {
-    width: -webkit-calc(30% - (#{$spacing-unit} / 2));
-    width:         calc(30% - (#{$spacing-unit} / 2));
+  width: -webkit-calc(25% - (#{$spacing-unit} / 2));
+  width: calc(25% - (#{$spacing-unit} / 2));
 }
 
 .footer-col-3 {
-    width: -webkit-calc(45% - (#{$spacing-unit} / 2));
-    width:         calc(45% - (#{$spacing-unit} / 2));
+  width: -webkit-calc(45% - (#{$spacing-unit} / 2));
+  width: calc(45% - (#{$spacing-unit} / 2));
 }
 
 @include media-query($on-laptop) {
-    .footer-col-1,
-    .footer-col-2 {
-        width: -webkit-calc(50% - (#{$spacing-unit} / 2));
-        width:         calc(50% - (#{$spacing-unit} / 2));
-    }
+  .footer-col-1,
+  .footer-col-2 {
+    width: -webkit-calc(50% - (#{$spacing-unit} / 2));
+    width: calc(50% - (#{$spacing-unit} / 2));
+  }
 
-    .footer-col-3 {
-        width: -webkit-calc(100% - (#{$spacing-unit} / 2));
-        width:         calc(100% - (#{$spacing-unit} / 2));
-    }
+  .footer-col-3 {
+    width: -webkit-calc(100% - (#{$spacing-unit} / 2));
+    width: calc(100% - (#{$spacing-unit} / 2));
+  }
 }
 
 @include media-query($on-palm) {
-    .footer-col {
-        float: none;
-        width: -webkit-calc(100% - (#{$spacing-unit} / 2));
-        width:         calc(100% - (#{$spacing-unit} / 2));
-    }
+  .footer-col {
+    float: none;
+    width: -webkit-calc(100% - (#{$spacing-unit} / 2));
+    width: calc(100% - (#{$spacing-unit} / 2));
+  }
 }
-
-
 
 /**
  * Page content
  */
 .page-content {
-    padding: $spacing-unit 0;
+  padding: $spacing-unit 0;
 }
 
 .page-heading {
-    font-size: 20px;
+  font-size: 20px;
 }
 
 .post-list {
-    margin-left: 0;
-    list-style: none;
+  margin-left: 0;
+  list-style: none;
 
-    > li {
-        margin-bottom: $spacing-unit;
-    }
+  > li {
+    margin-bottom: $spacing-unit/2;
+  }
 }
 
 .post-meta {
-    font-size: $small-font-size;
-    color: $grey-color;
+  font-size: $small-font-size;
+  color: $meta-color;
+}
+
+.post-row {
+  padding-bottom: 5px;
+}
+
+.post-container {
+  background: $post-container;
+  border-radius: 5px;
+  padding: 10px;
+  box-shadow: 0 4px 8px 0 transparentize($dropShadow, 0.7);
+  @include hexRain;
+}
+
+.post-excerpt {
+  color: $post-excerpt;
+  font-weight: bold;
+  a {
+    color: $header-link-color;
+  }
 }
 
 .post-link {
-    display: block;
-    font-size: 24px;
+  color: $post-link-color;
+  display: block;
+  font-size: 24px;
+  font-weight: 400;
 }
-
-
 
 /**
  * Posts
  */
 .post-header {
-    margin-bottom: $spacing-unit;
+  margin-bottom: $spacing-unit;
+  text-shadow: -1px -1px 0 #000,
+  1px -1px 0 #000,
+  -1px 1px 0 #000,
+  1px 1px 0 #000;;
 }
 
 .post-title {
-    font-size: 42px;
-    letter-spacing: -1px;
-    line-height: 1;
+  font-size: 42px;
+  letter-spacing: -1px;
+  line-height: 1;
 
-    @include media-query($on-laptop) {
-        font-size: 36px;
-    }
+  @include media-query($on-laptop) {
+    font-size: 36px;
+  }
 }
 
 .post-content {
-    margin-bottom: $spacing-unit;
+  margin-bottom: $spacing-unit;
 
-    h2 {
-        font-size: 32px;
+  h2 {
+    font-size: 32px;
 
-        @include media-query($on-laptop) {
-            font-size: 28px;
-        }
+    @include media-query($on-laptop) {
+      font-size: 28px;
     }
+  }
 
-    h3 {
-        font-size: 26px;
+  h3 {
+    font-size: 26px;
 
-        @include media-query($on-laptop) {
-            font-size: 22px;
-        }
+    @include media-query($on-laptop) {
+      font-size: 22px;
     }
+  }
 
-    h4 {
-        font-size: 20px;
+  h4 {
+    font-size: 20px;
 
-        @include media-query($on-laptop) {
-            font-size: 18px;
-        }
+    @include media-query($on-laptop) {
+      font-size: 18px;
     }
+  }
+}
+
+.tag-cloud-container {
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.cloud-tag {
+  margin: 4px;
+  padding: 2px;
+}
+
+.email {
+  font-size: 9px;
+}
+
+.pagination{
+  text-align: center;
+  padding-bottom: 5px;
 }

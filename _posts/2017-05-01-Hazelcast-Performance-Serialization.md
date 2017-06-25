@@ -3,6 +3,7 @@ layout: post
 title:  "Boosted Hazelcast"
 categories: java
 headerImage: cereal/rail.jpg
+tags: [Java, Serialization, Hazelcast, Performance, Distributed Cache]
 ---
 
 Do not be deceived, as distributed caches go, vanilla Hazelcast has really quick response times. 
@@ -455,7 +456,9 @@ The snippet below demonstrates the following requirement (assuming that a hazelc
 Finally, I have created a Spring-Boot project consisting of almost all of the examples provided in this post.
 It has time trial tests for both a Hazelcast server and a Client connected to a vanilla Hazelcast server.
 
-The link to the respository is as follows [https://github.com/cyclic-reference/hazelcast-serialization](https://github.com/cyclic-reference/hazelcast-serialization)
+The link to the respository is as follows:
+
+### [https://github.com/cyclic-reference/hazelcast-serialization](https://github.com/cyclic-reference/hazelcast-serialization)
 
 To run the sample you will need:
  - Internet Connection (At least the first time it is run)

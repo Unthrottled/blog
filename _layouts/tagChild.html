@@ -1,0 +1,24 @@
+---
+layout: tagTemplate
+---
+
+<h1 class="tag">{{ page.tag }}</h1>
+<ul class="post-list">
+	{% for post in page.posts %}
+	<li class="post-row">
+		<div class="post-container">
+			<span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
+
+			<h2>
+				<a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+			</h2>
+			<div>Date Published: {{ post.date | date_to_long_string }}</div>
+			<div class="categories">
+				{% for tag in post.tags %}
+				<a class="nav-link_tag" href="/tags/{{tag}}/index.html">{{tag}}</a>
+				{% endfor %}
+			</div>
+		</div>
+	</li>
+	{% endfor %}
+</ul>

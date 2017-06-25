@@ -1,20 +1,23 @@
 <!DOCTYPE html>
 <html>
 
-  {% include head.html %}
+{% include head.html %}
 
-  <body>
+<body>
 
-    {% include header.html %}
+<div class="boxed-content">
+  {% include header.html %}
 
-    <div class="page-content">
-      <div class="wrapper">
-        {{ content }}
-      </div>
+  <div class="page-content">
+    <div class="wrapper">
+      {{ content }}
+        {% include tag_cloud.html %}
     </div>
+  </div>
+  {% include footer.html %}
+</div>
+<img src="{{ site.imageDir }}{{ site.icon}}">
 
-    {% include footer.html %}
-
-  </body>
+</body>
 
 </html>
