@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: orbital
 title: About
 permalink: /about/
 ---
