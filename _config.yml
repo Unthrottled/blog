@@ -31,4 +31,4 @@ defaults:
       image: true
 
 
-paginate: 8
+paginate: 4
