@@ -10,9 +10,9 @@ author: Alex Simons
 icon: reach_purple.png
 description: > # this means to ignore newlines until "baseurl:"
   Programming is a lot like going out for a hike.
-  It's fun, challenging at times, rewarding, and there is alway something new to learn.
-  However, you can get easily get lost woods, have to trek over tretourous terrain and
-  there is a high probablity that you come back with a few bugs attached to you.
+  It's fun, challenging at times, rewarding, and there is always something new to learn.
+  However, you can get easily get lost woods, have to trek over torturous terrain and
+  there is a high probability that you come back with a few bugs attached to you.
 baseurl: "" # the subpath of your site, e.g. /blog/
 url: "http://blog.acari.io" # the base hostname & protocol for your site
 imageDir: "http://blog.acari.io/assets/images/"
