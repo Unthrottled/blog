@@ -14,7 +14,7 @@ The repository can be found here:
 ### [https://github.com/cyclic-reference/circuit-breaker](https://github.com/cyclic-reference/circuit-breaker)
 
 Let's start of with an example.
-Image that we are tasked with consuming service Zeta, a third party webservice, because their API satisfies part of our projects requirements.
+Imagine that we are tasked with consuming service Zeta, a third party webservice, because their API satisfies part of our projects requirements.
 However, Zeta does not have an outstanding track record in terms of performance.
 
 There will be days when it only takes the Zeta around 100ms to respond, which is okay. 
