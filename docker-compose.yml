@@ -1,0 +1,10 @@
+version: "3"
+services:
+  blog-server:
+    volumes:
+      - .:/data
+    ports:
+      - "4000:4000"
+    image: alexsimons/blog_server:1.0.0
+    build:
+      context: .

@@ -4,6 +4,7 @@ title: "Circuit Breakers"
 tags: [Java, Hystrix, Hystrix Dashboard, Spring Boot, Spring Cloud, Spring MVC, Angular, Webpack, ReactiveX, Node.js, Latency, Netflix OSS, Circuit Breaker]
 headerImage: circuit/hystrix-logo.png
 ---
+# [Live Demo!](https://hystrix.acari.io/)
 
 Aside from being hard to spell sometimes, the circuit breaker design pattern is most helpful for protecting your application code from everybody else.
 Not only does it protect your application, it also prevents directing more traffic to a service, that is already having trouble responding, with more requests.
@@ -14,7 +15,7 @@ The repository can be found here:
 ### [https://github.com/cyclic-reference/circuit-breaker](https://github.com/cyclic-reference/circuit-breaker)
 
 Let's start of with an example.
-Image that we are tasked with consuming service Zeta, a third party webservice, because their API satisfies part of our projects requirements.
+Imagine that we are tasked with consuming service Zeta, a third party webservice, because their API satisfies part of our projects requirements.
 However, Zeta does not have an outstanding track record in terms of performance.
 
 There will be days when it only takes the Zeta around 100ms to respond, which is okay. 
