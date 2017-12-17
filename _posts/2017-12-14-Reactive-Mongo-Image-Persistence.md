@@ -7,10 +7,13 @@ tags: [Java, Spring Boot, Reactor, WebFlux, Mongodb, Reactive Streams, Angular, 
 Have you bought into the whole [Reactive Programming](https://en.wikipedia.org/wiki/Reactive_programming) bit yet? 
 Well, I have participated in consuming the "_Reactive Flavor Aid_" and there is one issue at the moment.
 Currently, there is a supreme lack of helpful documentation to assist in a seamless development experience.
-Fear not fellow reactive enthusiast, this post should help you save images in MongoDB utilizing reactive streams!  
+Fear not fellow reactive enthusiast, this post should help you save images in MongoDB utilizing reactive streams!
 
-## [Source Code](https://github.com/cyclic-reference/mongo-images)
 
+![Warning]({{site.imageDir}}mongo_images/trigger warnings.png)  
+
+Attention! The remainder of this post contains a lot of code and corresponding explanations of code.
+If the reader feels so inclined, you can find the  *[Source Code to the project described above.](https://github.com/cyclic-reference/mongo-images)*  
 
 ## Backend Setup
 
