@@ -6,6 +6,11 @@ tags: [Java, Spring Boot, Reactor, WebFlux, Mongodb, Reactive Streams, Angular, 
 
 This will be the paragraph that contains the excerpt. 
 
+
+# Backend Setup
+
+---
+
 {% highlight java %}
     package io.acari.images;
     
@@ -209,6 +214,9 @@ This will be the paragraph that contains the excerpt.
         
         server:
           port: 80
+          
+# Frontend Setup
+---
 
 
 {% highlight javascript %}
