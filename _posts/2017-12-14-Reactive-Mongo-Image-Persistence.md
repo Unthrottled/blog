@@ -11,19 +11,12 @@ This will be the paragraph that contains the excerpt.
 
 ---
 
+## Rest Controller
+---
+
+[Link To File](https://github.com/cyclic-reference/mongo-images/blob/master/web-service/src/main/java/io/acari/images/LandingRestController.java)
 {% highlight java %}
-    package io.acari.images;
-    
-    
-    import org.slf4j.Logger;
-    import org.slf4j.LoggerFactory;
-    import org.springframework.beans.factory.annotation.Autowired;
-    import org.springframework.http.MediaType;
-    import org.springframework.web.bind.annotation.*;
-    import org.springframework.web.multipart.MultipartFile;
-    import reactor.core.publisher.Flux;
-    import reactor.core.publisher.Mono;
-    
+    //...
     @RestController
     @RequestMapping("/api")
     public class LandingRestController {
@@ -69,7 +62,8 @@ This will be the paragraph that contains the excerpt.
     }
 {% endhighlight %}
 
-
+## GridFS Component
+---
 
 {% highlight java %}
 
@@ -140,6 +134,8 @@ This will be the paragraph that contains the excerpt.
     }
 {% endhighlight %}
 
+## Spring Configuration
+---
 
 {% highlight java %}
 
@@ -206,6 +202,11 @@ This will be the paragraph that contains the excerpt.
       }
     }
 {% endhighlight %}
+
+## Spring Application Property Configuration
+---
+
+### application.yml
 
         acari:
           mongo:
