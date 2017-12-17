@@ -294,7 +294,6 @@ This will be the paragraph that contains the excerpt.
                     <img [src]="imageBinary | async" alt="SOME IMAGE"/>
                 </div>
             </div>
-
         `
     })
     export class ProjectFileViewComponent {
