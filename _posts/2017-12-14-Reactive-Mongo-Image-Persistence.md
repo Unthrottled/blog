@@ -65,27 +65,10 @@ This will be the paragraph that contains the excerpt.
 ## GridFS Component
 ---
 
+[Link to File](https://github.com/cyclic-reference/mongo-images/blob/master/web-service/src/main/java/io/acari/images/ImageHandler.java)
 {% highlight java %}
 
-    package io.acari.images;
-    
-    import com.mongodb.client.gridfs.model.GridFSFile;
-    import com.mongodb.reactivestreams.client.gridfs.GridFSBucket;
-    import com.mongodb.reactivestreams.client.gridfs.helpers.AsyncStreamHelper;
-    import org.bson.BsonObjectId;
-    import org.bson.BsonValue;
-    import org.bson.types.ObjectId;
-    import org.slf4j.Logger;
-    import org.slf4j.LoggerFactory;
-    import org.springframework.beans.factory.annotation.Autowired;
-    import org.springframework.stereotype.Component;
-    import org.springframework.web.multipart.MultipartFile;
-    import reactor.core.publisher.Flux;
-    import reactor.core.publisher.Mono;
-    
-    import java.io.ByteArrayOutputStream;
-    import java.io.IOException;
-    import java.util.Objects;
+    //...
     
     @Component
     public class ImageHandler {
@@ -137,28 +120,10 @@ This will be the paragraph that contains the excerpt.
 ## Spring Configuration
 ---
 
+[Link to File](https://github.com/cyclic-reference/mongo-images/blob/master/web-service/src/main/java/io/acari/images/MongoConfig.java)
 {% highlight java %}
 
-    package io.acari.images;
-    
-    import com.mongodb.ConnectionString;
-    import com.mongodb.async.client.MongoClientSettings;
-    import com.mongodb.connection.ClusterSettings;
-    import com.mongodb.connection.netty.NettyStreamFactoryFactory;
-    import com.mongodb.reactivestreams.client.MongoClient;
-    import com.mongodb.reactivestreams.client.MongoClients;
-    import com.mongodb.reactivestreams.client.gridfs.GridFSBucket;
-    import com.mongodb.reactivestreams.client.gridfs.GridFSBuckets;
-    import io.netty.channel.nio.NioEventLoopGroup;
-    import org.slf4j.Logger;
-    import org.slf4j.LoggerFactory;
-    import org.springframework.beans.factory.annotation.Autowired;
-    import org.springframework.context.annotation.Bean;
-    import org.springframework.context.annotation.Configuration;
-    import org.springframework.core.env.Environment;
-    import org.springframework.data.mongodb.config.AbstractReactiveMongoConfiguration;
-    
-    import javax.annotation.PreDestroy;
+    //....
     
     @Configuration
     public class MongoConfig extends AbstractReactiveMongoConfiguration {
@@ -205,6 +170,7 @@ This will be the paragraph that contains the excerpt.
 
 ## Spring Application Property Configuration
 ---
+[Link to File](https://github.com/cyclic-reference/mongo-images/blob/master/web-service/src/main/resources/application.yml)
 
 ### application.yml
 
