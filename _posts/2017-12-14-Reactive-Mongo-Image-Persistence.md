@@ -1,8 +1,10 @@
 ---
 layout: post
 headerImage: reach.png
-tags: []
+tags: [Java, Spring Boot, Reactor, WebFlux, Mongodb, Reactive Streams, Angular, Gridfs]
 ---
+
+This will be the paragraph that contains the excerpt. 
 
 {% highlight java %}
     package io.acari.images;
