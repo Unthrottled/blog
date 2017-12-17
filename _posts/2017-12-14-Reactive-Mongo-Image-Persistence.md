@@ -1,6 +1,6 @@
 ---
 layout: post
-headerImage: reach.png
+headerImage: mongo_images/logo.png
 tags: [Java, Spring Boot, Reactor, WebFlux, Mongodb, Reactive Streams, Angular, Gridfs]
 ---
 
