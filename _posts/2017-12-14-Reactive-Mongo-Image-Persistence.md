@@ -323,12 +323,11 @@ This will be the paragraph that contains the excerpt.
 
 ### Image Model
 
+[Link To File](https://github.com/cyclic-reference/mongo-images/blob/master/web-content/src/app/projectFiles/model/LocalProjectFile.ts)
+
 {% highlight javascript %}
 
-    import {ProjectFile} from "./ProjectFile.model";
-    import {Observable} from "rxjs/Observable";
-    import {ReplaySubject} from "rxjs/ReplaySubject";
-    import {Identifier} from "./Identifier.model";
+    //...
     
     export class LocalProjectFile implements ProjectFile {
         private imageBinaryRepeater = new ReplaySubject<MSBaseReader>(1);
@@ -393,12 +392,11 @@ This will be the paragraph that contains the excerpt.
 
 ### Image Upload Service
 
+[Link To File](https://github.com/cyclic-reference/mongo-images/blob/master/web-content/src/app/projectFiles/service/ImageUpload.service.ts)
+
 {% highlight javascript %}
 
-    import {Injectable} from "@angular/core";
-    import {Observable} from "rxjs/Observable";
-    import {BackendAPIService} from "../../services/BackendAPI.service";
-    import {isDefined} from "../../util/Object.util";
+    //...
     
     @Injectable()
     export class ImageUploadService {
@@ -428,11 +426,11 @@ This will be the paragraph that contains the excerpt.
 
 ### HTTP Client
 
+[Link To File](https://github.com/cyclic-reference/mongo-images/blob/master/web-content/src/app/services/BackendAPI.service.ts)
+
 {% highlight javascript %}
 
-    import {Injectable} from "@angular/core";
-    import {HttpClient} from "@angular/common/http";
-    import {Observable} from "rxjs/Observable";
+    //....
     
     @Injectable()
     export class BackendAPIService {
@@ -468,12 +466,11 @@ This will be the paragraph that contains the excerpt.
 
 ### REST Image File Model
 
+[Link To File](https://github.com/cyclic-reference/mongo-images/blob/master/web-content/src/app/projectFiles/model/RemoteProjectFile.ts)
+
 {% highlight javascript %}
 
-    import {ProjectFile} from "./ProjectFile.model";
-    import {Observable} from "rxjs/Observable";
-    import {ReplaySubject} from "rxjs/ReplaySubject";
-    import {Identifier} from "./Identifier.model";
+    //....
     
     export class RemoteProjectFile implements ProjectFile {
         private imageBinaryReplay = new ReplaySubject<any>(1);
@@ -537,14 +534,11 @@ This will be the paragraph that contains the excerpt.
 
 ### REST Image Factory
 
+[Link to File](https://github.com/cyclic-reference/mongo-images/blob/master/web-content/src/app/projectFiles/service/RemoteProjectFile.service.ts)
+
 {% highlight javascript %}
 
-    import {Injectable} from "@angular/core";
-    import {BackendAPIService} from "../../services/BackendAPI.service";
-    import {WindowRef} from "../../util/window";
-    import {RemoteProjectFile} from "../model/RemoteProjectFile";
-    import {Identifier} from "../model/Identifier.model";
-    import {Observable} from "rxjs/Observable";
+    //....
     
     @Injectable()
     export class RemoteProjectFileService {
