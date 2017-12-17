@@ -5,6 +5,7 @@ tags: []
 ---
 
 {% highlight java %}
+
     package io.acari.images;
     
     
@@ -65,6 +66,7 @@ tags: []
 
 
 {% highlight java %}
+
     package io.acari.images;
     
     import com.mongodb.client.gridfs.model.GridFSFile;
@@ -134,6 +136,7 @@ tags: []
 
 
 {% highlight java %}
+
     package io.acari.images;
     
     import com.mongodb.ConnectionString;
@@ -198,14 +201,13 @@ tags: []
     }
 {% endhighlight %}
 
-
-acari:
-  mongo:
-    connectionString: mongodb://mongo
-    landingDatabase: images
-
-server:
-  port: 80
+        acari:
+          mongo:
+            connectionString: mongodb://mongo
+            landingDatabase: images
+        
+        server:
+          port: 80
 
 
 {% highlight java %}
