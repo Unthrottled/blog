@@ -182,8 +182,12 @@ This will be the paragraph that contains the excerpt.
           
 ---
           
-# Frontend Setup
+## Frontend Setup
 
+---
+
+
+### Image File Selection
 
 {% highlight javascript %}
 
@@ -225,6 +229,8 @@ This will be the paragraph that contains the excerpt.
 {% endhighlight %}
 
 
+### Model Translation Component
+
 {% highlight javascript %}
     
     import {Component, EventEmitter, Input, Output} from "@angular/core";
@@ -262,6 +268,8 @@ This will be the paragraph that contains the excerpt.
     }
 
 {% endhighlight %}
+
+### Image Visualization Component
 
 {% highlight javascript %}
 
@@ -312,6 +320,8 @@ This will be the paragraph that contains the excerpt.
     }
 
 {% endhighlight %}
+
+### Image Model
 
 {% highlight javascript %}
 
@@ -381,6 +391,8 @@ This will be the paragraph that contains the excerpt.
 
 {% endhighlight %}
 
+### Image Upload Service
+
 {% highlight javascript %}
 
     import {Injectable} from "@angular/core";
@@ -413,6 +425,8 @@ This will be the paragraph that contains the excerpt.
     }
 
 {% endhighlight %}
+
+### HTTP Client
 
 {% highlight javascript %}
 
@@ -452,7 +466,7 @@ This will be the paragraph that contains the excerpt.
 
 {% endhighlight %}
 
-
+### REST Image File Model
 
 {% highlight javascript %}
 
@@ -520,6 +534,8 @@ This will be the paragraph that contains the excerpt.
     }
 
 {% endhighlight %}
+
+### REST Image Factory
 
 {% highlight javascript %}
 
