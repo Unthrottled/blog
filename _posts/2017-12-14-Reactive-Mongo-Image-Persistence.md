@@ -9,6 +9,14 @@ Well, I have participated in consuming the "_Reactive Flavor Aid_" and there is 
 Currently, there is a supreme lack of helpful documentation to assist in a seamless development experience.
 Fear not fellow reactive enthusiast, this post should help you save images in MongoDB utilizing reactive streams!
 
+Recently, I wanted to create a project that is a full slice reactive application.
+Meaning that the code and communication between the Frontend, Backend, and Data Persistance Layers are _reactive_.
+When reactive is stated, the following can be assumed:
+
+- All code is no blocking
+- Code is processed in an [event loop](http://vertx.io/docs/guide-for-java-devs/#_core_vert_x_concepts).
+- Push based programming.
+- Publisher/Subscriber or [Observable/Observer](http://reactivex.io/intro.html) pattern. 
 
 ![Warning]({{site.imageDir}}mongo_images/trigger warnings.png)  
 
