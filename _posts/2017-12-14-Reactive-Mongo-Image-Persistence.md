@@ -584,7 +584,7 @@ This will be the paragraph that contains the excerpt.
 {% endhighlight %}
 
 {% highlight javascript %}
-aoeu
+aoeu 
 {% endhighlight %}
 
 {% highlight javascript %}
