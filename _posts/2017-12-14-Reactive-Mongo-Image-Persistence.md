@@ -21,7 +21,8 @@ This will be the paragraph that contains the excerpt.
     @RestController
     @RequestMapping("/api")
     public class LandingRestController {
-        private static final Logger LOGGER = LoggerFactory.getLogger(LandingRestController.class);
+        private static final Logger LOGGER = 
+        LoggerFactory.getLogger(LandingRestController.class);
     
         private final ImageHandler imageHandler;
     
@@ -49,7 +50,8 @@ This will be the paragraph that contains the excerpt.
             return imageHandler.saveImage(projectFile);
         }
     
-        @RequestMapping(value = "image/get/{id}", produces = {MediaType.IMAGE_PNG_VALUE,
+        @RequestMapping(value = "image/get/{id}", 
+            produces = {MediaType.IMAGE_PNG_VALUE,
                 MediaType.IMAGE_JPEG_VALUE,
                 MediaType.IMAGE_GIF_VALUE})
         public Mono<byte[]> fetchImage(@PathVariable("id") String id) {
