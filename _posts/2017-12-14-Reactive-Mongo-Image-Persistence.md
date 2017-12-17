@@ -7,12 +7,11 @@ tags: [Java, Spring Boot, Reactor, WebFlux, Mongodb, Reactive Streams, Angular, 
 This will be the paragraph that contains the excerpt. 
 
 
-# Backend Setup
+## Backend Setup
 
 ---
 
-## Rest Controller
----
+### Rest Controller
 
 [Link To File](https://github.com/cyclic-reference/mongo-images/blob/master/web-service/src/main/java/io/acari/images/LandingRestController.java)
 {% highlight java %}
@@ -62,8 +61,7 @@ This will be the paragraph that contains the excerpt.
     }
 {% endhighlight %}
 
-## GridFS Component
----
+### GridFS Component
 
 [Link to File](https://github.com/cyclic-reference/mongo-images/blob/master/web-service/src/main/java/io/acari/images/ImageHandler.java)
 {% highlight java %}
@@ -117,8 +115,7 @@ This will be the paragraph that contains the excerpt.
     }
 {% endhighlight %}
 
-## Spring Configuration
----
+### Spring Configuration
 
 [Link to File](https://github.com/cyclic-reference/mongo-images/blob/master/web-service/src/main/java/io/acari/images/MongoConfig.java)
 {% highlight java %}
@@ -168,8 +165,8 @@ This will be the paragraph that contains the excerpt.
     }
 {% endhighlight %}
 
-## Spring Application Property Configuration
----
+### Spring Application Property Configuration
+
 [Link to File](https://github.com/cyclic-reference/mongo-images/blob/master/web-service/src/main/resources/application.yml)
 
 ### application.yml
@@ -182,8 +179,10 @@ This will be the paragraph that contains the excerpt.
         server:
           port: 80
           
-# Frontend Setup
+          
 ---
+          
+# Frontend Setup
 
 
 {% highlight javascript %}
