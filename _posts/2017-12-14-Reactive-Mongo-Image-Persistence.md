@@ -18,6 +18,12 @@ When reactive is stated, the following can be assumed:
 - Push based programming.
 - Publisher/Subscriber or [Observable/Observer](http://reactivex.io/intro.html) pattern. 
 
+With all of this criterion set, here is the following application stack that I came up with:
+
+-[Angular 5](https://angular.io/) paired with [RxJS](http://reactivex.io/rxjs/)
+-[Spring 5](https://spring.io/) paired with WebFlux powered by [Reactor](https://projectreactor.io/)
+-[MongoDB](https://www.mongodb.com/) which supports reactive streams!
+
 ![Warning]({{site.imageDir}}mongo_images/trigger warnings.png)  
 
 Attention! The remainder of this post contains a lot of code and corresponding explanations of code.
