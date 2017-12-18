@@ -24,6 +24,16 @@ With all of this criterion set, here is the following application stack that I c
 - [Spring 5](https://spring.io/) paired with WebFlux powered by [Reactor](https://projectreactor.io/)
 - [MongoDB](https://www.mongodb.com/) which supports reactive streams!
 
+At a high level, the project consists of a Spring Boot server.
+Which serves static content to the user, and provides a REST API to save, update, retrieve, and delete persisted images.
+
+The images are stored in a Mongo database. 
+The server takes advantage of GridFS which breaks the image binary into chunks which allows for storage of images greater than 16MB. 
+
+This all sounds straight forward, right? As it turns out, there is very little documentation and examples on how to do anything reactive!
+
+The rest of this post will show you how you can choose, upload, and download images! 
+
 ![Warning]({{site.imageDir}}mongo_images/trigger warnings.png)  
 
 Attention! The remainder of this post contains a lot of code and corresponding explanations of code.
