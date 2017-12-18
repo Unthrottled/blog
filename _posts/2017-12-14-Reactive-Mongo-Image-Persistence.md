@@ -105,6 +105,16 @@ Which should allow the controller to consume the form data as a Reactive Stream 
 
 ### GridFS Component
 
+Now that we know how to consume and produce images using a REST API powered by Spring, here is how we satisfy the implementation.
+GridFS has a reactive client so that means that it will need to read and write bytes in asynchronous streams.
+
+The first hurdle that needs to be crossed is, "how to create the respective asynchronous streams?"
+Thankfully, the `MultipartFile` exposes a regular InputStream which can in turn be wrapped into a AsyncInputStream by the `AysncStreamHelper` class.
+This works fine and dandy when an image file needs to be saved, however, returning an image is a bit different.
+
+
+
+
 [Link to File](https://github.com/cyclic-reference/mongo-images/blob/master/web-service/src/main/java/io/acari/images/ImageHandler.java)
 {% highlight java %}
 
