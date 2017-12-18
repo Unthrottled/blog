@@ -47,6 +47,9 @@ Spring Boot is an awesome framework, the following will show you how to create a
 
 ### Rest Controller
 
+One of the things that will be needed is a REST API that will allow our frontend to persist images.
+The following REST controller is a WebFlux API that exposes a simple CRUD interface using `Mono` and `Flux`.
+
 [Link To File](https://github.com/cyclic-reference/mongo-images/blob/master/web-service/src/main/java/io/acari/images/LandingRestController.java)
 {% highlight java %}
     //...
@@ -96,6 +99,9 @@ Spring Boot is an awesome framework, the following will show you how to create a
         }
     }
 {% endhighlight %}
+
+As a side note, there is apparently a way to get the `saveImage` function to have a method signature of `saveImage(@RequestPart Flux<Part> projectFile)` but I did not spend too much time trying to make that work.
+Which should allow the controller to consume the form data as a Reactive Stream of part data. Maybe this will be upgraded later.
 
 ### GridFS Component
 
