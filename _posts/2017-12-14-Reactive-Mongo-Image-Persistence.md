@@ -112,7 +112,9 @@ The first hurdle that needs to be crossed is, "how to create the respective asyn
 Thankfully, the `MultipartFile` exposes a regular InputStream which can in turn be wrapped into a AsyncInputStream by the `AysncStreamHelper` class.
 This works fine and dandy when an image file needs to be saved, however, returning an image is a bit different.
 
-
+The initial design for the REST API was for the fetchImageBinary to return a `Flux<DataBuffer>` which was supposed to be a asynchronous byte stream of the requested image.
+However I ran into issues with reading from the byte stream and converting a ByteBuffer it into a DataBuffer.
+So the fast and easy solution was to create a `ByteArrayOutputStream` and just side effect all of the reads and convert it into a observable byte array.
 
 
 [Link to File](https://github.com/cyclic-reference/mongo-images/blob/master/web-service/src/main/java/io/acari/images/ImageHandler.java)
