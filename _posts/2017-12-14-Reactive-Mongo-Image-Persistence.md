@@ -473,8 +473,8 @@ When a file is set on a LocalProject file, the file is converted into binary usi
 The results of the FileReader result are put into a `ReplaySubject`.
 A replay subject is a special observable that, sort of, has a current value. 
 Meaning that whenever any observer subscribes, then at most one image binary is emitted.
-This prevents the need to keep reading the file over and over again. 
-Just store the object in memory from then on return that. 
+This prevents the need to keep converting the file over and over again. 
+Just store the binary in memory from then on return that. 
 
 [Link To File](https://github.com/cyclic-reference/mongo-images/blob/master/web-content/src/app/projectFiles/model/LocalProjectFile.ts)
 
@@ -543,9 +543,13 @@ Just store the object in memory from then on return that.
 
 {% endhighlight %}
 
-## Uploading an Image
+## Uploading an Image 
 
 ### Image Upload Service
+
+Being able to choose and display the chosen image is nice, but what about uploading?
+Fear not, our REST server takes a MultiPartFile as input.
+Here is how to convert a file into FormData which is a MultiPartFile!
 
 [Link To File](https://github.com/cyclic-reference/mongo-images/blob/master/web-content/src/app/projectFiles/service/ImageUpload.service.ts)
 
@@ -580,6 +584,9 @@ Just store the object in memory from then on return that.
 {% endhighlight %}
 
 ### HTTP Client
+
+Most of the work above was done by the `BackendAPIService` which is a wrapper around the HttpClient, which is the class responsible for running HttpRequests.
+The `postImage` function takes FormData and uses that as the POST request body. The return is an observable of key that can be used to fetch and delete the image in persistence.
 
 [Link To File](https://github.com/cyclic-reference/mongo-images/blob/master/web-content/src/app/services/BackendAPI.service.ts)
 
