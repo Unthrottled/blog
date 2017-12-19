@@ -705,7 +705,13 @@ Much like the LocalFile, the remote file takes advantage of the `ReplaySubject` 
 
 {% endhighlight %}
 
-### REST Image Factory
+### Remote Image Factory
+
+The great thing about the `RemoteProjectFileService` is that when provided a File Key, it creates a ImageBinary Observable (which is an HTTP call waiting to happen), and wraps the key and binary in the RemoteProjectFile model.
+As saw above, the model subscribes to the observable, which in turn eventually makes an HTTP POST.
+
+Since the binary coming from the server is raw it needs to be converted into a format the browser should be able to understand.
+
 
 [Link to File](https://github.com/cyclic-reference/mongo-images/blob/master/web-content/src/app/projectFiles/service/RemoteProjectFile.service.ts)
 
