@@ -342,7 +342,15 @@ This component finds the selected file and emits it as output.
 
 ## Image Visualization 
 
+Now that the user can choose a file, and the corresponding component emits selected file, image visualization can happen!
+
 ### Model Translation Component
+
+This project has a model called `ProjectFile` that is an abstraction of our Image file.
+The `ProjectFileChooseComponent` is a part of this component which subscribes to the "File Selected" event that is emitted by the file choosing component.
+When the event is fired, it is this component's job to set the current project file to the newly emitted file.
+
+How the _ProjectFile_ model handles a file being set will be discussed later.
 
 {% highlight javascript %}
     
