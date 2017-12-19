@@ -283,8 +283,6 @@ Lastly, this is the applications properties file that will allow for the configu
           
 ## Frontend Setup
 
----
-
 
 ### Image File Selection
 
