@@ -586,7 +586,8 @@ Here is how to convert a file into FormData which is a MultiPartFile!
 ### HTTP Client
 
 Most of the work above was done by the `BackendAPIService` which is a wrapper around the HttpClient, which is the class responsible for running HttpRequests.
-The `postImage` function takes FormData and uses that as the POST request body. The return is an observable of key that can be used to fetch and delete the image in persistence.
+The `postImage` function takes FormData and uses that as the POST request body. 
+The return is an observable of key that can be used to fetch and delete the image in persistence.
 
 [Link To File](https://github.com/cyclic-reference/mongo-images/blob/master/web-content/src/app/services/BackendAPI.service.ts)
 
@@ -628,7 +629,14 @@ The `postImage` function takes FormData and uses that as the POST request body. 
 
 ## Retrieve A Remote Image File
 
-### REST Image File Model
+### Remote Image File Model
+
+The second implementation of the `ProjectFile` interface is the RemoteProjectFile.
+Which is the abstraction of an image that comes from persistence.
+The key difference between the Local and the Remote project is where the binary source is located.
+
+In the case of the local file the binary come directly from your disk, while the binary for the remote file comes from the server (which is probably still your disk :) ).
+
 
 [Link To File](https://github.com/cyclic-reference/mongo-images/blob/master/web-content/src/app/projectFiles/model/RemoteProjectFile.ts)
 
