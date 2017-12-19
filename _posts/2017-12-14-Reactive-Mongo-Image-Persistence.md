@@ -283,6 +283,15 @@ Lastly, this is the applications properties file that will allow for the configu
           
 ## Frontend Setup
 
+There is a ton of Angular 5 code that I had to write to get this project to be minimally viable.
+I wanted to avoid the fluff and just get to the things (I think) that matter.
+
+The following will be covered:
+
+- How to let the user to Select an image.
+- How to Display a file, represented as binary, in the browser.
+- How to Upload a local user file (POST the image to the web-service created).
+- How to retrieve an image from a Byte Stream, and covert it into browser accepted binary.
 
 ### Image File Selection
 
@@ -325,6 +334,7 @@ Lastly, this is the applications properties file that will allow for the configu
     }
 {% endhighlight %}
 
+## Image Visualization 
 
 ### Model Translation Component
 
@@ -486,6 +496,8 @@ Lastly, this is the applications properties file that will allow for the configu
 
 {% endhighlight %}
 
+## Uploading an Image
+
 ### Image Upload Service
 
 [Link To File](https://github.com/cyclic-reference/mongo-images/blob/master/web-content/src/app/projectFiles/service/ImageUpload.service.ts)
@@ -559,6 +571,8 @@ Lastly, this is the applications properties file that will allow for the configu
     }
 
 {% endhighlight %}
+
+## Retrieve A Remote Image File
 
 ### REST Image File Model
 
