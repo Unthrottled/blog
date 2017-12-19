@@ -347,6 +347,15 @@ Now that the user can choose a file, and the corresponding component emits selec
 ### Model Translation Component
 
 This project has a model called `ProjectFile` that is an abstraction of our Image file.
+
+{% highlight javascript %}
+    export interface ProjectFile {
+        imageBinary(): Observable<any>;
+        getIdentifier(): string;
+        setNewFile(file: File): void;
+    }
+{% endhighlight %}
+
 The `ProjectFileChooseComponent` is a part of this component which subscribes to the "File Selected" event that is emitted by the file choosing component.
 When the event is fired, it is this component's job to set the current project file to the newly emitted file.
 
