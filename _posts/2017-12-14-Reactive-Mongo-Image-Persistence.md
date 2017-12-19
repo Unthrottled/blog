@@ -672,11 +672,3 @@ Lastly, this is the applications properties file that will allow for the configu
     }
 
 {% endhighlight %}
-
-{% highlight javascript %}
-aoeu 
-{% endhighlight %}
-
-{% highlight javascript %}
-aoeu
-{% endhighlight %}
