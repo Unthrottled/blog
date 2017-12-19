@@ -189,6 +189,7 @@ The database connection string and database name can be specified in the applica
 Which will be mentioned soon enough!
 
 While the Mongo client is never directly used in the code mentioned above, it is used transitively by the GridFSBucket.
+The reactive GridFSBucket is provided as a Spring Bean in this configuration component as well.
 
 [Link to File](https://github.com/cyclic-reference/mongo-images/blob/master/web-service/src/main/java/io/acari/images/MongoConfig.java)
 {% highlight java %}
