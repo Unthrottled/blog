@@ -241,6 +241,11 @@ The reactive GridFSBucket is provided as a Spring Bean in this configuration com
 
 #### WebFlux Configuration
 
+This configuration component is not necessary to use WebFlux. It may be transitively enable by something else on the classpath if I had to guess.
+However, it is nice to know that this exists
+
+[Link To File](https://github.com/cyclic-reference/mongo-images/blob/master/web-service/src/main/java/io/acari/images/WebConfig.java) 
+
 {% highlight java %}
 
     //....
@@ -258,6 +263,8 @@ The reactive GridFSBucket is provided as a Spring Bean in this configuration com
 {% endhighlight %}
 
 #### Spring Application Property Configuration
+
+Lastly, this is the applications properties file that will allow for the configuration of both the database and Mongo instance used!
 
 [Link to File](https://github.com/cyclic-reference/mongo-images/blob/master/web-service/src/main/resources/application.yml)
 
