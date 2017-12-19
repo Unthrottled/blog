@@ -471,9 +471,10 @@ Local meaning that it has not left your machine yet!
 
 When a file is set on a LocalProject file, the file is converted into binary using FileReader.
 The results of the FileReader result are put into a `ReplaySubject`.
-A replay subject is a special observable that sort of has a current value. 
-Meaning that when ever any observer subscribes, then at most one image binary is emitted.
-This prevents the need to keep reading the file over and over again. Just store the object in memory from then on. 
+A replay subject is a special observable that, sort of, has a current value. 
+Meaning that whenever any observer subscribes, then at most one image binary is emitted.
+This prevents the need to keep reading the file over and over again. 
+Just store the object in memory from then on return that. 
 
 [Link To File](https://github.com/cyclic-reference/mongo-images/blob/master/web-content/src/app/projectFiles/model/LocalProjectFile.ts)
 
