@@ -169,7 +169,9 @@ When dealing with larger files, it may be more useful to stream information off 
     }
 {% endhighlight %}
 
-### Spring Configuration
+### Spring Configurations
+
+#### Mongo Client Configuration
 
 [Link to File](https://github.com/cyclic-reference/mongo-images/blob/master/web-service/src/main/java/io/acari/images/MongoConfig.java)
 {% highlight java %}
@@ -219,7 +221,25 @@ When dealing with larger files, it may be more useful to stream information off 
     }
 {% endhighlight %}
 
-### Spring Application Property Configuration
+#### WebFlux Configuration
+
+{% highlight java %}
+
+    //....
+    import org.springframework.context.annotation.Configuration;
+    import org.springframework.web.reactive.config.EnableWebFlux;
+    import org.springframework.web.reactive.config.WebFluxConfigurer;
+    
+    @Configuration
+    @EnableWebFlux
+    public class WebConfig implements WebFluxConfigurer {
+    
+    }
+
+
+{% endhighlight %}
+
+#### Spring Application Property Configuration
 
 [Link to File](https://github.com/cyclic-reference/mongo-images/blob/master/web-service/src/main/resources/application.yml)
 
