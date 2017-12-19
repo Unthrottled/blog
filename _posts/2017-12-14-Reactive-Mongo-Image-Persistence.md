@@ -359,7 +359,7 @@ This project has a model called `ProjectFile` that is an abstraction of our Imag
 The `ProjectFileChooseComponent` is a part of this component which subscribes to the "File Selected" event that is emitted by the file choosing component.
 When the event is fired, it is this component's job to set the current project file to the newly emitted file.
 
-How the _ProjectFile_ model handles a file being set will be discussed later.
+How the _ProjectFile_ model handles a file being set will be discussed later when the implementations of `ProjectFile` are covered.
 
 {% highlight javascript %}
     
@@ -400,6 +400,19 @@ How the _ProjectFile_ model handles a file being set will be discussed later.
 {% endhighlight %}
 
 ### Image Visualization Component
+
+An important concept to understand is that the `ProjectFile` has a method that should provide an image's binary.
+Given raw binary, then it is expected that there is some way to display that on the browser.
+
+Great expectation! 
+
+Two important bits in this component are the `get imageBinary()` function and
+ 
+    <img [src]="imageBinary | async" alt="SOME IMAGE"/>
+
+The first function supplies the reference to the Observable image binary property. 
+While the HTML uses the supplied image binary property and runs it through the asynchronous angular pipe.
+    
 
 {% highlight javascript %}
 
