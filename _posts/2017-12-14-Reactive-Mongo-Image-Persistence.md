@@ -171,7 +171,24 @@ When dealing with larger files, it may be more useful to stream information off 
 
 ### Spring Configurations
 
+All of the proper framework is set to start persisting images. 
+The next step is to wire up all of the correct configuration.
+
 #### Mongo Client Configuration
+
+A mongo client will have to be created so that the application can actually save files!
+Setting up the Mongo configuration start of by extending the Abstract ReactiveMongoConfiguration class.
+Which will require the implementation of a MongoClient and Database Name factory method.
+
+There are a couple of "gotchas" when creating a reactive Mongo client.
+The first being tha the Stream Factory needs to be a NettyStream, otherwise are runtime exception gets thrown when it is omitted!
+A required dependency of the stream factory is to specify a NioEventLoopGroup (which is fun to say a loud, Loop Group).
+The event loop will need to be shut down when the Spring component is shutdown.
+
+The database connection string and database name can be specified in the application properties file.
+Which will be mentioned soon enough!
+
+While the Mongo client is never directly used in the code mentioned above, it is used transitively by the GridFSBucket.
 
 [Link to File](https://github.com/cyclic-reference/mongo-images/blob/master/web-service/src/main/java/io/acari/images/MongoConfig.java)
 {% highlight java %}
