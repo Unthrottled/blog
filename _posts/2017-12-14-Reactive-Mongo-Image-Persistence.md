@@ -637,6 +637,7 @@ The key difference between the Local and the Remote project is where the binary 
 
 In the case of the local file the binary come directly from your disk, while the binary for the remote file comes from the server (which is probably still your disk :) ).
 
+Much like the LocalFile, the remote file takes advantage of the `ReplaySubject` which prevents the need to make more than one REST call to retrieve the image binary while still using the Observable abstraction.
 
 [Link To File](https://github.com/cyclic-reference/mongo-images/blob/master/web-content/src/app/projectFiles/model/RemoteProjectFile.ts)
 
