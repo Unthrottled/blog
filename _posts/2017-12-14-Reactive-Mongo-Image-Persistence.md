@@ -295,6 +295,12 @@ The following will be covered:
 
 ### Image File Selection
 
+It is hard to save an image that has not been choosen by the user.
+This Angular 5 component is dedicated to just that, selecting a file!
+
+When the user chooses an image an event is fired. 
+This component finds the selected file and emits it as output.
+
 {% highlight javascript %}
 
     import {Component, EventEmitter, Output} from '@angular/core';
