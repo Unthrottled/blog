@@ -174,6 +174,22 @@ When dealing with larger files, it may be more useful to stream information off 
 All of the proper framework is set to start persisting images. 
 The next step is to wire up all of the correct configuration.
 
+#### Spring Boot Configuration
+
+{% highlight java %}
+    
+    //...
+    @EnableReactiveMongoRepositories
+    @SpringBootApplication(exclude = {MongoAutoConfiguration.class, MongoDataAutoConfiguration.class})
+    public class LandingApplication {
+    
+        public static void main(String[] args) {
+            SpringApplication.run(LandingApplication.class, args);
+        }
+    }
+
+{% endhighlight %}
+
 #### Mongo Client Configuration
 
 A mongo client will have to be created so that the application can actually save files!
