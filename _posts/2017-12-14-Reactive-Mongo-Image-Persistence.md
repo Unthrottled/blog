@@ -53,57 +53,41 @@ The following REST controller is a WebFlux API that exposes a simple CRUD interf
 [Link To File](https://github.com/cyclic-reference/mongo-images/blob/master/web-service/src/main/java/io/acari/images/LandingRestController.java)
 {% highlight java %}
     //...
-    @RestController
-    @RequestMapping("/api")
-    public class LandingRestController {
-        private static final Logger LOGGER = 
-        LoggerFactory.getLogger(LandingRestController.class);
+    @Component
+    public class RouterComponent {
+      private static final Logger LOGGER = LoggerFactory.getLogger(RouterComponent.class);
     
-        private final ImageHandler imageHandler;
+      private final ImageHandler imageHandler;
     
-        @Autowired
-        public LandingRestController(ImageHandler imageHandler) {
-            this.imageHandler = imageHandler;
-        }
+      @Autowired
+      public RouterComponent(ImageHandler imageHandler) {
+        this.imageHandler = imageHandler;
+      }
     
-        @PostMapping(value = "image/delete/{id}",
-                consumes = MediaType.ALL_VALUE,
-                produces = MediaType.APPLICATION_JSON_VALUE)
-        public Mono<Boolean> deleteImage(@PathVariable("id") String id) {
-            return imageHandler.removeImage(id);
-        }
-    
-        @PostMapping(value = "image/save", consumes = {
-                MediaType.MULTIPART_FORM_DATA_VALUE,
-                MediaType.IMAGE_PNG_VALUE,
-                MediaType.IMAGE_JPEG_VALUE,
-                MediaType.IMAGE_GIF_VALUE,
-                MediaType.APPLICATION_FORM_URLENCODED_VALUE,
-    
-        })
-        public Mono<String> saveImage(@RequestPart MultipartFile projectFile) {
-            return imageHandler.saveImage(projectFile);
-        }
-    
-        @RequestMapping(value = "image/get/{id}", 
-            produces = {MediaType.IMAGE_PNG_VALUE,
-                MediaType.IMAGE_JPEG_VALUE,
-                MediaType.IMAGE_GIF_VALUE})
-        public Mono<byte[]> fetchImage(@PathVariable("id") String id) {
-            return imageHandler.fetchImageBinary(id);
-        }
-    
-        @GetMapping(value = "images", produces = MediaType.APPLICATION_JSON_VALUE)
-        public Flux<Identifier> allProjects() {
-            return imageHandler.findAllNames();
-        }
-    }
+      @Bean
+      public RouterFunction<?> landingRouterFunction() {
+        return RouterFunctions.nest(RequestPredicates.path("/api"),
+            RouterFunctions.route(RequestPredicates.GET("/images"),
+                request -> ServerResponse.ok()
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .body(imageHandler.findAllNames(), Identifier.class))
+                .andRoute(RequestPredicates.POST("/image/save"),
+                    request -> ServerResponse.ok()
+                        .body(imageHandler.saveImage(request.bodyToFlux(Part.class)), String.class))
+                .andRoute(RequestPredicates.GET("/image/get/{id}"),
+                    request -> ServerResponse.ok()
+                        .body(imageHandler.fetchImage(request.pathVariable("id")), byte[].class))
+                .andRoute(RequestPredicates.DELETE("/image/delete/{id}"),
+                    request -> ServerResponse.ok()
+                        .body(imageHandler.removeImage(request.pathVariable("id")), Boolean.class))
+        ).andOther(RouterFunctions.resources("/**", new ClassPathResource("static/")));
+      }
 {% endhighlight %}
 
 As a side note, there is apparently a way to get the `saveImage` function to have a method signature of `saveImage(@RequestPart Flux<Part> projectFile)` but I did not spend too much time trying to make that work.
 Which should allow the controller to consume the form data as a Reactive Stream of part data. Maybe this will be upgraded later.
 
-### GridFS Component
+### GridFS Components
 
 Now that we know how to consume and produce images using a REST API powered by Spring, here is how we satisfy the implementation.
 GridFS has a reactive client so that means that it will need to read and write bytes in asynchronous streams.
@@ -118,41 +102,35 @@ When dealing with larger files, it may be more useful to stream information off 
 
 
 [Link to File](https://github.com/cyclic-reference/mongo-images/blob/master/web-service/src/main/java/io/acari/images/ImageHandler.java)
+
 {% highlight java %}
 
     //...
-    
     @Component
     public class ImageHandler {
       private static final Logger LOGGER = LoggerFactory.getLogger(ImageHandler.class);
       private final GridFSBucket gridFSBucket;
+      private final DownloadStreamToFluxFactory downloadStreamToFluxFactory = new DownloadStreamToFluxFactory();
     
       @Autowired
       public ImageHandler(GridFSBucket gridFSBucket) {
         this.gridFSBucket = gridFSBucket;
       }
     
-      public Mono<String> saveImage(MultipartFile multipartFile) {
-        String name = multipartFile.getOriginalFilename();
-        try {
-          return Mono.from(gridFSBucket.uploadFromStream(name,
-              AsyncStreamHelper.toAsyncInputStream(multipartFile.getInputStream())))
-              .map(ObjectId::toHexString);
-        } catch (IOException e) {
-          LOGGER.warn("Error saving image", e);
-          return Mono.error(new Throwable("Unable to save image!"));
-        }
+      public Flux<String> saveImage(Flux<Part> multipartFile) {
+        return multipartFile
+            .flatMap(part -> Mono.from(gridFSBucket.uploadFromStream(part.name(),
+                FluxAsyncStreamConverter.convert(part.content()))))
+            .map(ObjectId::toHexString);
       }
     
-      public Mono<byte[]> fetchImageBinary(String imageId) {
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        return Mono.from(gridFSBucket.downloadToStream(new ObjectId(imageId),
-            AsyncStreamHelper.toAsyncOutputStream(outputStream)))
-            .map(l -> outputStream.toByteArray());
+      public Flux<byte[]> fetchImage(String imageId) {
+        return downloadStreamToFluxFactory
+            .convert(gridFSBucket.openDownloadStream(getId(imageId)));
       }
     
       public Mono<Boolean> removeImage(String imageId) {
-        return Mono.from(gridFSBucket.delete(new ObjectId(imageId)))
+        return Mono.from(gridFSBucket.delete(getId(imageId)))
             .map(Objects::nonNull)
             .onErrorReturn(false);
       }
@@ -166,7 +144,12 @@ When dealing with larger files, it may be more useful to stream information off 
             .map(Identifier::new);
     
       }
+    
+      private ObjectId getId(String imageId) {
+        return new ObjectId(imageId);
+      }
     }
+
 {% endhighlight %}
 
 ### Spring Configurations
@@ -257,8 +240,7 @@ The reactive GridFSBucket is provided as a Spring Bean in this configuration com
 
 #### WebFlux Configuration
 
-This configuration component is not necessary to use WebFlux. It may be transitively enable by something else on the classpath if I had to guess.
-However, it is nice to know that this exists
+This configuration component is necessary to use WebFlux.
 
 [Link To File](https://github.com/cyclic-reference/mongo-images/blob/master/web-service/src/main/java/io/acari/images/WebConfig.java) 
 
