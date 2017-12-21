@@ -161,10 +161,10 @@ When dealing with larger files, it may be more useful to stream information off 
     public class FluxAsyncInputStream implements AsyncInputStream {
       private static final Logger LOGGER = LoggerFactory.getLogger(FluxAsyncInputStream.class);
     
-      private final IterableFlux<DataBuffer> source;
+      private final NonBlockingIterableFlux<DataBuffer> source;
     
       public FluxAsyncInputStream(Flux<DataBuffer> source) {
-        this.source = new IterableFlux<>(source);
+        this.source = new NonBlockingIterableFlux<>(source);
     
       }
     
@@ -177,7 +177,7 @@ When dealing with larger files, it may be more useful to stream information off 
        */
       @Override
       public Publisher<Integer> read(ByteBuffer dst) {
-        return this.source.onNext()
+        return this.source.takeNext()
             .map(dataBuffer -> {
               dst.put(dataBuffer.asByteBuffer());
               return dataBuffer.readableByteCount() <= 0 ? -1 : dataBuffer.readableByteCount();
