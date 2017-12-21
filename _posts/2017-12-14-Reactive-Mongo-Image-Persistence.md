@@ -152,6 +152,158 @@ When dealing with larger files, it may be more useful to stream information off 
 
 {% endhighlight %}
 
+{% highlight java %}
+    //...
+    /**
+     * The Async Input Stream interface represents some asynchronous input stream of bytes.
+     *
+     */
+    public class FluxAsyncInputStream implements AsyncInputStream {
+      private static final Logger LOGGER = LoggerFactory.getLogger(FluxAsyncInputStream.class);
+    
+      private final IterableFlux<DataBuffer> source;
+    
+      public FluxAsyncInputStream(Flux<DataBuffer> source) {
+        this.source = new IterableFlux<>(source);
+    
+      }
+    
+      /**
+       * Reads a sequence of bytes from this stream into the given buffer.
+       *
+       * @param dst      the destination buffer
+       * @return a publisher with a single element, the total number of bytes read into the buffer, or
+       *         {@code -1} if there is no more data because the end of the stream has been reached.
+       */
+      @Override
+      public Publisher<Integer> read(ByteBuffer dst) {
+        return this.source.onNext()
+            .map(dataBuffer -> {
+              dst.put(dataBuffer.asByteBuffer());
+              return dataBuffer.readableByteCount() <= 0 ? -1 : dataBuffer.readableByteCount();
+            }).defaultIfEmpty(-1);
+      }
+    
+      /**
+       * Closes the input stream
+       *
+       * @return a publisher with a single element indicating when the stream has been closed
+       */
+      @Override
+      public Publisher<Success> close() {
+        this.source.dispose();
+        return Mono.just(Success.SUCCESS);
+      }
+    }
+{% endhighlight %}
+
+{% highlight java %}
+    //...
+    public class IterableFlux<T> {
+      private final Queue<T> itemBuffer = new LinkedList<>();
+      private final Queue<MonoSinkHelper<T>> callables = new LinkedList<>();
+      private final Disposable disposable;
+      private boolean complete = false;
+    
+      public IterableFlux(Flux<T> source) {
+        Flux<T> messaged = Flux.create(stringFluxSink ->
+            source.subscribe(sourceItem -> emitNextItem(stringFluxSink, sourceItem),
+            this::accept,
+            this::run));
+        disposable = messaged.subscribe();
+      }
+    
+      public void dispose() {
+        disposable.dispose();
+        callables.forEach(MonoSinkHelper::success);
+      }
+    
+      public Mono<T> onNext() {
+        if (complete && itemBuffer.isEmpty()) {
+          return Mono.empty();
+        } else if (itemBuffer.isEmpty()) {
+          return createCallback();
+        } else {
+          return Mono.just(itemBuffer.poll());
+        }
+      }
+    
+      private Mono<T> createCallback() {
+        final Consumer<MonoSink<T>> stringConsumer = tMonoSink -> {
+          callables.offer(new MonoSinkHelper<>(tMonoSink));
+        };
+        return Mono.create(stringConsumer);
+      }
+    
+      private void emitNextItem(FluxSink<T> stringFluxSink, T a) {
+        if (callables.isEmpty()) {
+          bufferItem(stringFluxSink, a);
+        } else {
+          emitToNextSubscribedCaller(stringFluxSink, a);
+        }
+      }
+    
+      private void bufferItem(FluxSink<T> stringFluxSink, T a) {
+        stringFluxSink.next(a);
+        itemBuffer.offer(a);
+      }
+    
+      private void emitToNextSubscribedCaller(FluxSink<T> stringFluxSink, T a) {
+        MonoSinkHelper<T> nextPersonInLine = callables.poll();
+        if (nextPersonInLine.isDisposed()) {
+          emitNextItem(stringFluxSink, a);
+        } else {
+          nextPersonInLine.success(a);
+        }
+      }
+    
+    
+      private void accept(Throwable b) {
+        callables.forEach(callable -> callable.error(b));
+      }
+    
+      private void run() {
+        callables.forEach(MonoSinkHelper::success);
+        complete = true;
+      }
+    
+    }
+{% endhighlight %}
+
+{% highlight java %}
+    //...
+    public class MonoSinkHelper<T>{
+    
+      private final MonoSink<T> monoSink;
+      private boolean disposed = false;
+    
+      public MonoSinkHelper(MonoSink<T> monoSink) {
+        this.monoSink = monoSink;
+        monoSink.onDispose(this::disposed);
+      }
+    
+      public void success(){
+        this.monoSink.success();
+      }
+    
+      public void success(T t){
+        this.monoSink.success(t);
+      }
+    
+      public void error(Throwable t){
+        this.monoSink.error(t);
+      }
+    
+      public boolean isDisposed() {
+        return disposed;
+      }
+    
+      private void disposed() {
+        disposed = true;
+      }
+    }
+{% endhighlight %}
+
 ### Spring Configurations
 
 All of the proper framework is set to start persisting images. 
