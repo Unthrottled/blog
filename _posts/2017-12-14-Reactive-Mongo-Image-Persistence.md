@@ -50,7 +50,7 @@ Spring Boot is an awesome framework, the following will show you how to create a
 One of the things that will be needed is a REST API that will allow our frontend to persist images.
 The following REST controller is a WebFlux API that exposes a simple CRUD interface using `Mono` and `Flux`.
 
-[Link To File](https://github.com/cyclic-reference/mongo-images/blob/master/web-service/src/main/java/io/acari/images/LandingRestController.java)
+[Link To File](https://github.com/cyclic-reference/mongo-images/blob/master/web-service/src/main/java/io/acari/images/rest/RouterComponent.java)
 {% highlight java %}
     //...
     @Component
@@ -101,7 +101,7 @@ However fast and easy solution was to create a `ByteArrayOutputStream` and just 
 When dealing with larger files, it may be more useful to stream information off to the client, to prevent the need for a whole lot of working memory.
 
 
-[Link to File](https://github.com/cyclic-reference/mongo-images/blob/master/web-service/src/main/java/io/acari/images/ImageHandler.java)
+[Link to File](https://github.com/cyclic-reference/mongo-images/blob/master/web-service/src/main/java/io/acari/images/handler/ImageHandler.java)
 
 {% highlight java %}
 
@@ -375,7 +375,7 @@ Which will be mentioned soon enough!
 While the Mongo client is never directly used in the code mentioned above, it is used transitively by the GridFSBucket.
 The reactive GridFSBucket is provided as a Spring Bean in this configuration component as well.
 
-[Link to File](https://github.com/cyclic-reference/mongo-images/blob/master/web-service/src/main/java/io/acari/images/MongoConfig.java)
+[Link to File](https://github.com/cyclic-reference/mongo-images/blob/master/web-service/src/main/java/io/acari/images/configuration/MongoConfig.java)
 {% highlight java %}
 
     //....
@@ -427,7 +427,7 @@ The reactive GridFSBucket is provided as a Spring Bean in this configuration com
 
 This configuration component is necessary to use WebFlux.
 
-[Link To File](https://github.com/cyclic-reference/mongo-images/blob/master/web-service/src/main/java/io/acari/images/WebConfig.java) 
+[Link To File](https://github.com/cyclic-reference/mongo-images/blob/master/web-service/src/main/java/io/acari/images/configuration/WebConfig.java) 
 
 {% highlight java %}
 
@@ -478,7 +478,7 @@ The following will be covered:
 
 ### Image File Selection
 
-It is hard to save an image that has not been choosen by the user.
+It is hard to save an image that has not been chosen by the user.
 This Angular 5 component is dedicated to just that, selecting a file!
 
 When the user chooses an image an event is fired. 
