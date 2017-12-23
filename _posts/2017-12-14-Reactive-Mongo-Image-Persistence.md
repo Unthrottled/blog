@@ -159,7 +159,22 @@ So this means that our API for retrieving images has a return signature of `Flux
 
 {% endhighlight %}
 
-### Converting Flux to AsyncInputStream
+### Converting Flux<Part> to AsyncInputStream
+
+This was a very interesting problem that I had to solve.
+The primary issue between the two classes is one is purely push based, while the other is pull then push.
+
+The Flux, in my opinion is purely push. It is a direct soure of whatever it is labeled as.
+One subscribed to the stream of objects, then they will be pushed to your code as they come.
+
+While the Asynce stream is pull then push. What happens here is that you have to ask for the stream to fill your buffer with bytes.
+Then it will push the result of the reading one it is done. Then it is up to you again to ask. Which is the primary differences between these two APIs.
+
+The Flux will give you all of the data one you ask once. While it it up to the user to fetch all of the data.
+Which leaves us with a window of time where the Flux is producing data, while the user is doing stuff other than asking to fill another buffer.
+
+So in order to make a succesfull conversion, we need to return the data from the `Flux<DataBuffer>` in the same sequence as we received it, to each sequential read call of the Async Input Stream.
+
 
 #### Part One
 
