@@ -173,8 +173,12 @@ Then it will push the result of the reading one it is done. Then it is up to you
 The Flux will give you all of the data one you ask once. While it it up to the user to fetch all of the data.
 Which leaves us with a window of time where the Flux is producing data, while the user is doing stuff other than asking to fill another buffer.
 
-So in order to make a succesfull conversion, we need to return the data from the `Flux<DataBuffer>` in the same sequence as we received it, to each sequential read call of the Async Input Stream.
+So in order to make a successfully conversion, we need to return the data from the `Flux<DataBuffer>` in the same sequence as we received it, to each sequential read call of the Async Input Stream.
 
+There is a blocking way to accomplish this and that would be to turn the Flux into a Iterable, which is natively supported by the Reactor library.
+Unfortunately, again, there is native support for non-blocking Flux iteration. 
+
+Again, I had to make my own implementation. which I will cover a little bit later.
 
 #### Part One
 
