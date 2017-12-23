@@ -167,8 +167,8 @@ The primary issue between the two classes is one is purely push based, while the
 The Flux, in my opinion is purely push. It is a direct source of whatever it is labeled as.
 One subscribed to the stream of objects, then they will be pushed to your code as they come.
 
-While the Async stream is pull then push. What happens here is that you have to ask for the stream to fill your buffer with bytes.
-Then it will push the result of the reading one it is done. Then it is up to you again to ask. Which is the primary differences between these two APIs.
+While the Async stream is pull then push. What happens here is that you have to ask (pull) for the stream to fill your buffer with bytes.
+Then it will push the result of the reading once it is done. Then it is up to you again to ask. Which is the primary differences between these two APIs.
 
 The Flux will give you all of the data one you ask once. While it it up to the user to fetch all of the data.
 Which leaves us with a window of time where the Flux is producing data, while the user is doing stuff other than asking to fill another buffer.
