@@ -1,7 +1,7 @@
 ---
 layout: post
 headerImage: mongo_images/logo.png
-tags: [Java, Spring Boot, Reactor, WebFlux, Mongodb, Reactive Streams, Angular, Gridfs]
+tags: [Java, Spring Boot, Reactor, WebFlux, Mongodb, Reactive Streams, ReactiveX, Node.js, Angular, Gridfs, Webpack]
 ---
 
 Have you bought into the whole [Reactive Programming](https://en.wikipedia.org/wiki/Reactive_programming) bit yet? 
