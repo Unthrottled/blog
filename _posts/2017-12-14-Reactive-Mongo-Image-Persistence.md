@@ -462,6 +462,43 @@ The reactive GridFSBucket is provided as a Spring Bean in this configuration com
     }
 {% endhighlight %}
 
+#### Part Four: Converting AsyncInputStream into Flux<DataBuffer>
+
+Fortunately, this process is much easier! Plus there is native library support!! 
+
+{% highlight java %}
+    //...
+    public class DownloadStreamToFluxFactory {
+      private static final Logger LOGGER = LoggerFactory.getLogger(ImageHandler.class);
+      
+      public Flux<byte[]> convert(GridFSDownloadStream gridFSDownloadStream) {
+        return Flux.create(synchronousSink -> readStream(gridFSDownloadStream, synchronousSink));
+      }
+    
+      private void readStream(GridFSDownloadStream gridFSDownloadStream, FluxSink<byte[]> synchronousSink) {
+        ByteBuffer allocate = ByteBuffer.allocate(4096);
+        Mono.from(gridFSDownloadStream.read(allocate))
+            .subscribe(bytesRead -> {
+              if (finishedReading(bytesRead)) {
+                Mono.from(gridFSDownloadStream.close())
+                    .subscribe(a -> {}, throwable -> {}, synchronousSink::complete);
+              } else {
+                synchronousSink.next(allocate.array());//Send Data to subscribers.
+                readStream(gridFSDownloadStream, synchronousSink);
+              }
+            }, throwable -> {
+              LOGGER.warn("Ohhh snap!", throwable);
+              synchronousSink.complete();
+            });
+      }
+    
+      private boolean finishedReading(Integer read) {
+        return read < 0;
+      }
+    }
+    
+{% endhighlight %}
+
 #### WebFlux Configuration
 
 This configuration component is necessary to use WebFlux.
