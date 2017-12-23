@@ -50,9 +50,12 @@ Spring Boot is an awesome framework, the following will show you how to create a
 One of the things that will be needed is a non-blocking REST API that will allow our frontend to persist images.
 The following component provides a WebFlux API that is a simple CRUD (create, update, delete) routing function.
 
-- `/api/images` is a get request that returns a non-blocking `Flux<String>` of all of the current images that have been saved.
-- `/api/image/save` is a post request endpont that consumes the form multipart data as a   `Flux<Part>` and returns the image identifiers as `Flux<String>`.
-- `/api/`
+- `/api/images` is a GET endpoint that returns a non-blocking `Flux<String>` of all of the current images that have been saved.
+- `/api/image/save` is a POST endpoint that consumes the form multipart data as a   `Flux<Part>` and returns the image identifiers as `Flux<String>`.
+- `/api/image/get/{id}` is a GET endpoint that takes a path variable as the Hexidecimal Identifier given by the save or images endpoint.
+- `/api/image/delete/{id}` is a DELETE endpoint thate takes a path variable as the Hexidecimal Identifier given by the save or images enpoint.
+
+Side note, the other routing function is to serve the static resources defined in src/main/resources/static.
 
 [Link To File](https://github.com/cyclic-reference/mongo-images/blob/master/web-service/src/main/java/io/acari/images/rest/RouterComponent.java)
 {% highlight java %}
