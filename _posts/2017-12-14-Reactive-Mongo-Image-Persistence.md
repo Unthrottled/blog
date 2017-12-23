@@ -100,7 +100,7 @@ The first hurdle that needs to be crossed is, "how to create the respective asyn
 
 The `Part` class only exposes a `Flux<DataBuffer` which is basically just a Spring wrapped ByteBuffer.
 
-Unfortunatly, there is no direct api support for converting a `Flux<Part>` to a `AsycInputStream`, so I had to make my own.
+Unfortunately, there is no direct api support for converting a `Flux<Part>` to a `AsycInputStream`, so I had to make my own.
 All in the name of non-blocking asynchronous code! I will address my implementation later. 
 
 This works fine and dandy when an image file needs to be saved; however, returning an image is a bit different.
@@ -159,6 +159,10 @@ So this means that our API for retrieving images has a return signature of `Flux
 
 {% endhighlight %}
 
+### Converting Flux to AsyncInputStream
+
+#### Part One
+
 {% highlight java %}
     //...
     /**
@@ -203,6 +207,8 @@ So this means that our API for retrieving images has a return signature of `Flux
       }
     }
 {% endhighlight %}
+
+#### Part Two
 
 {% highlight java %}
     //...
@@ -309,6 +315,8 @@ So this means that our API for retrieving images has a return signature of `Flux
     
     }
 {% endhighlight %}
+
+#### Part Three
 
 {% highlight java %}
     //...
