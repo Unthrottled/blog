@@ -15,7 +15,7 @@ When reactive is stated, the following can be assumed:
 
 - All code is no blocking
 - Code is processed in an [event loop](http://vertx.io/docs/guide-for-java-devs/#_core_vert_x_concepts).
-- Push based programming.
+- [Push based programming](https://en.wikipedia.org/wiki/Push_technology).
 - Publisher/Subscriber or [Observable/Observer](http://reactivex.io/intro.html) pattern. 
 
 With all of this criterion set, here is the following application stack that I came up with:
@@ -32,11 +32,11 @@ The server takes advantage of GridFS which breaks the image binary into chunks w
 
 This all sounds straight forward, right? As it turns out, there is very little documentation and examples on how to do anything reactive!
 
-The rest of this post will show you how you can choose, upload, and download images! 
+The rest of this post will show you how you can choose, upload, and receive images! 
 
 ![Warning]({{site.imageDir}}mongo_images/trigger warnings.png)  
 
-Attention! The remainder of this post contains a lot of code and corresponding explanations of code.
+Attention! The remainder of this post contains _a lot_ of code and corresponding explanations of code.
 If the reader feels so inclined, you can find the  *[Source Code to the project described above.](https://github.com/cyclic-reference/mongo-images)*  
 
 ## Backend Setup
