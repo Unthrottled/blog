@@ -10,7 +10,7 @@ Currently, there is a supreme lack of helpful documentation to assist in a seaml
 Fear not fellow reactive enthusiast, this post should help you save images in MongoDB utilizing reactive streams!
 
 Recently, I wanted to create a project that is a full slice reactive application.
-Meaning that the code and communication between the Frontend, Backend, and Data Persistance Layers are _reactive_.
+Meaning that the code and communication between the Frontend, Backend, and Data Persistence Layers are _reactive_.
 When reactive is stated, the following can be assumed:
 
 - All code is no blocking
@@ -52,8 +52,8 @@ The following component provides a WebFlux API that is a simple CRUD (create, up
 
 - `/api/images` is a GET endpoint that returns a non-blocking `Flux<String>` of all of the current images that have been saved.
 - `/api/image/save` is a POST endpoint that consumes the form multipart data as a   `Flux<Part>` and returns the image identifiers as `Flux<String>`.
-- `/api/image/get/{id}` is a GET endpoint that takes a path variable as the Hexidecimal Identifier given by the save or images endpoint.
-- `/api/image/delete/{id}` is a DELETE endpoint thate takes a path variable as the Hexidecimal Identifier given by the save or images enpoint.
+- `/api/image/get/{id}` is a GET endpoint that takes a path variable as the Hexadecimal Identifier given by the save or images endpoint.
+- `/api/image/delete/{id}` is a DELETE endpoint that takes a path variable as the Hexadecimal Identifier given by the save or images endpoint.
 
 Side note, the other routing function is to serve the static resources defined in src/main/resources/static.
 
@@ -164,10 +164,10 @@ So this means that our API for retrieving images has a return signature of `Flux
 This was a very interesting problem that I had to solve.
 The primary issue between the two classes is one is purely push based, while the other is pull then push.
 
-The Flux, in my opinion is purely push. It is a direct soure of whatever it is labeled as.
+The Flux, in my opinion is purely push. It is a direct source of whatever it is labeled as.
 One subscribed to the stream of objects, then they will be pushed to your code as they come.
 
-While the Asynce stream is pull then push. What happens here is that you have to ask for the stream to fill your buffer with bytes.
+While the Async stream is pull then push. What happens here is that you have to ask for the stream to fill your buffer with bytes.
 Then it will push the result of the reading one it is done. Then it is up to you again to ask. Which is the primary differences between these two APIs.
 
 The Flux will give you all of the data one you ask once. While it it up to the user to fetch all of the data.
@@ -229,7 +229,7 @@ Again, I had to make my own implementation. which I will cover a little bit late
 
 #### Part Two Iterating a Flux without blocking and returning a Publisher.
 
-Note: this class is _not_ lazely evaluated. When constructed it automatically lets the publisher it is ready to receive data.
+Note: this class is _not_ lazily evaluated. When constructed it automatically lets the publisher it is ready to receive data.
 
 {% highlight java %}
     //...
@@ -340,7 +340,7 @@ Note: this class is _not_ lazely evaluated. When constructed it automatically le
 #### Part Three: The helper.
 
 I need a class that let me know if any subscriber had unsubscribed while waiting for the next element to be returned from the Flux.
-This way the sequence is still preserved, and the data goes to a subcriber that is actually listening!
+This way the sequence is still preserved, and the data goes to a subscriber that is actually listening!
 
 {% highlight java %}
     //...
