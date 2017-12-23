@@ -176,7 +176,7 @@ Which leaves us with a window of time where the Flux is producing data, while th
 So in order to make a successfully conversion, we need to return the data from the `Flux<DataBuffer>` in the same sequence as we received it, to each sequential read call of the Async Input Stream.
 
 There is a blocking way to accomplish this and that would be to turn the Flux into a Iterable, which is natively supported by the Reactor library.
-Unfortunately, again, there is native support for non-blocking Flux iteration. 
+Unfortunately, again, there is no native support for non-blocking Flux iteration. 
 
 Again, I had to make my own implementation. which I will cover a little bit later.
 
@@ -227,7 +227,9 @@ Again, I had to make my own implementation. which I will cover a little bit late
     }
 {% endhighlight %}
 
-#### Part Two
+#### Part Two Iterating a Flux without blocking and returning a Publisher.
+
+Note: this class is _not_ lazely evaluated. When constructed it automatically lets the publisher it is ready to receive data.
 
 {% highlight java %}
     //...
@@ -335,7 +337,10 @@ Again, I had to make my own implementation. which I will cover a little bit late
     }
 {% endhighlight %}
 
-#### Part Three
+#### Part Three: The helper.
+
+I need a class that let me know if any subscriber had unsubscribed while waiting for the next element to be returned from the Flux.
+This way the sequence is still preserved, and the data goes to a subcriber that is actually listening!
 
 {% highlight java %}
     //...
