@@ -182,6 +182,8 @@ Again, I had to make my own implementation. which I will cover a little bit late
 
 #### Part One
 
+[Link To File](https://github.com/cyclic-reference/mongo-images/blob/master/web-service/src/main/java/io/acari/images/flux/FluxAsyncInputStream.java)
+
 {% highlight java %}
     //...
     /**
@@ -230,6 +232,8 @@ Again, I had to make my own implementation. which I will cover a little bit late
 #### Part Two Iterating a Flux without blocking and returning a Publisher.
 
 Note: this class is _not_ lazily evaluated. When constructed it automatically lets the publisher it is ready to receive data.
+
+[Link To File](https://github.com/cyclic-reference/mongo-images/blob/master/web-service/src/main/java/io/acari/images/flux/NonBlockingIterableFlux.java)
 
 {% highlight java %}
     //...
@@ -342,6 +346,8 @@ Note: this class is _not_ lazily evaluated. When constructed it automatically le
 I need a class that let me know if any subscriber had unsubscribed while waiting for the next element to be returned from the Flux.
 This way the sequence is still preserved, and the data goes to a subscriber that is actually listening!
 
+[Link To File](https://github.com/cyclic-reference/mongo-images/blob/master/web-service/src/main/java/io/acari/images/mono/MonoSinkHelper.java)
+
 {% highlight java %}
     //...
     public class MonoSinkHelper<T>{
@@ -383,15 +389,19 @@ The next step is to wire up all of the correct configuration.
 
 #### Spring Boot Configuration
 
+Here we need to let Spring be less helpful. We want to exclude the automatic Mongo configurations.
+
+[Link To File](https://github.com/cyclic-reference/mongo-images/blob/master/web-service/src/main/java/io/acari/images/ReactiveImageApplication.java)
+
 {% highlight java %}
     
     //...
     @EnableReactiveMongoRepositories
     @SpringBootApplication(exclude = {MongoAutoConfiguration.class, MongoDataAutoConfiguration.class})
-    public class LandingApplication {
+    public class ReactiveImageApplication {
     
         public static void main(String[] args) {
-            SpringApplication.run(LandingApplication.class, args);
+            SpringApplication.run(ReactiveImageApplication.class, args);
         }
     }
 
@@ -465,6 +475,8 @@ The reactive GridFSBucket is provided as a Spring Bean in this configuration com
 #### Part Four: Converting AsyncInputStream into Flux<DataBuffer>
 
 Fortunately, this process is much easier! Plus there is native library support!! 
+
+[Link To File](https://github.com/cyclic-reference/mongo-images/blob/master/web-service/src/main/java/io/acari/images/flux/DownloadStreamToFluxFactory.java)
 
 {% highlight java %}
     //...
