@@ -97,13 +97,16 @@ Now that we know how to consume and produce images using a REST API powered by S
 GridFS has a reactive client so that means that it will need to read and write bytes in asynchronous streams.
 
 The first hurdle that needs to be crossed is, "how to create the respective asynchronous streams?"
-Thankfully, the `MultipartFile` exposes a regular InputStream which can in turn be wrapped into a AsyncInputStream by the `AysncStreamHelper` class.
-This works fine and dandy when an image file needs to be saved, however, returning an image is a bit different.
 
-The initial design for the REST API was for the fetchImageBinary to stream the bytes, so that the server would not have to keep everything in memory.
-However fast and easy solution was to create a `ByteArrayOutputStream` and just side effect all of the reads and convert it into a observable byte array all in memory.
-When dealing with larger files, it may be more useful to stream information off to the client, to prevent the need for a whole lot of working memory.
+The `Part` class only exposes a `Flux<DataBuffer` which is basically just a Spring wrapped ByteBuffer.
 
+Unfortunatly, there is no direct api support for converting a `Flux<Part>` to a `AsycInputStream`, so I had to make my own.
+All in the name of non-blocking asynchronous code! I will address my implementation later. 
+
+This works fine and dandy when an image file needs to be saved; however, returning an image is a bit different.
+
+The REST API is designed to to stream the buffered bytes to the client, so that the server to keep everything in memory as it is reading the image.
+So this means that our API for retrieving images has a return signature of `Flux<byte[]>`, which will stream the chunked image data to http clients.
 
 [Link to File](https://github.com/cyclic-reference/mongo-images/blob/master/web-service/src/main/java/io/acari/images/handler/ImageHandler.java)
 
