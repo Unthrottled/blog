@@ -1026,3 +1026,9 @@ Since the binary coming from the server is raw it needs to be converted into a f
     }
 
 {% endhighlight %}
+
+That should be enough to make you armed and dangerous, when it comes to reactive programming!
+
+#### -Alex
+
+# [Source Code!](https://github.com/cyclic-reference/mongo-images)
