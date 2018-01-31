@@ -21,7 +21,7 @@ Such as the time it takes for chemical reactions to take place, the length in ti
 Tail-latency is the classification of the reactions that took longest to occur.
 Being the far right-end of the bell-curve of response times. 
 
-![Bell-Curve]({{site.imageDir}}/tracing/bell-curve.jpg)
+![Bell-Curve]({{site.imageDir}}tracing/bell-curve.jpg)
 
 Let us say that we are have developed an application that provides users will silly cat pictures.
 It normally takes the application 100 milliseconds(ms) to load a single image an amusing kitty photo.
@@ -110,11 +110,11 @@ Given the example stated above and all requests are blocking, a trace would be:
 That is quite a bit to take in, fortunately with this information, Zipkin has the ability to create a graphical depiction of a dependency tree!
 The following dependency tree was created by Zipkin UI from a trace of the example project above.
  
-![Service Dependency Tree]({{site.imageDir}}/tracing/dependency-tree.png)
+![Service Dependency Tree]({{site.imageDir}}tracing/dependency-tree.png)
 
 Here is an example of the trace of this example project.
 
-![Trace]({{site.imageDir}}/tracing/trace.png)
+![Trace]({{site.imageDir}}tracing/trace.png)
 
 There may appear to be a discrepancy between the image and list of dependencies above. 
 Zipkin states that there are only seven spans within the current depicted trace.
@@ -140,7 +140,7 @@ Allowing you to stand back and think, "That's funny, why is it doing that?"
 I have a really good example of that, because I had that moment creating the example project for this blog post!
 My issue was that I was getting the kind of trace below.
 
-![Wonky Trace]({{site.imageDir}}/tracing/v1/trace-crop.png)
+![Wonky Trace]({{site.imageDir}}tracing/v1/trace-crop.png)
 
 I was wondering why does it not look like the previous trace in this post.
 The trace had all the things that I wanted; however, I was also getting a lot more than expected.
