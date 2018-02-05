@@ -21,3 +21,12 @@ A quick Google search for TDD will most likely lead to article prescribing the f
 1. Refactor code.
 1. Repeat until all tests pass and code looks great!
 
+The question that should come to mind before even writing a test should be, "What class am I writing test for in the first place?"
+
+Any person following the steps above will most likely not know where to start writing tests.
+Which is why the following omitted step(s) should be included.
+
+    Design and define interfaces to solve problem.
+    
+This way any developer should have a great place to start. 
+Once a interface is defined, they can then write test to validate the designed behaviour.
