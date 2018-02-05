@@ -12,13 +12,12 @@ However, there seems to be a missing step when a majority of people talk about T
 Hopefully, this post will be able to make TDD more approachable and explain the real value behind the methodology.
 In addition to learning how to make a peanut butter and jelly sandwich!
 
-  
-
-The Steps.
+A quick Google search for TDD will most likely lead to article prescribing the following bland steps:
 
 1. Add a test
 1. Run all tests and see if the new test fails.
 1. Write the code.
 1. Run tests.
-1. Refracture code
-1. Repeat.
+1. Refactor code.
+1. Repeat until all tests pass and code looks great!
+
