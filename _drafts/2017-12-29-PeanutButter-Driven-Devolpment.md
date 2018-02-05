@@ -7,6 +7,12 @@ headerImage: pbdd/pbj.png
 tags: [Software Development, TDD, BDD, Software Craftsmanship, Java]
 ---
 
+Test Driven Development (TDD) is a highly powerful tool to construct well written, maintainable, and correct code.
+However, there seems to be a missing step when a majority of people talk about TDD. 
+Hopefully, this post will be able to make TDD more approachable and explain the real value behind the methodology.
+In addition to learning how to make a peanut butter and jelly sandwich!
+
+  
 
 The Steps.
 
