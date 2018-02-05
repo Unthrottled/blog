@@ -7,7 +7,6 @@ headerImage: pbdd/pbj.png
 tags: [Software Development, TDD, BDD, Software Craftsmanship, Java]
 ---
 
-Starting to wonder if this contribution streak is actually worth anything. It is not like I am really doing anything at the moment. However, It is a green box now!
 
 The Steps.
 
