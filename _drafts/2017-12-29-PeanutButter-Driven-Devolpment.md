@@ -44,3 +44,8 @@ It is the process of defining your APIs and how they interact, before writing yo
 Having to think about the abstractions that are needed leads to a more focused and loosely coupled architecture.
 The need to give each interface what it needs to do the job makes testing each class easier as well.
 
+TDD should bring the concept of: "If the tests are easy, then the code should be straight forward, concise, readable, and maintainable"
+
+Since the API were designed to satisfy a specific behaviour, the tests that are built should verify that that behaviour happens as expected.
+Tests should be written in such a way that the implementation of the method should not cause any test to fail, provided the expected behaviour remains the same.
+
