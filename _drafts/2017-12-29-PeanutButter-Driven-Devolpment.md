@@ -69,6 +69,15 @@ The perfectly normal solution above, is really hard to test.
 
 You need to first stub out the water faucet, so that it always produces the same stream of water.
 Also, we need to make sure that the faucet can be turned on the same way.
-Would also need to make sure that your grabbing apparatus is stubbed out so that it remain the same throughout.
+Would also need to make sure that your right grabbing apparatus is stubbed out so that it remain the same throughout.
 
+Once we have built our code and then tested it, everything is happy.
+However, what happens when the faucet type changes? 
+What happens if the left grabbing apparatus is chosen over the right?
+
+The tests that where written will fail, even though the behaviour remained the same.
+Empty cup goes in, half filled cup comes out.
+How that happened changed though, and the tests that were built reflect that issue.
+
+It is unnecessary to fix tests when code behaviours remain the same.
 
