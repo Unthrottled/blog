@@ -74,14 +74,19 @@ Would also need to make sure that your right grabbing apparatus is stubbed out s
 Once we have built our code and then tested it, everything is happy.
 However, what happens when the faucet type changes? 
 What happens if the left grabbing apparatus is chosen over the right?
+Suppose we are forced to use a water bottle to fill our cup.
 
 The tests that where written will fail, even though the behaviour remained the same.
 Empty cup goes in, half filled cup comes out.
 How that happened changed though, and the tests that were built reflect that issue.
+Our mocked out dependencies no longer satisfy our implementation.
 
-It is unnecessary to fix tests when code behaviours remain the same. 
+It is unnecessary to fix tests when code behaviour remains the same. 
 The method is tightly coupled to the implementation, it's a low-level solution.
 
 So then, how do we fix this? Well, we do this by applying Test Driven Development of course!
-To help us, we need to think of the high-level abstractions that we need to satisfy our requirements.
+To help us, we need to think of the high-level abstractions that we need to really satisfy our requirements.
+This way the underlying implementations can be changed but the higher order functionality remains the same!
+
+
 
