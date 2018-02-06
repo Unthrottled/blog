@@ -92,3 +92,73 @@ There is a balance that exists from being too tightly coupled to so loosely coup
 Finding that balance is key here, having the code have just enough context to understand the picture, without having to know everything.
 This is the art of creating software, and my interpretation of it.
 
+Breaking this problem into pieces, we first need to define the API that solves this task.
+
+{% highlight java %}
+//....
+
+public interface LiquidContainer {
+  /**
+   * @return the total volume container, regardless of fill level.
+   */
+  long fetchTotalCapacity();
+
+  /**
+   * Fills the container with the desired amount of water.
+   * @param volumeOfWater desired amount of water to place in container, must be greater than zero
+   * @return amount of water stored in container
+   * @throws IllegalStateException if given number lower than zero.
+   */
+  long storeWater(long volumeOfWater);
+
+  /**
+   * @return The amount of liquid currently stored in the container.
+   */
+  long fetchCurrentVolume();
+}
+
+{% endhighlight %}
+
+{% highlight java %}
+//....
+public interface WaterSupply {
+
+  /**
+   * @param desiredAmount the amount of water to retrieve from
+   *                      the water supply
+   * @return the maximum amount of water that can be supplied each invocation
+   * @throws IllegalArgumentException if given a number less than zero
+   */
+  long fetchWater(int desiredAmount);
+
+  /**
+   * @return the largest amount of water that can be returned from the water supply
+   * per invocation.
+   */
+  long maximumFetchableWater();
+}
+{% endhighlight %}
+
+{% highlight java %}
+//....
+public class WaterRepository {
+  private final WaterSupply waterSupply;
+
+  public WaterRepository(WaterSupply waterSupply){
+    this.waterSupply = waterSupply;
+  }
+
+  /**
+   *
+   * @param liquidContainer
+   * @return
+   */
+  public LiquidContainer fillContainerHalfWay(LiquidContainer liquidContainer){
+    return liquidContainer;
+  }
+}
+{% endhighlight %}
+
+{% highlight java %}
+//....
+{% endhighlight %}
