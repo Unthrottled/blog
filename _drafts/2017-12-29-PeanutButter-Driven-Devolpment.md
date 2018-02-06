@@ -88,5 +88,7 @@ So then, how do we fix this? Well, we do this by applying Test Driven Developmen
 To help us, we need to think of the high-level abstractions that we need to really satisfy our requirements.
 This way the underlying implementations can be changed but the higher order functionality remains the same!
 
-
+There is a balance that exists from being too tightly coupled to so loosely coupled that every line of code is just a layer of indirection.
+Finding that balance is key here, having the code have just enough context to understand the picture, without having to know everything.
+This is the art of creating software, and my interpretation of it.
 
