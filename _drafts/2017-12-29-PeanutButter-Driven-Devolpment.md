@@ -63,3 +63,12 @@ Here's what might have come to mind as a solution.
 1. Place cup under faucet.
 1. Move from under faucet when cup is half full.
 1. Return cup.
+
+Resist the urge to just start building solutions though!
+The perfectly normal solution above, is really hard to test.
+
+You need to first stub out the water faucet, so that it always produces the same stream of water.
+Also, we need to make sure that the faucet can be turned on the same way.
+Would also need to make sure that your grabbing apparatus is stubbed out so that it remain the same throughout.
+
+
