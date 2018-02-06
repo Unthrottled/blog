@@ -79,5 +79,9 @@ The tests that where written will fail, even though the behaviour remained the s
 Empty cup goes in, half filled cup comes out.
 How that happened changed though, and the tests that were built reflect that issue.
 
-It is unnecessary to fix tests when code behaviours remain the same.
+It is unnecessary to fix tests when code behaviours remain the same. 
+The method is tightly coupled to the implementation, it's a low-level solution.
+
+So then, how do we fix this? Well, we do this by applying Test Driven Development of course!
+To help us, we need to think of the high-level abstractions that we need to satisfy our requirements.
 
