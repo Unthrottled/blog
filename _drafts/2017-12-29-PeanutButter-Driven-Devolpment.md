@@ -94,6 +94,8 @@ This is the art of creating software, and my interpretation of it.
 
 Breaking this problem into pieces, we first need to define the API that solves this task.
 
+### Step One: Design and define interface(s) to solve a single responsibility.
+
 {% highlight java %}
 //....
 
@@ -170,6 +172,11 @@ You can put water inside a tub, bucket, or anything that can hold/not hold water
 A sink is really just a way to get water. Water can come from a hose, water bottle,
 or anything that holds and dispenses water.
 
+So our class that satisfies the requirement only needs a container and a source of water.
+
+Now that water repository has a dependency that has an API that dispenses water and a parameter that has an API to accept water.
+
+### Step Two: Add a test
 
 {% highlight java %}
 //....
