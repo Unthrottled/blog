@@ -35,7 +35,9 @@ Which is why the following omitted step(s) should be included.
 1. Repeat and start at step 4 until all tests pass and code looks great!
 1. Repeat and start at step 1 until the feature is implemented.
     
-This way any developer should have a great place to start. 
+This way any developer should have a great place or any place really to start.
+Starting is the difficult part. Once the vision is in place, a lot the other APIs start to become more clear. 
+
 Once a interface is defined, they can then write test to validate the designed behaviour.
 
 It is the process of defining your APIs and how they interact, before writing your is what leads to greatness. 
