@@ -159,6 +159,18 @@ public class WaterRepository {
 }
 {% endhighlight %}
 
+The hard part about TDD, or development in general, is finding a place to start!
+What was needed is a class who can satisfy the requirement.
+
+However, there was no definition of what a cup is or how we are supposed to get water!
+
+A cup is really just a water container if you think hard enough. 
+You can put water inside a tub, bucket, or anything that can hold/not hold water!
+
+A sink is really just a way to get water. Water can come from a hose, water bottle,
+or anything that holds and dispenses water.
+
+
 {% highlight java %}
 //....
 {% endhighlight %}
