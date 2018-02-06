@@ -49,3 +49,8 @@ TDD should bring the concept of: "If the tests are easy, then the code should be
 Since the API were designed to satisfy a specific behaviour, the tests that are built should verify that that behaviour happens as expected.
 Tests should be written in such a way that the implementation of the method should not cause any test to fail, provided the expected behaviour remains the same.
 
+Take this layman's example of a requirement:
+
+    Given an empty cup, then I expect the cup to be return filled half way with water.
+    
+There are many ways to satisfy this requirement.
