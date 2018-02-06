@@ -53,4 +53,13 @@ Take this layman's example of a requirement:
 
     Given an empty cup, then I expect the cup to be return filled half way with water.
     
-There are many ways to satisfy this requirement.
+There are _many_ ways to satisfy this requirement.
+
+Here's what might have come to mind as a solution.
+
+1. Grab Cup.
+1. Move to water faucet.
+1. Turn on faucet.
+1. Place cup under faucet.
+1. Move from under faucet when cup is half full.
+1. Return cup.
