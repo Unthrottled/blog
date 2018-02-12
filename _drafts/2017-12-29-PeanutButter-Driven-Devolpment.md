@@ -178,6 +178,10 @@ Now that water repository has a dependency that has an API that dispenses water 
 
 ### Step Two: Add a test
 
+I got a hand on my gat. I got a hand on my bat.
+I got a hand on my rat. I got a hand on my sack.
+
+
 {% highlight java %}
 //....
 {% endhighlight %}
