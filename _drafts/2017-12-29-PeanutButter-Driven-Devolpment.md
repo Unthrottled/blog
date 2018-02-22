@@ -178,6 +178,9 @@ Now that water repository has a dependency that has an API that dispenses water 
 
 ### Step Two: Add a test
 
+Knowing where to start writing test is tricky sometimes. 
+At the moment there are two interfaces and one concrete class that needs to be implemented.
+The difficult bit comes to deciding how the unit test is written.
 
 
 {% highlight java %}
