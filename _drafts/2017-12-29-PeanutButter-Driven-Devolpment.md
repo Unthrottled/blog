@@ -182,15 +182,26 @@ Knowing where to start writing test is tricky sometimes.
 At the moment there are two interfaces and one concrete class that needs to be implemented.
 The difficult bit comes to deciding how the unit test is written.
 
-There are two ways that can the tests can be written.
-
 One way is to write the test stubbing or mocking out all of the interfaces that the class that is being tested uses. \
 This means that any constructor dependencies are now stubbed out and any inputs are stubbed out.
 The downside of this is that now the test author is responsible for stubbing out the exact behaviour of any dependency or input class.
 Which can be time consuming and why designing simple objects is key. 
 The purpose of TDD is to promote simplicity because testing complex classes is hard.
-So it is in the designer's best interest to develop simple API's.
+So it is in the designer's best interest to develop API's that behave simply.
 
+It would be tempting to just implement the dependent classes first. 
+So that they may be used to support the classes' test. 
+However, if those thought do occur it is important to step back and think.
+
+Does the API that I have created make sense? 
+Is it unnecessarily complicated even though the api consist of minimal amounts of effort?
+Can things be made simpler?
+
+These are some questions that should be ask about the initial design as tests are being written.
+Testing the class should be easy, so stubbing out behaviour should be simple. 
+It is better to find problems in the design early part of construction. 
+Meaning time hast not been spent implementing any code and just the design exists.
+This leave the code in a malleable state.   
 
 
 {% highlight java %}
