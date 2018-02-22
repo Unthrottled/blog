@@ -193,8 +193,8 @@ It would be tempting to just implement the dependent classes first.
 So that they may be used to support the classes' test. 
 However, if those thought do occur it is important to step back and think.
 
-Does the API that I have created make sense? 
-Is it unnecessarily complicated even though the api consist of minimal amounts of effort?
+Does the API that has been created make sense? 
+Is it unnecessarily complicated even though the API's surface area is small?
 Can things be made simpler?
 
 These are some questions that should be ask about the initial design as tests are being written.
