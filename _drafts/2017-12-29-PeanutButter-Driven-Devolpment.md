@@ -201,7 +201,8 @@ These are some questions that should be ask about the initial design as tests ar
 Testing the class should be easy, so stubbing out behaviour should be simple. 
 It is better to find problems in the design early part of construction. 
 Meaning time hast not been spent implementing any code and just the design exists.
-This leave the code in a malleable state.   
+This leave the code in a malleable state. 
+Which is another benefit of test-driven development.   
 
 
 {% highlight java %}
