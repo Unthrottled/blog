@@ -202,7 +202,11 @@ Testing the class should be easy, so stubbing out behaviour should be simple.
 It is better to find problems in the design early part of construction. 
 Meaning time hast not been spent implementing any code and just the design exists.
 This leave the code in a malleable state. 
-Which is another benefit of test-driven development.   
+Which is another benefit of test-driven development.
+
+Another issue to look out for is: having issues verifying correctness. 
+Based off of the current design choices, it is very difficult to verify that the implementation actually fetches water and puts it into the container.
+All the test would care about is that the number in the container is the expected number.   
 
 
 {% highlight java %}
