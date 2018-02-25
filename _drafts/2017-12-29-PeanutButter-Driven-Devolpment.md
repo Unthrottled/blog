@@ -208,6 +208,7 @@ Another issue to look out for is: having issues verifying correctness.
 Based off of the current design choices, it is very difficult to verify that the implementation actually fetches water and puts it into the container.
 All the test would care about is that the number in the container is the expected number.   
 
+Let us go back and revisit the first step of the process, which is _Design and Define Interfaces_.
 
 {% highlight java %}
 //....
