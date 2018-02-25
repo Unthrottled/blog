@@ -425,10 +425,173 @@ public class SimpleLiquidContainer implements LiquidContainer {
 
 {% highlight java %}
 //....
+import org.junit.Test;
+
+import java.util.Optional;
+
+import static org.junit.Assert.*;
+
+public class SimpleLiquidContainerTest {
+
+
+    @Test
+    public void constructorShouldThrowIllegalArgumentExceptionWhenGivenNegativeValue() {
+        try {
+            new SimpleLiquidContainer(-1);
+            fail();
+        } catch (IllegalArgumentException ignored) {
+        }
+    }
+
+    @Test
+    public void fetchTotalCapacityShouldReturnValueConstructedWith() {
+        long input = 500L;
+        long expectedResult = 500L;
+        SimpleLiquidContainer testSubject = new SimpleLiquidContainer(input);
+        long result = testSubject.fetchTotalCapacity();
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void storeLiquidShouldStoreReturnMaxCapacityWhenGivenValueEqualToTotalCapacity() {
+        long input = 500L;
+        Liquid expectedResult = new Water(500L);
+        SimpleLiquidContainer testSubject = new SimpleLiquidContainer(input);
+        Liquid result = testSubject.storeLiquid(new Water(input));
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void storeLiquidShouldStoreReturnMaxCapacityWhenGivenValueGreaterThanTotalCapacity() {
+        long input = 500L;
+        Liquid expectedResult = new Water(500L);
+        SimpleLiquidContainer testSubject = new SimpleLiquidContainer(input);
+        Liquid result = testSubject.storeLiquid(new Water(input + 1L));
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void storeLiquidShouldStoreReturnDesiredAmountWhenGivenValueLessThanTotalCapacity() {
+        long input = 500L;
+        Liquid expectedResult = new Water(499L);
+        SimpleLiquidContainer testSubject = new SimpleLiquidContainer(input);
+        Liquid result = testSubject.storeLiquid(new Water(input - 1L));
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void storeLiquidShouldStoreReturnMaxCapacityWhenGivenValueOneLessThanTotalCapacityTwice() {
+        long input = 500L;
+        Liquid expectedResult = new Water(500L);
+        SimpleLiquidContainer testSubject = new SimpleLiquidContainer(input);
+        Liquid testInput = new Water(input - 1L);
+        testSubject.storeLiquid(testInput);
+        Liquid result = testSubject.storeLiquid(testInput);
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void fetchCurrentVolumeReturnMaxCapacityWhenGivenValueEqualToTotalCapacity() {
+        long input = 500L;
+        Liquid expectedResult = new Water(500L);
+        SimpleLiquidContainer testSubject = new SimpleLiquidContainer(input);
+        testSubject.storeLiquid(new Water(input));
+        Optional<Liquid> result = testSubject.fetchCurrentVolume();
+        assertTrue(result
+                .map(expectedResult::equals)
+                .orElse(false));
+    }
+
+    @Test
+    public void fetchCurrentVolumeReturnMaxCapacityWhenGivenValueGreaterThanTotalCapacity() {
+        long input = 500L;
+        Liquid expectedResult = new Water(500L);
+        SimpleLiquidContainer testSubject = new SimpleLiquidContainer(input);
+        testSubject.storeLiquid(new Water(input + 1));
+        Optional<Liquid> result = testSubject.fetchCurrentVolume();
+        assertTrue(result
+                .map(expectedResult::equals)
+                .orElse(false));
+    }
+
+    @Test
+    public void fetchCurrentVolumeReturnDesiredAmountWhenGivenValueLessThanTotalCapacity() {
+        long input = 500L;
+        Liquid expectedResult = new Water(499L);
+        SimpleLiquidContainer testSubject = new SimpleLiquidContainer(input);
+        testSubject.storeLiquid(new Water(input - 1));
+        Optional<Liquid> result = testSubject.fetchCurrentVolume();
+        assertTrue(result
+                .map(expectedResult::equals)
+                .orElse(false));
+    }
+
+    @Test
+    public void fetchCurrentVolumeReturnMaxCapacityWhenGivenValueOneLessThanTotalCapacityTwice() {
+        long input = 500L;
+        Liquid expectedResult = new Water(500L);
+        SimpleLiquidContainer testSubject = new SimpleLiquidContainer(input);
+        testSubject.storeLiquid(new Water(input - 1));
+        testSubject.storeLiquid(new Water(input - 1));
+        Optional<Liquid> result = testSubject.fetchCurrentVolume();
+        assertTrue(result
+                .map(expectedResult::equals)
+                .orElse(false));
+    }
+
+    @Test
+    public void fetchCurrentVolumeShouldReturnZeroWhenNoWaterHasBeenStored() {
+        long input = 500L;
+        SimpleLiquidContainer testSubject = new SimpleLiquidContainer(input);
+        Optional<Liquid> result = testSubject.fetchCurrentVolume();
+        assertTrue(!result.isPresent());
+    }
+}
 {% endhighlight %}
 
 {% highlight java %}
 //....
+public class WaterRepositoryTest {
+
+
+    @Test
+    public void fillContainerHalfWayShouldReturnAContainerThatIsHalfFull() {
+        WaterSupply waterSupply = Mockito.mock(WaterSupply.class);
+        Mockito.when(waterSupply.fetchWater(250L)).thenReturn(new Water(250L));
+        WaterRepository testSubject = new WaterRepository(waterSupply);
+        LiquidContainer simpleLiquidContainer = new SimpleLiquidContainer(500);
+        LiquidContainer result = testSubject.fillContainerHalfWay(simpleLiquidContainer);
+        assertTrue(result.fetchCurrentVolume()
+                .map(new Water(250)::equals)
+                .orElse(false));
+    }
+
+
+    @Test
+    public void fillContainerHalfWayShouldReturnAContainerThatIsHalfFull_II() {
+        WaterSupply waterSupply = Mockito.mock(WaterSupply.class);
+        Mockito.when(waterSupply.fetchWater(500L)).thenReturn(new Water(500L));
+        WaterRepository testSubject = new WaterRepository(waterSupply);
+        LiquidContainer simpleLiquidContainer = new SimpleLiquidContainer(1000);
+        LiquidContainer result = testSubject.fillContainerHalfWay(simpleLiquidContainer);
+        assertTrue(result.fetchCurrentVolume()
+                .map(new Water(500)::equals)
+                .orElse(false));
+    }
+
+
+    @Test
+    public void fillContainerHalfWayShouldReturnAContainerThatIsHalfFullAndHalfNeedsToBeFloatingPoint() {
+        WaterSupply waterSupply = Mockito.mock(WaterSupply.class);
+        Mockito.when(waterSupply.fetchWater(131L)).thenReturn(new Water(131L));
+        WaterRepository testSubject = new WaterRepository(waterSupply);
+        LiquidContainer simpleLiquidContainer = new SimpleLiquidContainer(263);
+        LiquidContainer result = testSubject.fillContainerHalfWay(simpleLiquidContainer);
+        assertTrue(result.fetchCurrentVolume()
+                .map(new Water(131)::equals)
+                .orElse(false));
+    }
+}
 {% endhighlight %}
 
 {% highlight java %}
