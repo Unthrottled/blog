@@ -7,7 +7,7 @@ headerImage: pbdd/pbj.png
 tags: [Software Development, TDD, BDD, Software Craftsmanship, Java]
 ---
 
-Test Driven Development (TDD) is a highly powerful tool to construct well written, maintainable, and correct code.
+Test Driven Development (TDD) is a highly powerful tool to: construct well written, maintainable, and correct code.
 However, there seems to be a missing step when a majority of people talk about TDD. 
 Hopefully, this post will be able to make TDD more approachable and explain the real value behind the methodology.
 In addition to learning how to make a peanut butter and jelly sandwich!
@@ -44,10 +44,12 @@ It is the process of defining your APIs and how they interact, before writing yo
 Having to think about the abstractions that are needed leads to a more focused and loosely coupled architecture.
 The need to give each interface what it needs to do the job makes testing each class easier as well.
 
-TDD should bring the concept of: "If the tests are easy, then the code should be straight forward, concise, readable, and maintainable"
+> TDD should bring the concept of: "If the tests are easy, then the code should be straight forward, concise, readable, and maintainable"
 
 Since the API were designed to satisfy a specific behaviour, the tests that are built should verify that that behaviour happens as expected.
 Tests should be written in such a way that the implementation of the method should not cause any test to fail, provided the expected behaviour remains the same.
+
+---
 
 Take this layman's example of a requirement:
 
@@ -93,6 +95,8 @@ Finding that balance is key here, having the code have just enough context to un
 This is the art of creating software, and my interpretation of it.
 
 Breaking this problem into pieces, we first need to define the API that solves this task.
+
+---
 
 ### Step One: Design and define interface(s) to solve a single responsibility.
 
@@ -175,6 +179,8 @@ or anything that holds and dispenses water.
 So our class that satisfies the requirement only needs a container and a source of water.
 
 Now that water repository has a dependency that has an API that dispenses water and a parameter that has an API to accept water.
+
+---
 
 ### Step Two: Add a test
 
