@@ -195,16 +195,19 @@ One way is to write the test stubbing or mocking out all of the interfaces that 
 This means that any constructor dependencies are now stubbed out and any inputs are stubbed out.
 The downside of this is that now the test author is responsible for stubbing out the exact behaviour of any dependency or input class.
 Which can be time consuming and why designing simple objects is key. 
+As an example, stateful inputs or dependencies are a pain to mock out.
+This means that the mock needs to exhibit state and it takes more time to create a smart mock over just creating the actual class.
+
 The purpose of TDD is to promote simplicity because testing complex classes is hard.
 So it is in the designer's best interest to develop API's that behave simply.
 
-It would be tempting to just implement the dependent classes first. 
-So that they may be used to support the classes' test. 
-However, if those thought do occur it is important to step back and think.
+It would be tempting to just implement the stateless dependent classes first. 
+So that they may be used to support the classes' test.
+Even when creating a stateful class, it is important to step back and think.
 
 Does the API that has been created make sense? 
 Is it unnecessarily complicated even though the API's surface area is small?
-Can things be made simpler?
+Can things be made simpler so that testing is easier?
 
 These are some questions that should be ask about the initial design as tests are being written.
 Testing the class should be easy, so stubbing out behaviour should be simple. 
@@ -215,7 +218,7 @@ Which is another benefit of test-driven development.
 
 Another issue to look out for is: having issues verifying correctness. 
 Based off of the current design choices, it is very difficult to verify that the implementation actually fetches water and puts it into the container.
-All the test would care about is that the number in the container is the expected number.   
+All the test would care about is that the number in the container is the expected number regardless of how the number got there.   
 
 Let us go back and revisit the first step of the process, which is _Design and Define Interfaces_.
 
