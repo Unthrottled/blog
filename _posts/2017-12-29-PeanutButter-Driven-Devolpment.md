@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Peanut Butter Driven Development"
+title:  "Liquid Driven Development"
 date:   2017-12-29
 categories: java
 headerImage: pbdd/pbj.png
