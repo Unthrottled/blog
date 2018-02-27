@@ -267,6 +267,15 @@ public interface WaterSupply {
 
 {% endhighlight %}
 
+> The maximum fetchable water method was more of an implementation detail of this interface.
+> It unnecessarily couples any class using it to the current constraints of its implementation.
+> IE, the water supply may provide water via other containers. 
+> Those containers have a fixed amount of water and calling to fetch water gives one container of water.
+> Like filling the cup with a water bottle.
+> That's how it works in the real world (sometimes), however it is a silly design.
+> Just make it so that when water is asked for, give the amount that is needed. 
+> How it happens is up to the implementation of the class. 
+
 {% highlight java %}
 //....
 public class WaterRepository {
