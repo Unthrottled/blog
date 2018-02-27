@@ -246,6 +246,11 @@ public interface LiquidContainer {
 
 {% endhighlight %}
 
+> Now there is an a defined type to represent the abstraction of water. 
+> There is no need for any API (other than the water API) to always have to check for incorrect values!
+> Also it made more sense to make fetching the current amount of liquid to return an optional.
+> As a container can not have any liquid in it, almost as if it is _optional_.
+
 {% highlight java %}
 //....
 public interface WaterSupply {
