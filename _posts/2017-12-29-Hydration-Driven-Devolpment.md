@@ -322,6 +322,8 @@ public class Liquid {
 
 {% endhighlight %}
 
+> ^ The new abstraction of things that can go into containers. 
+
 {% highlight java %}
 //....
 public class Water extends Liquid {
@@ -331,6 +333,8 @@ public class Water extends Liquid {
     }
 }
 {% endhighlight %}
+
+> ^ The water type definition, hurray polymorphism! Is this over-engineering? I do not know. 
 
 {% highlight java %}
 //....
