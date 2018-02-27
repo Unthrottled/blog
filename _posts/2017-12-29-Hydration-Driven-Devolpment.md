@@ -649,7 +649,3 @@ public class WaterRepositoryTest {
 {% highlight java %}
 //....
 {% endhighlight %}
-
-{% highlight java %}
-//....
-{% endhighlight %}
