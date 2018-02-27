@@ -347,7 +347,7 @@ Stateful classes, while un-avoidable, are a pain to stub/mock out.
 
 A good starting point is to first _design_ the stateful class, then write tests for it.
 Once the tests are written, then implement the methods to make the all of the tests written pass.  
-Then the implempentation class can be used to support the tests whose classes depend on its implementation.
+Then the implementation class can be used to support the tests whose classes depend on its implementation.
 
 {% highlight java %}
 //....
