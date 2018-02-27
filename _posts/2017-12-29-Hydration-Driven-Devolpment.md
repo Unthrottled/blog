@@ -246,7 +246,7 @@ public interface LiquidContainer {
 
 {% endhighlight %}
 
-> Now there is an a defined type to represent the abstraction of water. 
+> ^ Now there is an a defined type to represent the abstraction of water. 
 > There is no need for any API (other than the water API) to always have to check for incorrect values!
 > Also it made more sense to make fetching the current amount of liquid to return an optional.
 > As a container can not have any liquid in it, almost as if it is _optional_.
@@ -267,7 +267,7 @@ public interface WaterSupply {
 
 {% endhighlight %}
 
-> The maximum fetchable water method was more of an implementation detail of this interface.
+> ^ The maximum fetchable water method was more of an implementation detail of this interface.
 > It unnecessarily couples any class using it to the current constraints of its implementation.
 > IE, the water supply may provide water via other containers. 
 > Those containers have a fixed amount of water and calling to fetch water gives one container of water.
@@ -299,7 +299,8 @@ public class WaterRepository {
 }
 {% endhighlight %}
 
-> G
+> ^ The requirement is: given a half filled or less cup, I expect the cup to be return filled half way with water.
+> It is expected that the API only accepts half filled or less containers.
 
 {% highlight java %}
 //....
