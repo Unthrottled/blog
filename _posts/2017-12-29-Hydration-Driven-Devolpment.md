@@ -53,7 +53,7 @@ Tests should be written in such a way that the implementation of the method shou
 
 Take this layman's example of a requirement:
 
-    Given an empty cup, then I expect the cup to be return filled half way with water.
+    Given a half filled or less cup, I expect the cup to be return filled half way with water.
     
 There are _many_ ways to satisfy this requirement.
 
@@ -298,6 +298,8 @@ public class WaterRepository {
     }
 }
 {% endhighlight %}
+
+> G
 
 {% highlight java %}
 //....
