@@ -341,7 +341,7 @@ public class Water extends Liquid {
 Now that the API's have been re-designed, it's time to write some tests against the defined APIs!
 
 Choosing a starting point to write tests, as mentioned before, is tricky sometimes.
-Starting to test the main class (`WaterRepository`) that solves the given use case is a good starting point.
+Starting to test the main class `WaterRepository` that solves the given use case is a good starting point.
 However, the method takes a stateful object and returns a stateful object.
 Stateful classes, while un-avoidable, are a pain to stub/mock out. 
 
