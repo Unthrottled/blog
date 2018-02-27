@@ -7,6 +7,8 @@ headerImage: hdd/mr_volcano.png
 tags: [Software Development, TDD, BDD, Software Craftsmanship, Java]
 ---
 
+//TODO: CREATE PAGES
+
 Test Driven Development (TDD) is a highly powerful tool to: construct well written, maintainable, and correct code.
 However, there seems to be a missing step when a majority of people talk about TDD. 
 Hopefully, this post will be able to make TDD more approachable and explain the real value behind the methodology.
