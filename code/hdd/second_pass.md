@@ -2,6 +2,9 @@
 layout: post
 ---
 
+Redesigned interfaces.
+---
+
 {% highlight java %}
 //....
 public interface LiquidContainer {
