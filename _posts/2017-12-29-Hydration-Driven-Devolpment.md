@@ -156,7 +156,7 @@ All the test would care about is that the number in the container is the expecte
 
 Let us go back and revisit the first step of the process, which is _Design and Define Interfaces_.
 
-### [Here are redesigned designed interfaces.]({{site.url}}/code/hdd/second_pass.html)
+### [Here are redesigned interfaces.]({{site.url}}/code/hdd/second_pass.html)
 
 #### Writing Tests!
 
