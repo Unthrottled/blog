@@ -1,3 +1,7 @@
+---
+layout: post
+---
+
 {% highlight java %}
 //....
 public interface LiquidContainer {
