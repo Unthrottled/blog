@@ -103,7 +103,7 @@ Breaking this problem into pieces, we first need to define the API that solves t
 ### [Here are first pass designed interfaces.]({{site.url}}/code/hdd/first_pass.html)
 
 The hard part about TDD, or development in general, is finding a place to start!
-What was needed is a class who can satisfy the requirement.
+What is needed is a class that can satisfy the current requirement.
 
 However, there was no definition of what a cup is or how we are supposed to get water!
 
