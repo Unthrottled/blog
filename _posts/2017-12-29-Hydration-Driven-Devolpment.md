@@ -207,7 +207,7 @@ public class WaterRepositoryTest {
 
 
     @Test
-    public void fillContainerHalfWayShouldReturnAContainerThatIsHalfFullAndHalfNeedsToBeFloatingPoint() {
+    public void fillContainerHalfWayShouldReturnAContainerThatIsHalfFullAndIsOdd() {
         WaterSupply waterSupply = Mockito.mock(WaterSupply.class);
         Mockito.when(waterSupply.fetchWater(131L)).thenReturn(new Water(131L));
         WaterRepository testSubject = new WaterRepository(waterSupply);
