@@ -143,10 +143,10 @@ Does the API that has been created make sense?
 Is it unnecessarily complicated even though the API's surface area is small?
 Can things be made simpler so that testing is easier?
 
-These are some questions that should be ask about the initial design as tests are being written.
+These are some questions that should be asked about the initial design as tests are being written.
 Testing the class should be easy, so stubbing out behaviour should be simple. 
 It is better to find problems in the design early part of construction. 
-Meaning time hast not been spent implementing any code and just the design exists.
+Meaning time has not been spent implementing any code and only the barebones design exists.
 This leave the code in a malleable state. 
 Which is another benefit of test-driven development.
 
