@@ -158,7 +158,7 @@ Let us go back and revisit the first step of the process, which is _Design and D
 
 ### [Here are redesigned interfaces.]({{site.url}}/code/hdd/second_pass.html)
 
-#### Writing Tests!
+## Writing Tests!
 
 Now that the API's have been re-designed, it's time to write some tests against the defined APIs!
 
