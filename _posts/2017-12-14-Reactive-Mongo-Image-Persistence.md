@@ -105,6 +105,7 @@ Again, I had to make my own implementation. which I will cover a little bit late
 
 #### Part Two: Sequentially iterating a `Flux` without blocking and returning a `Publisher`.
 
+####[Here is how to make a sequential interable non-blocking Flux\!]({{site.url}}/code/rmip/sequential_flux.html)
 
 
 #### Part Three: The helper.
