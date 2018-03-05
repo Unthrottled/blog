@@ -119,6 +119,7 @@ This way the sequence is still preserved, and the data goes to a subscriber that
 
 Fortunately, this process is much easier! Plus there is native library support!! 
 
+#### [Code to covert InputStream into Flux.]({{site.url}}/code/rmip/async_to_flux.html)
 
 ### Spring Configurations
 
