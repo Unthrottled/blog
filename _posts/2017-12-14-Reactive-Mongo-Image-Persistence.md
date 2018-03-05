@@ -226,6 +226,7 @@ This Angular 5 component is dedicated to just that, selecting a file!
 When the user chooses an image an event is fired. 
 This component finds the selected file and emits it as output.
 
+#### [Image selection component.]({{site.url}}/code/rmip/image_selection.html)
 
 ## Image Visualization 
 
