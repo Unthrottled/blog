@@ -163,7 +163,7 @@ Which will be mentioned soon enough!
 While the Mongo client is never directly used in the code mentioned above, it is used transitively by the GridFSBucket.
 The reactive GridFSBucket is provided as a Spring Bean in this configuration component as well.
 
-
+#### [Spring configuration for Reactive Mongo.]({{site.url}}/code/rmip/mongo_config.html)
 
 #### WebFlux Configuration
 
