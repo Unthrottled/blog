@@ -110,7 +110,7 @@ Again, I had to make my own implementation. which I will cover a little bit late
 
 #### Part Three: The helper.
 
-I need a class tO let me know if any subscriber has unsubscribed, while waiting for the next element to be returned from the Flux.
+I need a class to let me know if any subscriber has unsubscribed, while waiting for the next element to be returned from the Flux.
 This way the sequence is still preserved, and the data goes to a subscriber that is actually listening!
 
 [Link To File](https://github.com/cyclic-reference/mongo-images/blob/master/web-service/src/main/java/io/acari/images/mono/MonoSinkHelper.java)
