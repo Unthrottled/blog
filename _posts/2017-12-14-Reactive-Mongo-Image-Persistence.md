@@ -302,7 +302,7 @@ The first function supplies the reference to the Observable image binary propert
 While the HTML uses the supplied image binary property and runs it through the asynchronous angular pipe.
     
 
-
+#### [Image visualization component.]({{site.url}}/code/rmip/image_visualization.html)
 
 ### Image Model
 
