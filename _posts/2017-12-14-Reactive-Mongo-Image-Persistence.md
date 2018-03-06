@@ -343,7 +343,7 @@ In the case of the local file the binary come directly from your disk, while the
 
 Much like the `LocalFile`, the remote file takes advantage of the `ReplaySubject` which prevents the need to make more than one REST call to retrieve the image binary while still using the Observable abstraction.
 
-
+#### [Remote ProjectFile implementation.]({{site.url}}/code/rmip/remote_project_impl.html)
 
 ### Remote Image Factory
 
