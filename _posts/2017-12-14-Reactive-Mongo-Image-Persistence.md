@@ -249,7 +249,7 @@ When the event is fired, it is this component's job to set the current project f
 
 How the _ProjectFile_ model handles a file being set will be discussed later when the implementations of `ProjectFile` are covered.
 
-
+#### [Project file emitter.]({{site.url}}/code/rmip/project_emitter.html)
 
 ### Image Visualization Component
 
