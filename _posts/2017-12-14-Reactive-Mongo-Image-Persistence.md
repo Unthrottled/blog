@@ -249,6 +249,43 @@ When the event is fired, it is this component's job to set the current project f
 
 How the _ProjectFile_ model handles a file being set will be discussed later when the implementations of `ProjectFile` are covered.
 
+{% highlight javascript %}
+    
+    import {Component, EventEmitter, Input, Output} from "@angular/core";
+    import {ProjectFile} from "../model/ProjectFile.model";
+    
+    @Component(
+        {
+            selector: 'project-file-manipulation',
+            template: `
+                <project-file-choose (fileSelectedEmitter)="fileChosen($event)">
+                </project-file-choose>
+            `
+        }
+    )
+    export class ProjectFileManipulationComponent {
+        private _projectFile: ProjectFile;
+    
+        @Output()
+        private projectFileUpdated = new EventEmitter<ProjectFile>();
+    
+    
+        @Input()
+        get projectFile(): ProjectFile {
+            return this._projectFile;
+        }
+    
+        set projectFile(value: ProjectFile) {
+            this._projectFile = value;
+        }
+    
+        fileChosen(file: File): void{
+            this._projectFile.setNewFile(file);
+            this.projectFileUpdated.emit(this._projectFile);
+        }
+    }
+
+{% endhighlight %}
 
 ### Image Visualization Component
 
@@ -265,54 +302,7 @@ The first function supplies the reference to the Observable image binary propert
 While the HTML uses the supplied image binary property and runs it through the asynchronous angular pipe.
     
 
-{% highlight javascript %}
 
-    import {Component, Input} from '@angular/core';
-    import {Observable} from "rxjs/Observable";
-    import {ProjectFile} from "../model/ProjectFile.model";
-    
-    @Component({
-        selector: 'project-file-view',
-        template: `
-            <div *ngIf="editMode">
-                <project-file-manipulation [projectFile]="projectFile" (projectFileUpdated)="updateFile($event)">
-                </project-file-manipulation>
-                <div *ngIf="imageBinary | async">
-                    <div class="btn btn-lg btn-success" (click)="uploadFile()">Upload</div>
-                    <div class="btn btn-lg btn-danger" (click)="delete()">Delete</div>
-                </div>
-            </div>
-            <div class="image-holder">
-                <div class="image-container"
-                     *ngIf="imageBinary | async">
-                    <img [src]="imageBinary | async" alt="SOME IMAGE"/>
-                </div>
-            </div>
-        `
-    })
-    export class ProjectFileViewComponent {
-    
-        constructor() {
-        }
-    
-        private _projectFile: ProjectFile;
-    
-        @Input()
-        get projectFile(): ProjectFile {
-            return this._projectFile;
-        }
-    
-        set projectFile(value: ProjectFile) {
-            this._projectFile = value;
-        }
-    
-        get imageBinary(): Observable<any> {
-            return this._projectFile.imageBinary();
-        }
-    
-    }
-
-{% endhighlight %}
 
 ### Image Model
 

@@ -6,25 +6,36 @@ Image Visualisation Component
 ---
 
 {% highlight javascript %}
-    
-    import {Component, EventEmitter, Input, Output} from "@angular/core";
+
+    import {Component, Input} from '@angular/core';
+    import {Observable} from "rxjs/Observable";
     import {ProjectFile} from "../model/ProjectFile.model";
     
-    @Component(
-        {
-            selector: 'project-file-manipulation',
-            template: `
-                <project-file-choose (fileSelectedEmitter)="fileChosen($event)">
-                </project-file-choose>
-            `
+    @Component({
+        selector: 'project-file-view',
+        template: `
+            <div *ngIf="editMode">
+                <project-file-manipulation [projectFile]="projectFile" (projectFileUpdated)="updateFile($event)">
+                </project-file-manipulation>
+                <div *ngIf="imageBinary | async">
+                    <div class="btn btn-lg btn-success" (click)="uploadFile()">Upload</div>
+                    <div class="btn btn-lg btn-danger" (click)="delete()">Delete</div>
+                </div>
+            </div>
+            <div class="image-holder">
+                <div class="image-container"
+                     *ngIf="imageBinary | async">
+                    <img [src]="imageBinary | async" alt="SOME IMAGE"/>
+                </div>
+            </div>
+        `
+    })
+    export class ProjectFileViewComponent {
+    
+        constructor() {
         }
-    )
-    export class ProjectFileManipulationComponent {
+    
         private _projectFile: ProjectFile;
-    
-        @Output()
-        private projectFileUpdated = new EventEmitter<ProjectFile>();
-    
     
         @Input()
         get projectFile(): ProjectFile {
@@ -35,10 +46,10 @@ Image Visualisation Component
             this._projectFile = value;
         }
     
-        fileChosen(file: File): void{
-            this._projectFile.setNewFile(file);
-            this.projectFileUpdated.emit(this._projectFile);
+        get imageBinary(): Observable<any> {
+            return this._projectFile.imageBinary();
         }
+    
     }
 
 {% endhighlight %}
