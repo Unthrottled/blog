@@ -329,43 +329,6 @@ Most of the work above was done by the `BackendAPIService` which is a wrapper ar
 The `postImage` function takes FormData and uses that as the POST request body. 
 The return is an observable of key that can be used to fetch and delete the image in persistence.
 
-[Link To File](https://github.com/cyclic-reference/mongo-images/blob/master/web-content/src/app/services/BackendAPI.service.ts)
-
-{% highlight javascript %}
-
-    //....
-    
-    @Injectable()
-    export class BackendAPIService {
-        constructor(private httpClient: HttpClient){}
-    
-    
-        postImage(formData: FormData): Observable<string> {
-            return this.httpClient.post('./api/image/save', formData, {
-                responseType: 'text'
-            });
-        }
-    
-        fetchImage(_id: string): Observable<ArrayBuffer> {
-            return this.httpClient.get('./api/image/get/' + _id, {
-                responseType: 'arraybuffer'
-            });
-        }
-    
-        fetchAllImageIds(): Observable<any> {
-            return this.httpClient.get('./api/images', {
-                responseType: 'json'
-            })
-        }
-    
-        deleteImage(_id: string): Observable<boolean> {
-            return this.httpClient.post('./api/image/delete/' + _id, {
-                responseType: 'json'
-            }).map(response => (<Boolean>response === true));
-        }
-    }
-
-{% endhighlight %}
 
 ## Retrieve A Remote Image File
 
