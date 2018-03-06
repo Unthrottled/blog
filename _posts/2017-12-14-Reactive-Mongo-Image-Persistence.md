@@ -281,6 +281,7 @@ Meaning that whenever any observer subscribes, then at most one image binary is 
 This prevents the need to keep converting the file over and over again. 
 Just store the binary in memory from then on return that. 
 
+#### [ProjectFile local implementation.]({{site.url}}/code/rmip/local_project_impl.html)
 
 ## Uploading an Image 
 
