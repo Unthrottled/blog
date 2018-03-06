@@ -329,6 +329,7 @@ Most of the work above was done by the `BackendAPIService` which is a wrapper ar
 The `postImage` function takes FormData and uses that as the POST request body. 
 The return is an observable of key that can be used to fetch and delete the image in persistence.
 
+#### [HTTP client implementation.]({{site.url}}/code/rmip/http_client.html)
 
 ## Retrieve A Remote Image File
 
