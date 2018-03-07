@@ -352,6 +352,7 @@ As saw above, the model subscribes to the observable, which in turn eventually m
 
 Since the binary coming from the server is raw it needs to be converted into a format the browser should be able to understand.
 
+#### [The remote project file service.]({{site.url}}/code/rmip/remote_project_factory.html)
 
 That should be enough to make you armed and dangerous, when it comes to reactive programming!
 
