@@ -291,6 +291,8 @@ Being able to choose and display the chosen image is nice, but what about upload
 Fear not, our REST server takes a MultiPartFile as input.
 Here is how to convert a file into FormData which is a MultiPartFile!
 
+#### [How wrap an image to be sent as a multipart.]({{site.url}}/code/rmip/image_upload.html)
+
 ### HTTP Client
 
 Most of the work above was done by the `BackendAPIService` which is a wrapper around the HttpClient, which is the class responsible for running HttpRequests.
