@@ -291,38 +291,6 @@ Being able to choose and display the chosen image is nice, but what about upload
 Fear not, our REST server takes a MultiPartFile as input.
 Here is how to convert a file into FormData which is a MultiPartFile!
 
-[Link To File](https://github.com/cyclic-reference/mongo-images/blob/master/web-content/src/app/projectFiles/service/ImageUpload.service.ts)
-
-{% highlight javascript %}
-
-    //...
-    
-    @Injectable()
-    export class ImageUploadService {
-    
-    
-        constructor(private backendAPIService: BackendAPIService) {
-        }
-    
-        public uploadImage(reachFile: Observable<File>): Observable<string> {
-            return reachFile
-                .filter(isDefined)
-                .map(reachFile => {
-                    let formData = new FormData();
-                    /**
-                     * The name that we append to the form has to correspond
-                     * to the name of the parameter in the method signature
-                     * in the REST controller.
-                     */
-                    formData.append('projectFile', reachFile);
-                    return formData
-                }).flatMap(formData =>
-                    this.backendAPIService.postImage(formData))
-        }
-    }
-
-{% endhighlight %}
-
 ### HTTP Client
 
 Most of the work above was done by the `BackendAPIService` which is a wrapper around the HttpClient, which is the class responsible for running HttpRequests.
