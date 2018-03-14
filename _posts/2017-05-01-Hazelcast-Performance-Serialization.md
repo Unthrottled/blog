@@ -103,6 +103,8 @@ That is a savings of ~80 ms writing object into memory and a ~300ms drop in wait
 
 While this work could possibly be transferred to other applications, which require object serialization, there are even _faster_ Hazelcast specific options!
 
+### DataSerializable
+
 The first example is the DataSerializable interface, which is looks a whole lot like the Externalizable interface.
 
 Here are the new POJOs:
