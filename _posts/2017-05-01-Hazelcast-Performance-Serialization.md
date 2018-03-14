@@ -88,8 +88,7 @@ This means that work done to code will remain portable to other cache implementa
 Implementing the `Externalizable` interface will allow java to use overridden methods in each POJO to serialize and deserialize objects.
 Preventing the need for classes to be created from reflection, but adds the need for extra work.
 
-Here are the new Externalizable POJOs:
-
+[Here are the new Externalizable POJOs.]({{site.url}}/code/bh/externalizable.html)
 
 The first thing that catches the eye, is the fact that the list is iterated through, in favor of calling the slower `writeObject` and `readObject` of th ObjectOutput's and ObjectInput's API respectively.
 In the `readExternal` method, it can be seen that the convenient reflective creation of the Computer field was overridden by manual creation.
