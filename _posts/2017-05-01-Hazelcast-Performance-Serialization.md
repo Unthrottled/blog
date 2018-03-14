@@ -83,6 +83,8 @@ Given these classes, writing 40000 Programmers ten times took an average of ~243
 While reading 40000 Programmers ten times took an average of ~433 milliseconds.
 This shows that, out of the box, read heavy use-cases of Hazelcast will a bit slower than write heavy applications.
 
+### Externalizable
+
 There is a non-Hazelcast dependent optimization for the object serialization process.
 This means that work done to code will remain portable to other cache implementations.
 Implementing the `Externalizable` interface will allow java to use overridden methods in each POJO to serialize and deserialize objects.
