@@ -94,53 +94,6 @@ The first thing that catches the eye, is the fact that the list is iterated thro
 In the `readExternal` method, it can be seen that the convenient reflective creation of the Computer field was overridden by manual creation.
 This saves time, but is a few extra lines of code.
 
-{% highlight java %}
-package io.acari.pojo;
-
-import java.io.Externalizable;
-import java.io.IOException;
-import java.io.ObjectInput;
-import java.io.ObjectOutput;
-
-public class ExternalizableComputer implements Externalizable {
-    private static final long serialVersionUID = -6235153548793669030L;
-    private String model;
-    private String subModel;
-    private int ram;
-    private String make;
-
-    /**
-     * No Arguments constructor is needed only if
-     * the class does not have one and a constructor
-     * with one or more arguments is present.
-     * <p>
-     * If no constructors are provided the java compiler
-     * will automagically put the no args constructor in.
-     */
-    public ExternalizableComputer() {
-    }
-
-    @Override
-    public void writeExternal(ObjectOutput objectOutput) throws IOException {
-        objectOutput.writeUTF(model);
-        objectOutput.writeUTF(subModel);
-        objectOutput.writeInt(ram);
-        objectOutput.writeUTF(make);
-    }
-
-    @Override
-    public void readExternal(ObjectInput objectInput) throws IOException, ClassNotFoundException {
-        model = objectInput.readUTF();
-        subModel = objectInput.readUTF();
-        ram = objectInput.readInt();
-        make = objectInput.readUTF();
-    }
-    
-    //ACCESSOR METHODS OMMITTED
-}
-
-{% endhighlight %}
-
 All the extra work payed off in the end.
 Writing 40000 externalizable programmers ten times yielded an average of ~164 milliseconds.
 While reading 40000 externalizable programmers ten iterations gave an average of ~126 milliseconds.
