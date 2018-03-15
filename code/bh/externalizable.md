@@ -23,17 +23,6 @@ public class ExternalizableProgrammer implements Externalizable {
     private ExternalizableComputer computer;
     private List<String> languages;
 
-    /**
-     * No Arguments constructor is needed only if
-     * the class does not have one and a constructor
-     * with one or more arguments is present.
-     * <p>
-     * If no constructors are provided the java compiler
-     * will automagically put the no args constructor in.
-     */
-    public ExternalizableProgrammer() {
-    }
-
     @Override
     public void writeExternal(ObjectOutput out) throws IOException {
         out.writeUTF(name);
@@ -81,17 +70,6 @@ public class ExternalizableComputer implements Externalizable {
     private String subModel;
     private int ram;
     private String make;
-
-    /**
-     * No Arguments constructor is needed only if
-     * the class does not have one and a constructor
-     * with one or more arguments is present.
-     * <p>
-     * If no constructors are provided the java compiler
-     * will automagically put the no args constructor in.
-     */
-    public ExternalizableComputer() {
-    }
 
     @Override
     public void writeExternal(ObjectOutput objectOutput) throws IOException {
