@@ -26,14 +26,7 @@ The question that should come to mind before even writing a test should be, "Wha
 Any person following the steps above will most likely not know where to start writing tests.
 Which is why the following omitted step(s) should be included.
 
-1. Design and define interface(s) to solve a single responsibility.
-1. Add a test
-1. Run all tests and see if the new test fails.
-1. Write the code.
-1. Run tests.
-1. Refactor code.
-1. Repeat and start at step 4 until all tests pass and code looks great!
-1. Repeat and start at step 1 until the feature is implemented.
+> Design and define interface(s) to solve a single/well-defined responsibility.
     
 This way any developer should have a great place or any place really to start.
 Starting is the difficult part. Once the vision is in place, a lot the other APIs start to become more clear. 
