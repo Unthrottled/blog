@@ -84,6 +84,7 @@ While reading 40000 Programmers ten times took an average of ~433 milliseconds.
 This shows that, out of the box, read heavy use-cases of Hazelcast will a bit slower than write heavy applications.
 
 ### Externalizable
+---
 
 There is a non-Hazelcast dependent optimization for the object serialization process.
 This means that work done to code will remain portable to other cache implementations.
@@ -104,6 +105,7 @@ That is a savings of ~80 ms writing object into memory and a ~300ms drop in wait
 While this work could possibly be transferred to other applications, which require object serialization, there are even _faster_ Hazelcast specific options!
 
 ### DataSerializable
+---
 
 The first example is the DataSerializable interface, which is looks a whole lot like the Externalizable interface.
 
@@ -125,6 +127,7 @@ Reading 40000 Data Serializable Programmers ten times took averaged of a total o
 That is 43ms quicker than the already ~306ms cheaper Externalizable read!
 
 ### IdentifiedDataSerializable
+---
 
 Since the Externalizable class, the `Computer` instance has not been provided by reflection.
 There is one last bit of slower reflection that can be dropped, which is the creation of the `Programmer` instance.
@@ -138,8 +141,11 @@ Whose functional API accepts an ID in the form of an integer and returns an inst
 `IdentifiedDataSerializableProgrammer` needs to have a factory with an ID of nine-thousand configured in the Hazelcast server. 
  In addition that factory must return an instance of `IdentifiedDataSerializableProgrammer` when given an integer that is over nine-thousand.
  This allows for one factory to create multiple instances of different classes.
- As emphasis,IdentifiedDataSerializableProgrammer inherits from DataSerializableProgrammer which creates its own the _DataSerializableComputer_ at deserialization time.
+ As emphasis, IdentifiedDataSerializableProgrammer inherits from DataSerializableProgrammer which creates its own the `DataSerializableComputer` at deserialization time.
  Therefore eliminating the need for IdentifiedDataSerializableComputer!
+ 
+### *Hazelcast Server Configuration*
+---
  
  If Spring detects Hazelcast on the classpath, it will try to auto-configure a Hazelcast server instance.
  Given a `com.hazelcast.config.Config` bean, Spring will use that bean for the creation of Hazelcast instance.
@@ -259,8 +265,6 @@ Again, I now know that there are frameworks for benchmarking now.
 However that was after I spent time writing the sample project.
 
 Enjoy!
-
-## -Alex
 
 ####Resources you should totally checkout:
 
