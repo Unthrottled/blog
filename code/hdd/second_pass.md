@@ -120,4 +120,4 @@ public class Water extends Liquid {
 > ^ The water type definition, hurray polymorphism! Is this over-engineering? I do not know. 
 
 _Yes in the end it is just creating a number and wrapping it in a data type. 
-It's still has the same issue of just creating a number and putting it in the container, it's just wrapped in a extra layer._ 
+It's still has the same issue of just creating a number and putting it in the container. Now it's just wrapped in a extra layer._ 
