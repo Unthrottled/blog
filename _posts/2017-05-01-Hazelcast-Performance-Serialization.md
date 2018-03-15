@@ -130,7 +130,7 @@ Since the Externalizable class, the `Computer` instance has not been provided by
 There is one last bit of slower reflection that can be dropped, which is the creation of the `Programmer` instance.
 The Hazelcast specific `IdentifiedDataSerializable` interface is that such method.
 
-Which looks like the following.
+[Which looks like the following\.]({{site.url}}/code/bh/id_serial.html)
 
 IdentifiedDataSerializable extends DataSerializable adding the getFactoryId and getId, which will be used by the `DataSerializableFactory`.
 Whose functional API accepts an ID in the form of an integer and returns an instance whose class is associated with that integer.
@@ -138,13 +138,13 @@ Whose functional API accepts an ID in the form of an integer and returns an inst
 `IdentifiedDataSerializableProgrammer` needs to have a factory with an ID of nine-thousand configured in the Hazelcast server. 
  In addition that factory must return an instance of `IdentifiedDataSerializableProgrammer` when given an integer that is over nine-thousand.
  This allows for one factory to create multiple instances of different classes.
- As emphasis,IdentifiedDataSerializableProgrammer inherts from DataSerializableProgrammer which creates its own the _DataSerializableComputer_ at deserialization time.
+ As emphasis,IdentifiedDataSerializableProgrammer inherits from DataSerializableProgrammer which creates its own the _DataSerializableComputer_ at deserialization time.
  Therefore eliminating the need for IdentifiedDataSerializableComputer!
  
  If Spring detects Hazelcast on the classpath, it will try to auto-configure a Hazelcast server instance.
  Given a `com.hazelcast.config.Config` bean, Spring will use that bean for the creation of Hazelcast instance.
  Below is an example of the very thing.
- 
+   
 {% highlight java%}
 package io.acari;
 
