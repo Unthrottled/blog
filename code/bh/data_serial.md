@@ -2,6 +2,9 @@
 layout: post
 ---
 
+DataSerializable
+---
+
 
 {% highlight java %}
 package io.acari.pojo;

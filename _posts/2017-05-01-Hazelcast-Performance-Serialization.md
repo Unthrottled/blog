@@ -132,28 +132,6 @@ The Hazelcast specific `IdentifiedDataSerializable` interface is that such metho
 
 Which looks like the following.
 
-{% highlight java %}
-package io.acari.pojo;
-
-import com.hazelcast.nio.serialization.IdentifiedDataSerializable;
-
-public class IdentifiedDataSerializableProgrammer extends DataSerializableProgrammer implements IdentifiedDataSerializable {
-
-    public static final int FACTORY_ID = 9000;
-    public static final int OBJECT_ID = 9001;
-
-    @Override
-    public int getFactoryId() {
-        return FACTORY_ID;
-    }
-
-    @Override
-    public int getId() {
-        return OBJECT_ID;
-    }
-}
-{% endhighlight %}
-
 IdentifiedDataSerializable extends DataSerializable adding the getFactoryId and getId, which will be used by the `DataSerializableFactory`.
 Whose functional API accepts an ID in the form of an integer and returns an instance whose class is associated with that integer.
 
