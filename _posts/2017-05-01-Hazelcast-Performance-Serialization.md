@@ -109,67 +109,6 @@ The first example is the DataSerializable interface, which is looks a whole lot 
 
 Here are the new POJOs:
 
-{% highlight java %}
-package io.acari.pojo;
-
-import com.hazelcast.nio.ObjectDataInput;
-import com.hazelcast.nio.ObjectDataOutput;
-import com.hazelcast.nio.serialization.DataSerializable;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
-public class DataSerializableProgrammer implements DataSerializable {
-    public static final int NULL_LIST = -1;
-    private String name;
-    private int age;
-    private DataSerializableComputer computer;
-    private List<String> languages;
-
-    /**
-     * No Arguments constructor is needed only if
-     * the class does not have one and a constructor
-     * with one or more arguments is present.
-     * <p>
-     * If no constructors are provided the java compiler
-     * will automagically put the no args constructor in.
-     */
-    public DataSerializableProgrammer() {
-    }
-
-    @Override
-    public void writeData(ObjectDataOutput out) throws IOException {
-        out.writeUTF(name);
-        out.writeInt(age);
-        int size = languages == null ? NULL_LIST : languages.size();
-        out.writeInt(size);
-        for (int i = 0; i < size; ++i) {
-            out.writeUTF(languages.get(i));
-        }
-        computer.writeData(out);
-    }
-
-    @Override
-    public void readData(ObjectDataInput in) throws IOException {
-        name = in.readUTF();
-        age = in.readInt();
-        int size = in.readInt();
-        if (size > NULL_LIST) {
-            languages = new ArrayList<>(size);
-            for (int i = 0; i < size; ++i) {
-                languages.add(i, in.readUTF());
-            }
-        }
-        computer = new DataSerializableComputer();
-        computer.readData(in);
-    }
-    //ACCESSOR METHODS OMITTED
-  }
-    
-}
-{% endhighlight %}
-
 There is only one big difference from the externalizable class is the switch from `java.io.ObjectInput` and `java.io.ObjectOutput` to `com.hazelcast.nio.ObjectDataInput` and `com.hazelcast.nio.ObjectDataOutput` respectively.
 
 Hazelcast already has an optimized convience method for reading and writing the `ArrayList` class called `com.hazelcast.internal.serialization.impl.ArrayListStreamSerializer`.
@@ -177,52 +116,6 @@ That class does what the `writeData` and `readData` of `DataSerializableProgramm
 However using the readObject _and_  writeObject methods come at a performance cost of ~20ms. 
 
 Just about the same goes for the DataSerializable Computer class as well.
-
-{% highlight java %}
-package io.acari.pojo;
-
-import com.hazelcast.nio.ObjectDataInput;
-import com.hazelcast.nio.ObjectDataOutput;
-import com.hazelcast.nio.serialization.DataSerializable;
-
-import java.io.IOException;
-
-public class DataSerializableComputer implements DataSerializable {
-    private String model;
-    private String subModel;
-    private int ram;
-    private String make;
-
-    /**
-     * No Arguments constructor is needed only if
-     * the class does not have one and a constructor
-     * with one or more arguments is present.
-     * <p>
-     * If no constructors are provided the java compiler
-     * will automagically put the no args constructor in.
-     */
-    public DataSerializableComputer() {
-    }
-
-    @Override
-    public void writeData(ObjectDataOutput out) throws IOException {
-        out.writeUTF(model);
-        out.writeUTF(subModel);
-        out.writeInt(ram);
-        out.writeUTF(make);
-    }
-
-    @Override
-    public void readData(ObjectDataInput in) throws IOException {
-        model = in.readUTF();
-        subModel = in.readUTF();
-        ram = in.readInt();
-        make = in.readUTF();
-    }
-    //ACCESSOR METHODS OMITTED
-}
-
-{% endhighlight %}
 
 The numbers are in and they look good!
 Writing 40000 DataSerializable Programmers ten iterations took an average of ~128 milliseconds, a savings of ~36ms.
