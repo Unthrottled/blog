@@ -109,6 +109,8 @@ The first example is the DataSerializable interface, which is looks a whole lot 
 
 Here are the new POJOs:
 
+[Here are the new DataSerializable POJOs.]({{site.url}}/code/bh/data_serial.html)
+
 There is only one big difference from the externalizable class is the switch from `java.io.ObjectInput` and `java.io.ObjectOutput` to `com.hazelcast.nio.ObjectDataInput` and `com.hazelcast.nio.ObjectDataOutput` respectively.
 
 Hazelcast already has an optimized convience method for reading and writing the `ArrayList` class called `com.hazelcast.internal.serialization.impl.ArrayListStreamSerializer`.
