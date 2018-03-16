@@ -1,3 +1,6 @@
 ---
 layout: post
 ---
+
+Externalizable Serialization
+---
