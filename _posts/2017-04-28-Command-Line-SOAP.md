@@ -93,7 +93,7 @@ The example service does have methods with and without SOAPAction associated wit
 In the headers, this was denoted by `SOAPAction: ""`. 
 This bit is important, because if the method you try to call has a SOAP action associated with it then that changes the command needed to run.
 
-Lastly, the web service definition, for the sample project, is a follows:
+####[Lastly, the web service definition, for the sample project, is a follows.]({{site.url}}/code/cls/wsdl.html)
 
 
 To view the WSDL on your local machine, hit the following endpoint:
