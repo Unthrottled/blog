@@ -75,6 +75,8 @@ The tests that where written will fail, even though the behaviour remained the s
 Empty cup goes in, half filled cup comes out.
 How that happened changed though, and the tests that were built reflect that issue.
 Our mocked out dependencies no longer satisfy our implementation.
+Decoupling the test from the implementation of the class allows for the class to change and the test to remain the same.
+Effectively saving time maintainng the codebase. 
 
 It is unnecessary to fix tests when code behaviour remains the same. 
 The method is tightly coupled to the implementation, it's a low-level solution.
