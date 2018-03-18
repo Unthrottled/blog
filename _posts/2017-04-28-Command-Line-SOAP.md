@@ -266,7 +266,7 @@ Now all that is needed is to pipe the output of the SOAP request into xml_pp.
 
     curl --header "content-type: text/xml" -d @request.xml http://sandwich:8400/computer-service | xml_pp
 
-Which outputs a nice and indented xml response:
+[Which outputs a nice and indented xml response.]({{site.url}}/code/cls/response.html)
 
 So lets say that a file cannot be used as the data, that is no problem. 
 A really long string can be used in place of `@request.xml`. 
