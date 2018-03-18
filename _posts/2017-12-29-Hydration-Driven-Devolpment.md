@@ -139,11 +139,11 @@ So it is in the designer's best interest to develop API's that behave simply.
 
 It would be tempting to just implement the stateless dependent classes first. 
 So that they may be used to support the classes' test.
-Even when creating a stateful class, it is important to step back and think.
+Even when creating a stateful class, it is important to step back and think:
 
-Does the API that has been created make sense? 
-Is it unnecessarily complicated even though the API's surface area is small?
-Can things be made simpler so that testing is easier?
+- Does the API that has been created make sense? 
+- Is it unnecessarily complicated even though the API's surface area is small?
+- Can things be made simpler so that testing is easier?
 
 These are some questions that should be asked about the initial design as tests are being written.
 Testing the class should be easy, so stubbing out behaviour should be simple. 
@@ -158,9 +158,9 @@ All the test would care about is that the number in the container is the expecte
 
 Let us go back and revisit the first step of the process, which is _Design and Define Interfaces_.
 
-### [Here are redesigned interfaces.]({{site.url}}/code/hdd/second_pass.html)
+### [Here are the redesigned interfaces.]({{site.url}}/code/hdd/second_pass.html)
 
-## Writing Tests!
+#### Actually writing tests!
 
 Now that the API's have been re-designed, it's time to write some tests against the defined APIs!
 
