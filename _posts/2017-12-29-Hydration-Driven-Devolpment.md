@@ -122,7 +122,7 @@ Now that water repository has a dependency that has an API that dispenses water 
 
 ### Step Two: Add a test
 
-Knowing where to start writing test is tricky sometimes. 
+Knowing which class to start writing tests for is tricky sometimes. 
 At the moment there are two interfaces and one concrete class that needs to be implemented.
 The difficult bit comes to deciding how the unit test is written.
 
@@ -134,6 +134,7 @@ As an example, stateful inputs or dependencies are a pain to mock out.
 This means that the mock needs to exhibit state and it takes more time to create a smart mock over just creating the actual class.
 
 The purpose of TDD is to promote simplicity because testing complex classes is hard.
+Complex classes are often left un-tested due to this fact.
 So it is in the designer's best interest to develop API's that behave simply.
 
 It would be tempting to just implement the stateless dependent classes first. 
