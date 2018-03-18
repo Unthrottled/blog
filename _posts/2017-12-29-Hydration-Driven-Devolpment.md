@@ -26,7 +26,7 @@ The question that should come to mind before even writing a test should be, "Wha
 Any person following the steps above will most likely not know where to start writing tests.
 Which is why the following omitted step(s) should be included.
 
-> Design and define interface(s) to solve a single/well-defined responsibility.
+> Design and define interface(s) to solve a single/well-defined responsibility to satisfy a requirement.
     
 This way any developer should have a great place or any place really to start.
 Starting is the difficult part. Once the vision is in place, a lot the other APIs start to become more clear. 
