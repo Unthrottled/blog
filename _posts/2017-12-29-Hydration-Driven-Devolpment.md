@@ -16,9 +16,9 @@ A quick Google search for TDD will most likely lead to article prescribing the f
 
 1. Add a test
 1. Run all tests and see if the new test fails.
-1. Write the code.
-1. Run tests.
-1. Refactor code.
+1. Write the code to make test pass.
+1. Run all tests.
+1. Refactor code in an attempt to make the tests pass.
 1. Repeat until all tests pass and code looks great!
 
 The question that should come to mind before even writing a test should be, "What class am I writing test for in the first place?"
