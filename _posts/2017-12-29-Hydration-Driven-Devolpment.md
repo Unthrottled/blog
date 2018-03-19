@@ -107,7 +107,7 @@ You can put water inside a tub, bucket, or anything that can hold/not hold water
 
 > Finding the right level of abstraction is an art in of itself. 
 Too high and the classes will start to appear as just layers of indirection. 
-Making it hard to get any contexet when debugging and there is a ton more boilerplate.
+Making it hard to get any context when debugging and there is a ton more boilerplate.
 Too low and the classes will begin to become tightly coupled to the implementation.
 Making any change of the class very difficult, tedious, and slow.
 
