@@ -35,7 +35,7 @@ The repository contains a README file that will help get the project up and runn
 
 **Writing Non-Serializable objects to a file.**
 
-**Disclamer**: This does not mean, SERIALIZE ALL THE THINGS! ![things]({{site.imageDir}}cereal/things.png)
+**Disclaimer**: This does not mean, SERIALIZE ALL THE THINGS! ![things]({{site.imageDir}}cereal/things.png)
 
 Some classes are not serializable for a good reason. 
 Such as FutureTask, Thread, and Executor. 
