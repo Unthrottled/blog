@@ -233,3 +233,11 @@ public class WaterRepositoryTest {
 {% highlight java %}
 //....
 {% endhighlight %}
+
+things left todo
+---
+
+- Design and test water supply implementation
+- Implement the classes
+- ????
+- profit!
