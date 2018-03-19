@@ -177,10 +177,18 @@ Then the implementation class can be used to support the tests whose classes dep
 
 #### [Liquid interface definition and tests.]({{site.url}}/code/hdd/liquid_tests.html)
 
+Now dependent interfaces exist and writing tests for the `WaterRepository` can commence.
+
+>It could be argued that the following test is not a _Unit Test_ per se and that it is more of an _Integration Test_.
+Meaning that it does not just test a single class and that it tests the orchestration of many classes.
+The following tests are coupled to the implementations of the dependent classes.
+Breaking changes may be introduced and these tests may no longer pass.
+So the auther not only has to fix the class's tests, but this test as well.
+There are arguments for and against this type of test, but this is the highest value test.
+
 {% highlight java %}
 //....
 public class WaterRepositoryTest {
-
 
     @Test
     public void fillContainerHalfWayShouldReturnAContainerThatIsHalfFull() {
