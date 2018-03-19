@@ -148,7 +148,7 @@ Even when creating a stateful class, it is important to step back and think:
 These are some questions that should be asked about the initial design as tests are being written.
 Testing the class should be easy, so stubbing out behaviour should be simple. 
 It is better to find problems in the design early part of construction. 
-Meaning time has not been spent implementing any code and only the barebones design exists.
+Meaning time has not been spent implementing any code and only the bare-bones design exists.
 This leave the code in a malleable state. 
 Which is another benefit of test-driven development.
 
