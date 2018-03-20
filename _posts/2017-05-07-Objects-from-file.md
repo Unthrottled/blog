@@ -106,7 +106,7 @@ public class TestDataCreator {
     private static final Gson GSON = new Gson();
 
     public Path fetchJSONFile(){
-        if (needToWriteToFile(TEST_JSON_DATA_FILE)) {
+        if (canWriteToFile(TEST_JSON_DATA_FILE)) {
             Consumer<Path> jsonWriter = path -> {
                 try (BufferedWriter out = Files.newBufferedWriter(path)) {
                     newProgrammerRepository().getProgrammers()
@@ -138,7 +138,7 @@ public class TestDataCreator {
         }
     }
 
-    private boolean needToWriteToFile(Path testDataFile) {
+    private boolean canWriteToFile(Path testDataFile) {
         try {
             if (Files.notExists(testDataFile)) {
                 Files.createFile(testDataFile);
