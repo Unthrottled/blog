@@ -180,7 +180,7 @@ Then the implementation class can be used to support the tests whose classes dep
 Now dependent interfaces exist and writing tests for the `WaterRepository` can commence.
 
 >It could be argued that the following test is not a _Unit Test_ per se and that it is more of an _Integration Test_.
-Meaning that it does not just test a single class and that it tests the orchestration of many classes.
+Meaning that it does not just test a single class and that it tests the integration of many classes.
 The following tests are coupled to the implementations of the dependent classes.
 Breaking changes may be introduced and these tests may no longer pass.
 So the auther not only has to fix the class's tests, but this test as well.
