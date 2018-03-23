@@ -95,7 +95,7 @@ Breaking this problem into pieces, we first need to define the API that solves t
 
 ### Step One: Design and define interface(s) to solve a single responsibility.
 
-### [Here are first pass designed interfaces.]({{site.url}}/code/hdd/first_pass.html)
+- [Here are first pass designed interfaces.]({{site.url}}/code/hdd/first_pass.html)
 
 The hard part about TDD, or development in general, is finding a place to start!
 What is needed is a class that can satisfy the current requirement.
@@ -158,7 +158,7 @@ All the test would care about is that the number in the container is the expecte
 
 Let us go back and revisit the first step of the process, which is _Design and Define Interfaces_.
 
-### [Here are the redesigned interfaces.]({{site.url}}/code/hdd/second_pass.html)
+- [Here are the redesigned interfaces.]({{site.url}}/code/hdd/second_pass.html)
 
 #### Actually writing tests!
 
@@ -181,7 +181,7 @@ Now dependent interfaces exist and writing tests for the `WaterRepository` can c
 
 All of the work that was previously done has now led up to being able to test the class that was first chosen to be tested!
 
-####[The tests for WaterRepository can be found here.]({{site.url}}/code/hdd/WaterRepository_Test.html)
+- [The tests for WaterRepository can be found here.]({{site.url}}/code/hdd/WaterRepository_Test.html)
 
 {% highlight java %}
 //....
