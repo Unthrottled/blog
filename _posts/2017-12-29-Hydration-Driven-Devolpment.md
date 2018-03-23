@@ -191,7 +191,7 @@ It can be boilerplate because of the fact that providing a value to the construc
 It also can be described as over-engineered due to the fact that the level of abstraction is high enough to supply more implementations than the requirement needs.
 Meaning that the code is built in such a way that other requirements to fetch anything liquid (ie: Kool-Aid, Orange Juice, etc) could be easily implemented.
 
-However, in the end what is left is code that is modular, loosely-coupled, maintainable, and readable. 
+However, in the end what is left is code that is modular, loosely-coupled, maintainable, readable, correct, and fully tested! 
 The amount of initial work put upfront pays off because, less time is spent in the future maintaining this code.
 
 {% highlight java %}
