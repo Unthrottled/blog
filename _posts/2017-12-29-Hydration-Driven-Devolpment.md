@@ -183,6 +183,17 @@ All of the work that was previously done has now led up to being able to test th
 
 - [The tests for WaterRepository can be found here.]({{site.url}}/code/hdd/WaterRepository_Test.html)
 
+The last chunk of code that needs to be designed is a class that implements the `WaterSupply` interface.
+This class will be fairly simple because there is not much to test.
+It could be argued that this code is boilerplate and this is over-engineered given the current level of abstraction.
+Due to the fact that the process of creating a `Water` object is not complex.
+It can be boilerplate because of the fact that providing a value to the constructor is sufficient and having a class do that is unnecessary.
+It also can be described as over-engineered due to the fact that the level of abstraction is high enough to supply more implementations than the requirement needs.
+Meaning that the code is built in such a way that other requirements to fetch anything liquid (ie: Kool-Aid, Orange Juice, etc) could be easily implemented.
+
+However, in the end what is left is code that is modular, loosely-coupled, maintainable, and readable. 
+The amount of initial work put upfront pays off because, less time is spent in the future maintaining this code.
+
 {% highlight java %}
 //....
 {% endhighlight %}
@@ -190,7 +201,6 @@ All of the work that was previously done has now led up to being able to test th
 things left todo
 ---
 
-- Design and test water supply implementation
 - Implement the classes
 - ????
 - profit!
