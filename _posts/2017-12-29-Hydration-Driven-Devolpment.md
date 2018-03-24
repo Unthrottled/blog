@@ -199,7 +199,10 @@ The amount of initial work put upfront pays off because, less time is spent in t
 
 ---
 
-### Step Three: Write Code to make the tests pass.
+### Step Three: Write code to make the tests pass.
+
+Granted, there are some tests that currently pass, given the state of our code right now.
+However, now is the time to make all of the tests that are written to pass!
 
 
 {% highlight java %}
