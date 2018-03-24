@@ -196,6 +196,12 @@ The amount of initial work put upfront pays off because, less time is spent in t
 
 - [Here is the last tests that need to be written\!]({{site.url}}/code/hdd/water_supply.html)
 
+
+---
+
+### Step Three: Write Code to make the tests pass.
+
+
 {% highlight java %}
 //....
 {% endhighlight %}
