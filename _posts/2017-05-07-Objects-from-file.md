@@ -35,7 +35,7 @@ The repository contains a README file that will help get the project up and runn
 
 **Writing Non-Serializable objects to a file.**
 
-**Disclamer**: This does not mean, SERIALIZE ALL THE THINGS! ![things]({{site.imageDir}}cereal/things.png)
+**Disclaimer**: This does not mean, SERIALIZE ALL THE THINGS! ![things]({{site.imageDir}}cereal/things.png)
 
 Some classes are not serializable for a good reason. 
 Such as FutureTask, Thread, and Executor. 
@@ -106,7 +106,7 @@ public class TestDataCreator {
     private static final Gson GSON = new Gson();
 
     public Path fetchJSONFile(){
-        if (needToWriteToFile(TEST_JSON_DATA_FILE)) {
+        if (canWriteToFile(TEST_JSON_DATA_FILE)) {
             Consumer<Path> jsonWriter = path -> {
                 try (BufferedWriter out = Files.newBufferedWriter(path)) {
                     newProgrammerRepository().getProgrammers()
@@ -138,7 +138,7 @@ public class TestDataCreator {
         }
     }
 
-    private boolean needToWriteToFile(Path testDataFile) {
+    private boolean canWriteToFile(Path testDataFile) {
         try {
             if (Files.notExists(testDataFile)) {
                 Files.createFile(testDataFile);

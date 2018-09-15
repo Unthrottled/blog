@@ -76,7 +76,7 @@ Empty cup goes in, half filled cup comes out.
 How that happened changed though, and the tests that were built reflect that issue.
 Our mocked out dependencies no longer satisfy our implementation.
 Decoupling the test from the implementation of the class allows for the class to change and the test to remain the same.
-Effectively saving time maintainng the codebase. 
+Effectively saving time maintaining the codebase. 
 
 It is unnecessary to fix tests when code behaviour remains the same. 
 The method is tightly coupled to the implementation, it's a low-level solution.
@@ -95,7 +95,7 @@ Breaking this problem into pieces, we first need to define the API that solves t
 
 ### Step One: Design and define interface(s) to solve a single responsibility.
 
-### [Here are first pass designed interfaces.]({{site.url}}/code/hdd/first_pass.html)
+- [Here are first pass designed interfaces.]({{site.url}}/code/hdd/first_pass.html)
 
 The hard part about TDD, or development in general, is finding a place to start!
 What is needed is a class that can satisfy the current requirement.
@@ -107,7 +107,7 @@ You can put water inside a tub, bucket, or anything that can hold/not hold water
 
 > Finding the right level of abstraction is an art in of itself. 
 Too high and the classes will start to appear as just layers of indirection. 
-Making it hard to get any contexet when debugging and there is a ton more boilerplate.
+Making it hard to get any context when debugging and there is a ton more boilerplate.
 Too low and the classes will begin to become tightly coupled to the implementation.
 Making any change of the class very difficult, tedious, and slow.
 
@@ -148,7 +148,7 @@ Even when creating a stateful class, it is important to step back and think:
 These are some questions that should be asked about the initial design as tests are being written.
 Testing the class should be easy, so stubbing out behaviour should be simple. 
 It is better to find problems in the design early part of construction. 
-Meaning time has not been spent implementing any code and only the barebones design exists.
+Meaning time has not been spent implementing any code and only the bare-bones design exists.
 This leave the code in a malleable state. 
 Which is another benefit of test-driven development.
 
@@ -158,7 +158,7 @@ All the test would care about is that the number in the container is the expecte
 
 Let us go back and revisit the first step of the process, which is _Design and Define Interfaces_.
 
-### [Here are the redesigned interfaces.]({{site.url}}/code/hdd/second_pass.html)
+- [Here are the redesigned interfaces.]({{site.url}}/code/hdd/second_pass.html)
 
 #### Actually writing tests!
 
@@ -173,62 +173,37 @@ A good starting point is to first _design_ the stateful class, then write tests 
 Once the tests are written, then implement the methods to make the all of the tests written pass.  
 Then the implementation class can be used to support the tests whose classes depend on its implementation.
 
-#### [Liquid container class definition and tests.]({{site.url}}/code/hdd/container_impl.html)
+- [LiquidContainer class definition and tests.]({{site.url}}/code/hdd/container_impl.html)
 
-#### [Liquid interface definition and tests.]({{site.url}}/code/hdd/liquid_tests.html)
+- [Liquid interface definition and tests.]({{site.url}}/code/hdd/liquid_tests.html)
 
 Now dependent interfaces exist and writing tests for the `WaterRepository` can commence.
 
->It could be argued that the following test is not a _Unit Test_ per se and that it is more of an _Integration Test_.
-Meaning that it does not just test a single class and that it tests the orchestration of many classes.
-The following tests are coupled to the implementations of the dependent classes.
-Breaking changes may be introduced and these tests may no longer pass.
-So the auther not only has to fix the class's tests, but this test as well.
-There are arguments for and against this type of test, but this is the highest value test.
+All of the work that was previously done has now led up to being able to test the class that was first chosen to be tested!
 
-{% highlight java %}
-//....
-public class WaterRepositoryTest {
+- [The tests for WaterRepository can be found here.]({{site.url}}/code/hdd/WaterRepository_Test.html)
 
-    @Test
-    public void fillContainerHalfWayShouldReturnAContainerThatIsHalfFull() {
-        WaterSupply waterSupply = Mockito.mock(WaterSupply.class);
-        Mockito.when(waterSupply.fetchWater(250L)).thenReturn(new Water(250L));
-        WaterRepository testSubject = new WaterRepository(waterSupply);
-        LiquidContainer simpleLiquidContainer = new SimpleLiquidContainer(500);
-        LiquidContainer result = testSubject.fillContainerHalfWay(simpleLiquidContainer);
-        assertTrue(result.fetchCurrentVolume()
-                .map(new Water(250)::equals)
-                .orElse(false));
-    }
+The last chunk of code that needs to be designed is a class that implements the `WaterSupply` interface.
+This class will be fairly simple because there is not much to test.
+It could be argued that this code is boilerplate and this is over-engineered given the current level of abstraction.
+Due to the fact that the process of creating a `Water` object is not complex.
+It can be boilerplate because of the fact that providing a value to the constructor is sufficient and having a class do that is unnecessary.
+It also can be described as over-engineered due to the fact that the level of abstraction is high enough to supply more implementations than the requirement needs.
+Meaning that the code is built in such a way that other requirements to fetch anything liquid (ie: Kool-Aid, Orange Juice, etc) could be easily implemented.
+
+However, in the end what is left is code that is modular, loosely-coupled, maintainable, readable, correct, and fully tested! 
+The amount of initial work put upfront pays off because, less time is spent in the future maintaining this code.
+
+- [Here is the last tests that need to be written\!]({{site.url}}/code/hdd/water_supply.html)
 
 
-    @Test
-    public void fillContainerHalfWayShouldReturnAContainerThatIsHalfFull_II() {
-        WaterSupply waterSupply = Mockito.mock(WaterSupply.class);
-        Mockito.when(waterSupply.fetchWater(500L)).thenReturn(new Water(500L));
-        WaterRepository testSubject = new WaterRepository(waterSupply);
-        LiquidContainer simpleLiquidContainer = new SimpleLiquidContainer(1000);
-        LiquidContainer result = testSubject.fillContainerHalfWay(simpleLiquidContainer);
-        assertTrue(result.fetchCurrentVolume()
-                .map(new Water(500)::equals)
-                .orElse(false));
-    }
+---
 
+### Step Three: Write code to make the tests pass.
 
-    @Test
-    public void fillContainerHalfWayShouldReturnAContainerThatIsHalfFullAndIsOdd() {
-        WaterSupply waterSupply = Mockito.mock(WaterSupply.class);
-        Mockito.when(waterSupply.fetchWater(131L)).thenReturn(new Water(131L));
-        WaterRepository testSubject = new WaterRepository(waterSupply);
-        LiquidContainer simpleLiquidContainer = new SimpleLiquidContainer(263);
-        LiquidContainer result = testSubject.fillContainerHalfWay(simpleLiquidContainer);
-        assertTrue(result.fetchCurrentVolume()
-                .map(new Water(131)::equals)
-                .orElse(false));
-    }
-}
-{% endhighlight %}
+Granted, there are some tests that currently pass, given the state of our code right now.
+However, now is the time to make all of the tests that are written to pass!
+
 
 {% highlight java %}
 //....
@@ -237,7 +212,6 @@ public class WaterRepositoryTest {
 things left todo
 ---
 
-- Design and test water supply implementation
 - Implement the classes
 - ????
 - profit!
