@@ -190,6 +190,8 @@ Then the implementation class can be used to support the tests whose classes dep
 
 - [LiquidContainer class definition and tests.]({{site.url}}/code/hdd/container_impl.html)
 
+Special note, the class implementation has been defined for the liquid container, but the implementation remains the simplest possible.
+
 - [Liquid interface definition and tests.]({{site.url}}/code/hdd/liquid_tests.html)
 
 Now dependent interfaces exist and writing tests for the `WaterRepository` can commence.
@@ -210,7 +212,6 @@ However, in the end what is left is code that is modular, loosely-coupled, maint
 The amount of initial work put upfront pays off because, less time is spent in the future maintaining this code.
 
 - [Here is the last tests that need to be written\!]({{site.url}}/code/hdd/water_supply.html)
-
 
 ---
 
