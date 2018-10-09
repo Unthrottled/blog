@@ -97,6 +97,12 @@ Breaking this problem into pieces, we first need to define the API that solves t
 
 - [Here are first pass designed interfaces.]({{site.url}}/code/hdd/first_pass.html)
 
+Here are the classes for your context refreshment:
+
+- **LiquidContainer** - An interface for containing, well, liquid..
+- **WaterSupply** - An interface for supplying amounts of water.
+- **WaterRepository** - A class that has the dependencies of the above interfaces, and also fills containers with water.
+
 The hard part about TDD, or development in general, is finding a place to start!
 What is needed is a class that can satisfy the current requirement.
 
