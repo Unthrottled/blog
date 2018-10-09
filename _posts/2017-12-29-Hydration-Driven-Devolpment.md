@@ -215,3 +215,4 @@ things left todo
 - Implement the classes
 - ????
 - profit!
+- Need to keep the context of the classes in the main page as well, I tend to loose context when switching tabs.
