@@ -33,13 +33,13 @@ Starting is the difficult part. Once the vision is in place, a lot the other API
 
 Once a interface is defined, they can then write test to validate the designed behaviour.
 
-It is the process of defining your APIs and how they interact, before writing your is what leads to greatness. 
+It is the process of defining your APIs and how they interact, before writing your implementation is what sets things up for greatness. 
 Having to think about the abstractions that are needed leads to a more focused and loosely coupled architecture.
 The need to give each interface what it needs to do the job makes testing each class easier as well.
 
 > TDD should bring the concept of: "If the tests are easy, then the code should be straight forward, concise, readable, and maintainable"
 
-Since the API were designed to satisfy a specific behaviour, the tests that are built should verify that that behaviour happens as expected.
+Since the APIs were designed to satisfy a specific behaviour, the tests that are built should verify that that behaviour happens as expected.
 Tests should be written in such a way that the implementation of the method should not cause any test to fail, provided the expected behaviour remains the same.
 
 ---
@@ -83,7 +83,7 @@ The method is tightly coupled to the implementation, it's a low-level solution.
 
 So then, how do we fix this? Well, we do this by applying Test Driven Development of course!
 To help us, we need to think of the high-level abstractions that we need to really satisfy our requirements.
-This way the underlying implementations can be changed but the higher order functionality remains the same!
+This way the underlying implementations can be changed but, the higher order functionality remains the same!
 
 There is a balance that exists from being too tightly coupled to so loosely coupled that every line of code is just a layer of indirection.
 Finding that balance is key here, having the code just just enough context to understand the picture, without having to know everything.
@@ -162,7 +162,7 @@ Let us go back and revisit the first step of the process, which is _Design and D
 
 #### Actually writing tests!
 
-Now that the API's have been re-designed, it's time to write some tests against the defined APIs!
+Now that the APIs have been re-designed, it's time to write some tests against the defined APIs!
 
 Choosing a starting point to write tests, as mentioned before, is tricky sometimes.
 Starting to test the main class `WaterRepository` that solves the given use case is a good starting point.
