@@ -95,15 +95,9 @@ public class Liquid {
          * @throws IllegalArgumentException if given any number below zero
          */
         Liquid(long amount) {
-            this.amount = sanitizeVolume(amount)
-                    .orElseThrow(() -> new IllegalArgumentException("Cannot create liquid instance with value " + amount));
+            this.amount = amount;
         }
-    
-        private Optional<Long> sanitizeVolume(long amount) {
-            return Optional.of(amount)
-                    .filter(aLong -> aLong > -1);
-        }
-    
+        
         public long getAmount() {
             return amount;
         }

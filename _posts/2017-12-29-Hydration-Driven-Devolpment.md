@@ -206,8 +206,21 @@ However, now is the time to make all of the tests that are written to pass!
 
 - [Actual class implementations\!]({{site.url}}/code/hdd/class_implementations.html)
 
-things left todo
----
+It was really fun implementing these classes. 
+There came a time when I was glad I had a safety net of tests.
+
+Which leads me to my closing point. In my opinion TDD should _not_ be only write test and then write code.
+As I was developing this demo, there came times where my API's had to evolve, and I had to change things to reflect new behaviours I had not accounted in the past.
+I do not know about you, but I cannot think of every bit, piece, nook, and cranny that is required to satisfy the original requirement. 
+
+Test are not meant to weigh and slow us down. Granted, they do take up bandwidth at the inital phase of a project.
+However, they pay dividends (if done correctly) in times of maintenance. 
+Writing tests is ensuring that future maintainers (which may be you!) have to spend less time trying to adjust code to satisfy changing requirements.
+
+With TDD, there should never be an excuse as to not writing unit test because it was too hard.
+That class that needs tests should have been designed with the test in mind, whether it was written before or after!
+
+     
 
 - Implement the classes
 - ????
