@@ -166,6 +166,15 @@ Let us go back and revisit the first step of the process, which is _Design and D
 
 - [Here are the redesigned interfaces.]({{site.url}}/code/hdd/second_pass.html)
 
+Here are the classes for your context refreshment:
+
+- **LiquidContainer** - An interface for containing, well, liquid..
+- **WaterSupply** - An interface for supplying amounts of water.
+- **WaterRepository** - A class that has the dependencies of the above interfaces, and also fills containers with water.
+- **Liquid** - A state of matter, but also the amount of matter. It can add and reduce it volume all by itself!
+- **Water** - Water can be a liquid, right? 
+
+
 #### Actually writing tests!
 
 Now that the APIs have been re-designed, it's time to write some tests against the defined APIs!
