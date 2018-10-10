@@ -113,7 +113,7 @@ You can put water inside a tub, bucket, or anything that can hold/not hold water
 
 > Finding the right level of abstraction is an art in of itself. 
 Too high and the classes will start to appear as just layers of indirection. 
-Making it hard to get any context when debugging and there is a ton more boilerplate.
+Making it hard to get any context when debugging. Plus there is a ton more boilerplate to sift through.
 Too low and the classes will begin to become tightly coupled to the implementation.
 Making any change of the class very difficult, tedious, and slow.
 
@@ -238,9 +238,7 @@ That class that needs tests should have been designed with the test in mind, whe
 
 If there is a take away from this article it should be:
 
-## TL;DR: We should write classes to easily be tested so we do not hate ourselves later when making changes.     
+## TL;DR: We should write classes to easily be tested, so we do not hate ourselves later when making changes.     
 
 
 ### [Git Repo for the extra motivated](https://github.com/cyclic-reference/hdd.git)
-
-- Need to keep the context of the classes in the main page as well, I tend to loose context when switching tabs.
