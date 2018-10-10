@@ -86,7 +86,7 @@ To help us, we need to think of the high-level abstractions that we need to real
 This way the underlying implementations can be changed but, the higher order functionality remains the same!
 
 There is a balance that exists from being too tightly coupled to so loosely coupled that every line of code is just a layer of indirection.
-Finding that balance is key here, having the code just just enough context to understand the picture, without having to know everything.
+Finding that balance is key here, having the code give just enough context to understand the picture, without having to know everything.
 This is the art of creating software, and my interpretation of it.
 
 Breaking this problem into pieces, we first need to define the API that solves this task.
@@ -99,7 +99,7 @@ Breaking this problem into pieces, we first need to define the API that solves t
 
 Here are the classes for your context refreshment:
 
-- **LiquidContainer** - An interface for containing, well, liquid..
+- **LiquidContainer** - An interface for containing, well, liquid...
 - **WaterSupply** - An interface for supplying amounts of water.
 - **WaterRepository** - A class that has the dependencies of the above interfaces, and also fills containers with water.
 
