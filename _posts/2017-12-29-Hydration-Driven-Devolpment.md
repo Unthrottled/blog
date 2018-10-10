@@ -10,7 +10,7 @@ tags: [Software Development, TDD, BDD, Software Craftsmanship, Java]
 Test Driven Development (TDD) is a highly powerful tool to: construct well written, maintainable, and correct code.
 However, there seems to be a missing step that makes TDD appear to be less approachable. 
 Hopefully, this post will be able to make TDD more appealing and explain the real value behind the methodology.
-In addition to learning how to make a refreshing glass of water!
+In addition, we will learn how to make a refreshing glass of water!
 
 A quick Google search for TDD will most likely lead to article prescribing the following bland steps:
 
