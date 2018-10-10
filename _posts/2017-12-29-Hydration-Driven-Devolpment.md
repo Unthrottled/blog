@@ -3,7 +3,7 @@ layout: post
 title:  "Hydration Driven Development"
 date:   2017-12-29
 categories: java
-headerImage: hdd/mr_volcano.png
+headerImage: hdd/garrus.png
 tags: [Software Development, TDD, BDD, Software Craftsmanship, Java]
 ---
 
