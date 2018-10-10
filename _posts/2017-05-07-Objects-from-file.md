@@ -20,90 +20,7 @@ The first thing that will be needed is an object to write to a file.
 It will need to implement the `java.io.Serializable` or `java.io.Externalizable` interface.
 For more information about serializable objects, checkout [this post on java serialization performance!]({% post_url 2017-05-01-Hazelcast-Performance-Serialization %})
 
-This is one way of reading and writing objects to and from a file.
-
-{% highlight java %}
-package io.acari;
-
-import io.acari.pojo.ExternalizableProgrammer;
-import io.acari.pojo.Programmer;
-import io.acari.repositories.ProgrammerRepository;
-
-import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.stream.Stream;
-
-public class Main {
-
-    public static void main(String[] args) throws IOException {
-        ProgrammerRepository programmerRepository = 
-                                    ProgrammerRepository.newProgrammerRepository();
-        readWriteObject(programmerRepository.getProgrammers(), 
-                        Programmer.class);
-        readWriteObject(programmerRepository.getProgrammers().map(ExternalizableProgrammer::new), 
-                        ExternalizableProgrammer.class);
-    }
-
-    /**
-     * Takes a stream of objects and writes and reads from a file
-     * created in the directory the main method is executed in.
-     * <p>
-     * Creates a file named after the class provided's simple name
-     * post-fixed by .data
-     *
-     * @param objectStream a open stream of objects to be serialized.
-     * @param tClass       Class of the object of the to be serialized
-     * @param <T>          Any class that extends Serializable
-     * @throws IOException if user has unsufficent privledges to write in
-     *                     current working directory.
-     */
-    private static <T extends Serializable> void readWriteObject(Stream<T> objectStream, 
-                                                                 Class<T> tClass) throws IOException {
-        String simpleName = tClass.getSimpleName();
-        Path fileToWrite = Paths.get(simpleName + ".data");
-        //Create File (if needed) to write to.
-        if (Files.notExists(fileToWrite)) {
-            Files.createFile(fileToWrite);
-        }
-
-        //Write stream of objects to file.
-        try (ObjectOutputStream out = new ObjectOutputStream(
-                Files.newOutputStream(fileToWrite, StandardOpenOption.TRUNCATE_EXISTING))) {
-            objectStream.forEach(object -> {
-                try {
-                    out.writeObject(object);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            });
-        }
-
-        //Read objects from file.
-        try (ObjectInputStream in = new ObjectInputStream(Files.newInputStream(fileToWrite, 
-                                                                  StandardOpenOption.READ))) {
-            List<T> programmers = new LinkedList<>();
-            try {
-                while (true) {
-                    programmers.add((T) in.readObject());
-                }
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            } catch (EOFException ignored) {
-                /*
-                 * Reached the end of the file.
-                 * No more objects to read
-                 */
-            }
-            System.out.format("%d %s read from file!\n", programmers.size(), simpleName);
-        }
-    }
-}
-{% endhighlight %}
+####[This is one way of reading and writing objects to and from a file.]({{site.url}}/code/off/serializable.html)
 
 One of the most important parts to know is that any object written to a file _must_ implement the `Serializable` interface.
 Otherwise a pretty little `NotSerializableException` gets throw when writing to the `ObjectOutputStream`.
@@ -118,7 +35,7 @@ The repository contains a README file that will help get the project up and runn
 
 **Writing Non-Serializable objects to a file.**
 
-**Disclamer**: This does not mean, SERIALIZE ALL THE THINGS! ![things]({{site.imageDir}}cereal/things.png)
+**Disclaimer**: This does not mean, SERIALIZE ALL THE THINGS! ![things]({{site.imageDir}}cereal/things.png)
 
 Some classes are not serializable for a good reason. 
 Such as FutureTask, Thread, and Executor. 
@@ -189,7 +106,7 @@ public class TestDataCreator {
     private static final Gson GSON = new Gson();
 
     public Path fetchJSONFile(){
-        if (needToWriteToFile(TEST_JSON_DATA_FILE)) {
+        if (canWriteToFile(TEST_JSON_DATA_FILE)) {
             Consumer<Path> jsonWriter = path -> {
                 try (BufferedWriter out = Files.newBufferedWriter(path)) {
                     newProgrammerRepository().getProgrammers()
@@ -221,7 +138,7 @@ public class TestDataCreator {
         }
     }
 
-    private boolean needToWriteToFile(Path testDataFile) {
+    private boolean canWriteToFile(Path testDataFile) {
         try {
             if (Files.notExists(testDataFile)) {
                 Files.createFile(testDataFile);

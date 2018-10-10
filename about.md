@@ -47,3 +47,5 @@ When building software, sometimes it takes the longest amount of time to find th
 Hopefully I can provide someone tweezers!
 
 \-Alex Simons 
+
+### [Also checkout my other projects!](https://acari.io)
