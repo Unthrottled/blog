@@ -26,8 +26,8 @@ After finishing my undergraduate work and entered the professional workforce, I 
 That being communication.
 I found it difficult and frustrating, trying to talk with others and not being able to articulate what I wanted to say, especially during code review.
 It was a mix of knowing what I meant internally, but when trying to make it external, it was just babble.
-However, I eventually stumbled across something that help greatly me greatly.
-Aside from just plain practice, solidifying my knowledge on a vast variety of subjects.
+However, I eventually stumbled across something that help greatly me increase my communication skills.
+Aside from just plain practice, solidifying my knowledge on a vast variety of subjects also help me convey my thoughts better.
 
 I have heard this saying a bunch: "You never know how well you know a subject until you have to teach somebody else it."
 As it turned out, I did not know much about many things. 
