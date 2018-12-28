@@ -57,7 +57,7 @@ The following component provides a WebFlux API that is a simple CRUD (create, up
 
 Side note, the other routing function is to serve the static resources defined in src/main/resources/static.
 
-#### [Webflux Rest Controller.]({{site.url}}/code/rmip/rest_controller.html)
+#### [Webflux Rest Controller.](/code/rmip/rest_controller.html)
 
 ### GridFS Components
 
@@ -76,7 +76,7 @@ This works fine and dandy when an image file needs to be saved; however, returni
 The REST API is designed to to stream the buffered bytes to the client, so that the server to keep everything in memory as it is reading the image.
 So this means that our API for retrieving images has a return signature of `Flux<byte[]>`, which will stream the chunked image data to http clients.
 
-#### [Reactive GridFS Component.]({{site.url}}/code/rmip/gridfs_component.html)
+#### [Reactive GridFS Component.](/code/rmip/gridfs_component.html)
 
 ### Converting Flux<Part> to AsyncInputStream
 
@@ -101,11 +101,11 @@ Again, I had to make my own implementation. which I will cover a little bit late
 
 #### Part One
 
-#### [Flux\<DataBuffer\> \-\> AysncInputStream.]({{site.url}}/code/rmip/flux_to_asyncinput.html)
+#### [Flux\<DataBuffer\> \-\> AysncInputStream.](/code/rmip/flux_to_asyncinput.html)
 
 #### Part Two: Sequentially iterating a `Flux` without blocking and returning a `Publisher`.
 
-####[Here is how to make a sequential interable non-blocking Flux\!]({{site.url}}/code/rmip/sequential_flux.html)
+####[Here is how to make a sequential interable non-blocking Flux\!](/code/rmip/sequential_flux.html)
 
 
 #### Part Three: The helper.
@@ -113,13 +113,13 @@ Again, I had to make my own implementation. which I will cover a little bit late
 I need a class to let me know if any subscriber has unsubscribed, while waiting for the next element to be returned from the Flux.
 This way the sequence is still preserved, and the data goes to a subscriber that is actually listening!
 
-#### [Subcription helper code.]({{site.url}}/code/rmip/sink_helper.html)
+#### [Subcription helper code.](/code/rmip/sink_helper.html)
 
 #### Part Four: Converting AsyncInputStream into Flux<DataBuffer>
 
 Fortunately, this process is much easier! Plus there is native library support!! 
 
-#### [Code to covert InputStream into Flux.]({{site.url}}/code/rmip/async_to_flux.html)
+#### [Code to covert InputStream into Flux.](/code/rmip/async_to_flux.html)
 
 ### Spring Configurations
 
@@ -163,7 +163,7 @@ Which will be mentioned soon enough!
 While the Mongo client is never directly used in the code mentioned above, it is used transitively by the GridFSBucket.
 The reactive GridFSBucket is provided as a Spring Bean in this configuration component as well.
 
-#### [Spring configuration for Reactive Mongo.]({{site.url}}/code/rmip/mongo_config.html)
+#### [Spring configuration for Reactive Mongo.](/code/rmip/mongo_config.html)
 
 #### WebFlux Configuration
 
@@ -226,7 +226,7 @@ This Angular 5 component is dedicated to just that, selecting a file!
 When the user chooses an image an event is fired. 
 This component finds the selected file and emits it as output.
 
-#### [Image selection component.]({{site.url}}/code/rmip/image_selection.html)
+#### [Image selection component.](/code/rmip/image_selection.html)
 
 ## Image Visualization 
 
@@ -249,7 +249,7 @@ When the event is fired, it is this component's job to set the current project f
 
 How the _ProjectFile_ model handles a file being set will be discussed later when the implementations of `ProjectFile` are covered.
 
-#### [Project file emitter.]({{site.url}}/code/rmip/project_emitter.html)
+#### [Project file emitter.](/code/rmip/project_emitter.html)
 
 ### Image Visualization Component
 
@@ -266,7 +266,7 @@ The first function supplies the reference to the Observable image binary propert
 While the HTML uses the supplied image binary property and runs it through the asynchronous angular pipe.
     
 
-#### [Image visualization component.]({{site.url}}/code/rmip/image_visualization.html)
+#### [Image visualization component.](/code/rmip/image_visualization.html)
 
 ### Image Model
 
@@ -281,7 +281,7 @@ Meaning that whenever any observer subscribes, then at most one image binary is 
 This prevents the need to keep converting the file over and over again. 
 Just store the binary in memory from then on return that. 
 
-#### [ProjectFile local implementation.]({{site.url}}/code/rmip/local_project_impl.html)
+#### [ProjectFile local implementation.](/code/rmip/local_project_impl.html)
 
 ## Uploading an Image 
 
@@ -291,7 +291,7 @@ Being able to choose and display the chosen image is nice, but what about upload
 Fear not, our REST server takes a MultiPartFile as input.
 Here is how to convert a file into FormData which is a MultiPartFile!
 
-#### [How wrap an image to be sent as a multipart.]({{site.url}}/code/rmip/image_upload.html)
+#### [How wrap an image to be sent as a multipart.](/code/rmip/image_upload.html)
 
 ### HTTP Client
 
@@ -299,7 +299,7 @@ Most of the work above was done by the `BackendAPIService` which is a wrapper ar
 The `postImage` function takes FormData and uses that as the POST request body. 
 The return is an observable of key that can be used to fetch and delete the image in persistence.
 
-#### [HTTP client implementation.]({{site.url}}/code/rmip/http_client.html)
+#### [HTTP client implementation.](/code/rmip/http_client.html)
 
 ## Retrieve A Remote Image File
 
@@ -313,7 +313,7 @@ In the case of the local file the binary come directly from your disk, while the
 
 Much like the `LocalFile`, the remote file takes advantage of the `ReplaySubject` which prevents the need to make more than one REST call to retrieve the image binary while still using the Observable abstraction.
 
-#### [Remote ProjectFile implementation.]({{site.url}}/code/rmip/remote_project_impl.html)
+#### [Remote ProjectFile implementation.](/code/rmip/remote_project_impl.html)
 
 ### Remote Image Factory
 
@@ -322,7 +322,7 @@ As saw above, the model subscribes to the observable, which in turn eventually m
 
 Since the binary coming from the server is raw it needs to be converted into a format the browser should be able to understand.
 
-#### [The remote project file service.]({{site.url}}/code/rmip/remote_project_factory.html)
+#### [The remote project file service.](/code/rmip/remote_project_factory.html)
 
 That should be enough to make you armed and dangerous, when it comes to reactive programming!
 

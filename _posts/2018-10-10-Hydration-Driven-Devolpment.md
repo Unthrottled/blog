@@ -95,7 +95,7 @@ Breaking this problem into pieces, we first need to define the API that solves t
 
 ### Step One: Design and define interface(s) to solve a single responsibility.
 
-- [Here are first pass designed interfaces.]({{site.url}}/code/hdd/first_pass.html)
+- [Here are first pass designed interfaces.](/code/hdd/first_pass.html)
 
 Here are the classes for your context refreshment:
 
@@ -164,7 +164,7 @@ All the test would care about is that the number in the container is the expecte
 
 Let us go back and revisit the first step of the process, which is _Design and Define Interfaces_.
 
-- [Here are the redesigned interfaces.]({{site.url}}/code/hdd/second_pass.html)
+- [Here are the redesigned interfaces.](/code/hdd/second_pass.html)
 
 Here are the classes for your context refreshment:
 
@@ -188,17 +188,17 @@ A good starting point is to first _design_ the stateful class, then write tests 
 Once the tests are written, then implement the methods to make the all of the tests written pass.  
 Then the implementation class can be used to support the tests whose classes depend on its implementation.
 
-- [LiquidContainer class definition and tests.]({{site.url}}/code/hdd/container_impl.html)
+- [LiquidContainer class definition and tests.](/code/hdd/container_impl.html)
 
 Special note, the class implementation has been defined for the liquid container, but the implementation remains the simplest possible.
 
-- [Liquid interface definition and tests.]({{site.url}}/code/hdd/liquid_tests.html)
+- [Liquid interface definition and tests.](/code/hdd/liquid_tests.html)
 
 Now dependent interfaces exist and writing tests for the `WaterRepository` can commence.
 
 All of the work that was previously done has now led up to being able to test the class that was first chosen to be tested!
 
-- [The tests for WaterRepository can be found here.]({{site.url}}/code/hdd/WaterRepository_Test.html)
+- [The tests for WaterRepository can be found here.](/code/hdd/WaterRepository_Test.html)
 
 The last chunk of code that needs to be designed is a class that implements the `WaterSupply` interface.
 This class will be fairly simple because there is not much to test.
@@ -211,7 +211,7 @@ Meaning that the code is built in such a way that other requirements to fetch an
 However, in the end what is left is code that is modular, loosely-coupled, maintainable, readable, correct, and fully tested! 
 The amount of initial work put upfront pays off because, less time is spent in the future maintaining this code.
 
-- [Here is the last tests that need to be written\!]({{site.url}}/code/hdd/water_supply.html)
+- [Here is the last tests that need to be written\!](/code/hdd/water_supply.html)
 
 ---
 
@@ -220,7 +220,7 @@ The amount of initial work put upfront pays off because, less time is spent in t
 Granted, there are some tests that currently pass, given the state of our code right now.
 However, now is the time to make all of the tests that are written to pass!
 
-- [Actual class implementations\!]({{site.url}}/code/hdd/class_implementations.html)
+- [Actual class implementations\!](/code/hdd/class_implementations.html)
 
 It was really fun implementing these classes. 
 There came a time when I was glad I had a safety net of tests.

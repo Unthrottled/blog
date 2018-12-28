@@ -91,7 +91,7 @@ This means that work done to code will remain portable to other cache implementa
 Implementing the `Externalizable` interface will allow java to use overridden methods in each POJO to serialize and deserialize objects.
 Preventing the need for classes to be created from reflection, but adds the need for extra work.
 
-[Here are the new Externalizable POJOs.]({{site.url}}/code/bh/externalizable.html)
+[Here are the new Externalizable POJOs.](/code/bh/externalizable.html)
 
 The first thing that catches the eye, is the fact that the list is iterated through, in favor of calling the slower `writeObject` and `readObject` of th ObjectOutput's and ObjectInput's API respectively.
 In the `readExternal` method, it can be seen that the convenient reflective creation of the Computer field was overridden by manual creation.
@@ -111,7 +111,7 @@ The first example is the DataSerializable interface, which is looks a whole lot 
 
 Here are the new POJOs:
 
-[Here are the new DataSerializable POJOs.]({{site.url}}/code/bh/data_serial.html)
+[Here are the new DataSerializable POJOs.](/code/bh/data_serial.html)
 
 There is only one big difference from the externalizable class is the switch from `java.io.ObjectInput` and `java.io.ObjectOutput` to `com.hazelcast.nio.ObjectDataInput` and `com.hazelcast.nio.ObjectDataOutput` respectively.
 
@@ -133,7 +133,7 @@ Since the Externalizable class, the `Computer` instance has not been provided by
 There is one last bit of slower reflection that can be dropped, which is the creation of the `Programmer` instance.
 The Hazelcast specific `IdentifiedDataSerializable` interface is that such method.
 
-[Which looks like the following\.]({{site.url}}/code/bh/id_serial.html)
+[Which looks like the following\.](/code/bh/id_serial.html)
 
 IdentifiedDataSerializable extends DataSerializable adding the getFactoryId and getId, which will be used by the `DataSerializableFactory`.
 Whose functional API accepts an ID in the form of an integer and returns an instance whose class is associated with that integer.

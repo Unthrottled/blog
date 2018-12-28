@@ -20,7 +20,7 @@ The first thing that will be needed is an object to write to a file.
 It will need to implement the `java.io.Serializable` or `java.io.Externalizable` interface.
 For more information about serializable objects, checkout [this post on java serialization performance!]({% post_url 2017-05-01-Hazelcast-Performance-Serialization %})
 
-####[This is one way of reading and writing objects to and from a file.]({{site.url}}/code/off/serializable.html)
+####[This is one way of reading and writing objects to and from a file.](/code/off/serializable.html)
 
 One of the most important parts to know is that any object written to a file _must_ implement the `Serializable` interface.
 Otherwise a pretty little `NotSerializableException` gets throw when writing to the `ObjectOutputStream`.
