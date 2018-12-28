@@ -3,7 +3,7 @@ layout: post
 title:  "SOAP Requests without SoapUI"
 date:   2017-4-28
 categories: cli
-headerImage: soap/cli-soap.png
+headerImage: cli/cli-soap.png
 tags: [Java, SOAP, HTTP, Curl, Unix, Spring Boot, SOA, WSDL]
 ---
 
