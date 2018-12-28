@@ -4,14 +4,18 @@ title: About
 permalink: /about/
 ---
 
-For those who are curious, [Acari](https://en.wikipedia.org/wiki/Acari) are a taxon of arachnids that contains mites and ticks.
-If you are wondering how to pronounce it, I have chosen this one -> [ak-uh-ree].
+I know that nobody is asking, but I am going to answer it anyways. 
+[Acari](https://en.wikipedia.org/wiki/Acari) are a taxon of tiny arachnids which contains things like mites and ticks (small bugs, heh).
+It is poetic in a way. When building software, sometimes it takes the longest amount of time to find and smash the tiniest bug.
 
 I assume that since you are looking at this page, you would like to know about one or two things.
 The first being, what is the point of all of this? While the second being, who am I?
 
-Starting off with the latter, a good synopsis of myself is that I am an energetic, effective, and efficient programmer.
-I am currently a professional software engineer by trade. I consider myself to be tech enthusiast, software craftsman, and athlete.
+Starting off with the latter, a 10,000 foot description of myself would be: a highly driven individual determined to reach his full potential.
+You can find more about my other most valued principals at my landing site [https://acari.io](https://acari.io)
+
+While I am currently a software craftsman by trade. 
+I also consider myself to be a finance hippie, math enthusiast, semi-well-rounded technology connoisseur, and passionate athlete.
 
 What drives me everyday is knowing that today, I have the chance to learn something I did not know the day before.
 I spend a lot of my free time consuming knowledge other techno geeks are so kind enough to produce.
@@ -42,8 +46,7 @@ Things like push-ups, pull-ups, and cycling are great way to maintain a happy bo
 However, that is just half of the equation. 
 Keeping a positive outlook on life, being great to others, and not letting negative stress overwhelm you is the other half.
 I am always facing forward, only looking back to help others with things I have done, so they can do it better. 
-
-When building software, sometimes it takes the longest amount of time to find the tiniest bug. 
+ 
 Hopefully I can provide someone tweezers!
 
 \-Alex Simons 
