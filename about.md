@@ -4,15 +4,15 @@ title: About
 permalink: /about/
 ---
 
-I know that nobody is asking, but I am going to answer it anyways. 
-[Acari](https://en.wikipedia.org/wiki/Acari) are a taxon of tiny arachnids which contains things like mites and ticks (small bugs, heh).
-It is poetic in a way. When building software, sometimes it takes the longest amount of time to find and smash the tiniest bug.
+What is Acari? I know that nobody is asking about it, but I am going to straight up answer it anyways. 
+[Acari](https://en.wikipedia.org/wiki/Acari) are a taxon of tiny arachnids which contains things like: mites and ticks (small bugs, heh).
+It is poetic in a way. When building software, sometimes it takes the longest amount of time to find the tiniest bug.
 
 I assume that since you are looking at this page, you would like to know about one or two things.
 The first being, what is the point of all of this? While the second being, who am I?
 
 Starting off with the latter, a 10,000 foot description of myself would be: a highly driven individual determined to reach his full potential.
-You can find more about my other most valued principals at my landing site [https://acari.io](https://acari.io)
+You can find more about my other most valued principals at my home site [https://acari.io](https://acari.io)
 
 While I am currently a software craftsman by trade. 
 I also consider myself to be a finance hippie, math enthusiast, semi-well-rounded technology connoisseur, art dabbler, and (most importantly) passionate athlete.
@@ -22,9 +22,9 @@ To me, health is wellness of the mind and body.
 Things like push-ups, pull-ups, cycling, and running are great way to maintain a happy body.
 Quick shout out to Jeff Cavaliere's programs @ [Athlean-x](https://athleanx.com), be prepared to get your rear in gear.
 
-However, that is just half of the equation. 
+However, physical health is just half of the equation. 
 Keeping a positive outlook on life by being great to others, and not letting negative stress overwhelm you is the other half.
-Meditation is a great place to start with becoming mindful, another plug, this time for [Headspace](https://www.headspace.com/) with helping me keep my head clear.
+Meditation is a great place to start with becoming mindful, another plug, this time for [Headspace](https://www.headspace.com/). Their programs are helping me keep my head clear.
 I am always facing forward, only looking back to help others with things I have done, so they can do it better. 
 
 What drives me everyday is knowing that today, I have the chance to learn something I did not know the day before.
@@ -44,10 +44,11 @@ That being communication.
 I found it difficult and frustrating, trying to talk with others and not being able to articulate what I wanted to say, especially during code review.
 It was a mix of knowing what I meant internally, but when trying to make it external, it was just babble.
 However, I eventually stumbled across something that help greatly me increase my communication skills.
-That was solidifying my knowledge on a vast variety of subjects by knowing enough about them in order to be able to teach them.
+Which was solidifying my knowledge on a vast variety of subjects by knowing enough about them in order to be able to teach them.
 
 I have heard this saying a bunch: "You never know how well you know a subject until you have to teach somebody else it."
-As it turned out, I did not know much about many things. 
+So it became quite apparent to me that I did not know much about many things. 
+At least at the depth of understanding that was required to teach it to others. 
 This I why I spend a lot of my free time learning and practicing my communication skills. 
 Hopefully, you will be able to see the progression that I have been making throughout my days. 
 Granted, I hope that trend is moving up and not down!
