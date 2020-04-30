@@ -7,7 +7,7 @@ Sequential interable nonblocking `Flux`
 
 Note: this class is _not_ lazily evaluated. When constructed it automatically lets the publisher know that it is ready to receive data.
 
-[Link To File](https://github.com/cyclic-reference/mongo-images/blob/master/web-service/src/main/java/io/acari/images/flux/NonBlockingIterableFlux.java)
+[Link To File](https://github.com/Unthrottled/mongo-images/blob/master/web-service/src/main/java/io/acari/images/flux/NonBlockingIterableFlux.java)
 
 {% highlight java %}
     //...

@@ -6,7 +6,7 @@ Converting `AysncInputStream` into `Flux<DataBuffer>`
 ---
 
 
-[Link To File](https://github.com/cyclic-reference/mongo-images/blob/master/web-service/src/main/java/io/acari/images/flux/DownloadStreamToFluxFactory.java)
+[Link To File](https://github.com/Unthrottled/mongo-images/blob/master/web-service/src/main/java/io/acari/images/flux/DownloadStreamToFluxFactory.java)
 
 {% highlight java %}
     //...

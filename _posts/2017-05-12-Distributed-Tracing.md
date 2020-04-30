@@ -62,7 +62,7 @@ Hopefully, leading to a paths where optimizations can be wired in to reduce resp
 
 #### The rest of the post references a sample project in this repository:
 
-### [https://github.com/cyclic-reference/distributed-tracing](https://github.com/cyclic-reference/distributed-tracing)    
+### [https://github.com/Unthrottled/distributed-tracing](https://github.com/Unthrottled/distributed-tracing)    
 
 Continuing off of the previous example: we have an Alpha Service. 
 Alpha Service has a dependencies on both Bravo Service and Charlie Service.
@@ -159,7 +159,7 @@ Anyways, I hope that this shows how one can debug/optimize or even start looking
 
 #### Be sure to visit the project repository!
 
-[https://github.com/cyclic-reference/distributed-tracing](https://github.com/cyclic-reference/distributed-tracing)
+[https://github.com/Unthrottled/distributed-tracing](https://github.com/Unthrottled/distributed-tracing)
 
 Here are all the things (I have not mentioned) which I found really helpful in creating this post!
 

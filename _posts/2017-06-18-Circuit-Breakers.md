@@ -9,7 +9,7 @@ Not only does it protect your application, it also prevents directing more traff
 For starters, I have created an example project that utilizes and tries to demonstrate the circuit breaker pattern that is implemented by Hystrix.
 The repository can be found here:
 
-### [Source Code](https://github.com/cyclic-reference/circuit-breaker)
+### [Source Code](https://github.com/Unthrottled/circuit-breaker)
 
 Let's start of with an example.
 Imagine that we are tasked with consuming service Zeta, a third party webservice, because their API satisfies part of our projects requirements.

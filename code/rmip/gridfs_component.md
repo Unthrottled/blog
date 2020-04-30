@@ -4,7 +4,7 @@ layout: post
 
 Reactive GridFS Component
 
-[Link to File](https://github.com/cyclic-reference/mongo-images/blob/master/web-service/src/main/java/io/acari/images/handler/ImageHandler.java)
+[Link to File](https://github.com/Unthrottled/mongo-images/blob/master/web-service/src/main/java/io/acari/images/handler/ImageHandler.java)
 
 {% highlight java %}
 

@@ -5,7 +5,7 @@ layout: page
 Spring configuration for Reactive Mongo.
 ---
 
-[Link to File](https://github.com/cyclic-reference/mongo-images/blob/master/web-service/src/main/java/io/acari/images/configuration/MongoConfig.java)
+[Link to File](https://github.com/Unthrottled/mongo-images/blob/master/web-service/src/main/java/io/acari/images/configuration/MongoConfig.java)
 {% highlight java %}
 
     //....
