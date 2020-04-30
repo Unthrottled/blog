@@ -11,7 +11,7 @@ Enabling the release of code early and often, shedding the fear going to product
 
 This does not mean that the monolithic architecture is inherently bad. 
 For instance, if one is working on a small project, it is probably not worth the overhead of maintaining many services, through out their lifecycle.
-That would be like using a grenade launcher to hunt deer.
+That would be like bringing a grenade launcher to hunt deer.
 Sure it gets the job done, but it is expensive and there is a high probability that it might blow up in your face. 
 Plus, as far as I am aware, deer do not shoot back.
 
