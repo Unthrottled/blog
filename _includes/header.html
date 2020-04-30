@@ -15,7 +15,7 @@
             <div class="trigger">
                 {% for page in site.pages %}
                 {% if page.title == 'About' or page.title == 'Posts by Tag' %}
-                <a class="glitch-button" href="{{ page.url | prepend: site.baseurl | append: 'index.html' }}">{{ page.title }}</a>
+                <a class="about" href="{{ page.url | prepend: site.baseurl | append: 'index.html' }}">{{ page.title }}</a>
                 {% endif %}
                 {% endfor %}
 
