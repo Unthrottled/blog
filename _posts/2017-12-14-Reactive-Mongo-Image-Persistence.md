@@ -1,6 +1,5 @@
 ---
 layout: post
-headerImage: mongo_images/logo.png
 tags: [Java, Spring Boot, Reactor, WebFlux, Mongodb, Reactive Streams, ReactiveX, Node.js, Angular, Gridfs, Webpack]
 ---
 

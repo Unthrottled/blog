@@ -2,7 +2,6 @@
 layout: post
 title: Get that Gradle
 categories: jvm
-headerImage: gradle/gradle.png
 tags: [Java, Gradle, Build Managment, SDKMAN, Unix]
 ---
 

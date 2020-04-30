@@ -2,7 +2,6 @@
 layout: post
 title:  "Boosted Hazelcast"
 categories: java
-headerImage: cereal/rail.jpg
 tags: [Java, Serialization, Hazelcast, Performance, Distributed Cache]
 ---
 

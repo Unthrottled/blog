@@ -1,7 +1,6 @@
 ---
 layout: post
 title: Java Objects to and from a File
-headerImage: beans/beans-to-file.png
 tags: [Java, Serialization, GSON, JSON, Object Persistence, Tests, Unit Tests, JUnit, Spring Boot]
 ---
 

@@ -3,7 +3,6 @@ layout: post
 title:  "Startup JavaBeans"
 date:   2017-4-23
 categories: java
-headerImage: beans/bean.png
 tags: [Java, Java EE, Java Beans, CDI, JBoss, JBoss EAP, Wildfly, Wildfly-Swarm, Eager Beans]
 ---
 Are you in charge of developing or maintaining a stateful web application with the Java EE API? 
