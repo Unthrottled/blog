@@ -19,16 +19,26 @@ body {
     line-height: $base-line-height;
     font-weight: 300;
     color: $reach-white;
-    background: url('../assets/images/stripe.png') fixed, linear-gradient($background-color, $background-color, $reach-burned-purple);
+    background: $background-color;
     -webkit-text-size-adjust: 100%;
     max-width: 1060px;
     overflow-x: hidden;
     display: block;
     margin: auto;
-    padding: 40px 50px;
     @include media-query($on-palm) {
         padding: 0 0 0 0;
     }
+}
+
+#main {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+}
+
+#backgroundImage {
+    z-index: -1;
 }
 
 
