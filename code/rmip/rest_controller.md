@@ -2,7 +2,7 @@
 layout: post
 ---
 
-Weblflux Rest Controller
+Webflux Rest Controller
 ---
 
 [Link To File](https://github.com/cyclic-reference/mongo-images/blob/master/web-service/src/main/java/io/acari/images/rest/RouterComponent.java)
