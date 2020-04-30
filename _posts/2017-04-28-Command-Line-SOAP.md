@@ -3,7 +3,6 @@ layout: post
 title:  "SOAP Requests without SoapUI"
 date:   2017-4-28
 categories: cli
-headerImage: cli/cli-soap.png
 tags: [Java, SOAP, HTTP, Curl, Unix, Spring Boot, SOA, WSDL]
 ---
 
@@ -48,7 +47,7 @@ Before going any further, I have provided a sample Spring Boot web service that 
 
 It can be found on git hub here:
 
-### [https://github.com/cyclic-reference/web-service-sample](https://github.com/cyclic-reference/web-service-sample)
+### [https://github.com/Unthrottled/web-service-sample](https://github.com/Unthrottled/web-service-sample)
 
 To run the sample you will need:
  - Internet Connection (At least the first time it is run)

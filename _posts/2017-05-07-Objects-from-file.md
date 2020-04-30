@@ -1,7 +1,6 @@
 ---
 layout: post
 title: Java Objects to and from a File
-headerImage: beans/beans-to-file.png
 tags: [Java, Serialization, GSON, JSON, Object Persistence, Tests, Unit Tests, JUnit, Spring Boot]
 ---
 
@@ -31,7 +30,7 @@ Which will allows the infinite loop, created in the method, to break.
 A complete functioning project using this code can be found at the following repository listed below.
 The repository contains a README file that will help get the project up and running!
 
-### [https://github.com/cyclic-reference/object-to-file](https://github.com/cyclic-reference/object-to-file)
+### [https://github.com/Unthrottled/object-to-file](https://github.com/Unthrottled/object-to-file)
 
 **Writing Non-Serializable objects to a file.**
 
@@ -69,7 +68,7 @@ Such libraries include but are not limited to:
 A full project is provided for the example below.
 This repository also contains a README file that will help get the project up and running!
 
-[https://github.com/cyclic-reference/test-objects-from-file](https://github.com/cyclic-reference/test-objects-from-file)
+[https://github.com/Unthrottled/test-objects-from-file](https://github.com/Unthrottled/test-objects-from-file)
 
 The following example will be done using GSON, Google's POJO to JSON mapping tool.
 The goal is to write a JSON object string to a file. 

@@ -5,7 +5,7 @@ layout: post
 Remote `ProjectFile` Implementation
 ---
 
-[Link To File](https://github.com/cyclic-reference/mongo-images/blob/master/web-content/src/app/projectFiles/model/RemoteProjectFile.ts)
+[Link To File](https://github.com/Unthrottled/mongo-images/blob/master/web-content/src/app/projectFiles/model/RemoteProjectFile.ts)
 
 {% highlight javascript %}
 

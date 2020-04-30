@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 {% include head.html %}
-
 <body>
-
+{% include header.html %}
+<div id="main">
+  <canvas id="backgroundImage" width="150" height="150"></canvas>
+</div>
 <div class="boxed-content">
-  {% include header.html %}
-
   <div class="page-content">
     <div class="wrapper">
       {{ content }}
@@ -16,10 +15,6 @@
   </div>
   {% include footer.html %}
 </div>
-<a href="https://acari.io" target="_blank">
-  <img src="{{ site.imageDir }}{{ site.icon}}">
-</a>
-
 </body>
 
 </html>

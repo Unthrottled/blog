@@ -2,7 +2,6 @@
 layout: post
 title:  "Boosted Hazelcast"
 categories: java
-headerImage: cereal/rail.jpg
 tags: [Java, Serialization, Hazelcast, Performance, Distributed Cache]
 ---
 
@@ -218,7 +217,7 @@ It has time trial tests for both a Hazelcast server and a Client connected to a 
 
 The link to the respository is as follows:
 
-### [https://github.com/cyclic-reference/hazelcast-serialization](https://github.com/cyclic-reference/hazelcast-serialization)
+### [https://github.com/Unthrottled/hazelcast-serialization](https://github.com/Unthrottled/hazelcast-serialization)
 
 To run the sample you will need:
  - Internet Connection (At least the first time it is run)

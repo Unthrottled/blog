@@ -6,7 +6,7 @@ Uploading an Image
 ---
 
 
-[Link To File](https://github.com/cyclic-reference/mongo-images/blob/master/web-content/src/app/projectFiles/service/ImageUpload.service.ts)
+[Link To File](https://github.com/Unthrottled/mongo-images/blob/master/web-content/src/app/projectFiles/service/ImageUpload.service.ts)
 
 {% highlight javascript %}
 

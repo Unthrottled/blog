@@ -3,7 +3,6 @@ layout: post
 title:  "Startup JavaBeans"
 date:   2017-4-23
 categories: java
-headerImage: beans/bean.png
 tags: [Java, Java EE, Java Beans, CDI, JBoss, JBoss EAP, Wildfly, Wildfly-Swarm, Eager Beans]
 ---
 Are you in charge of developing or maintaining a stateful web application with the Java EE API? 
@@ -88,7 +87,7 @@ To run the sample you will need:
  
 It can be reached at : 
 
-### [https://github.com/cyclic-reference/startup-cdi](https://github.com/cyclic-reference/startup-cdi)
+### [https://github.com/Unthrottled/startup-cdi](https://github.com/Unthrottled/startup-cdi)
 
 I chose to run it on Wildly Swarm, which is like a full fledged JBoss server, but only contains the libraries necessary to run an application server and deploy artifacts. 
 All of this is nicely packed int a a jar. It is a bit like Spring Boot, but at the time of this post, with less functionality.
@@ -230,7 +229,7 @@ Finally, we need to register SPI with the application server, this can be done b
 
 The file needs to live in the webapp/META-INF/services/ directory of the archive.
 
-I have created a fully functioning example at: [https://github.com/cyclic-reference/startup-enterprise-cdi](https://github.com/cyclic-reference/startup-enterprise-cdi)
+I have created a fully functioning example at: [https://github.com/Unthrottled/startup-enterprise-cdi](https://github.com/Unthrottled/startup-enterprise-cdi)
 
 I wanted to use Swarm, but am not willing to spend the time to figure out how to integrate. 
 So to prevent you from having to download and install a Wildfly web server on your machine, I am just going to get a put the example in a Docker container hosted on Docker Hub.

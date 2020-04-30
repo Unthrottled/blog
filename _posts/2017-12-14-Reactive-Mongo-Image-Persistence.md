@@ -1,6 +1,5 @@
 ---
 layout: post
-headerImage: mongo_images/logo.png
 tags: [Java, Spring Boot, Reactor, WebFlux, Mongodb, Reactive Streams, ReactiveX, Node.js, Angular, Gridfs, Webpack]
 ---
 
@@ -37,7 +36,7 @@ The rest of this post will show you how you can choose, upload, and receive imag
 ![Warning]({{site.imageDir}}mongo_images/trigger warnings.png)  
 
 Attention! The remainder of this post contains _a lot_ of code and corresponding explanations of code.
-If the reader feels so inclined, you can find the  *[Source Code to the project described above.](https://github.com/cyclic-reference/mongo-images)*  
+If the reader feels so inclined, you can find the  *[Source Code to the project described above.](https://github.com/Unthrottled/mongo-images)*  
 
 ## Backend Setup
 
@@ -130,7 +129,7 @@ The next step is to wire up all of the correct configuration.
 
 Here we need to let Spring be less helpful. We want to exclude the automatic Mongo configurations.
 
-[Link To File](https://github.com/cyclic-reference/mongo-images/blob/master/web-service/src/main/java/io/acari/images/ReactiveImageApplication.java)
+[Link To File](https://github.com/Unthrottled/mongo-images/blob/master/web-service/src/main/java/io/acari/images/ReactiveImageApplication.java)
 
 {% highlight java %}
     
@@ -169,7 +168,7 @@ The reactive GridFSBucket is provided as a Spring Bean in this configuration com
 
 This configuration component is necessary to use WebFlux.
 
-[Link To File](https://github.com/cyclic-reference/mongo-images/blob/master/web-service/src/main/java/io/acari/images/configuration/WebConfig.java) 
+[Link To File](https://github.com/Unthrottled/mongo-images/blob/master/web-service/src/main/java/io/acari/images/configuration/WebConfig.java) 
 
 {% highlight java %}
 
@@ -191,7 +190,7 @@ This configuration component is necessary to use WebFlux.
 
 Lastly, this is the applications properties file that will allow for the configuration of both the database and Mongo instance used!
 
-[Link to File](https://github.com/cyclic-reference/mongo-images/blob/master/web-service/src/main/resources/application.yml)
+[Link to File](https://github.com/Unthrottled/mongo-images/blob/master/web-service/src/main/resources/application.yml)
 
 ### application.yml
 
@@ -328,4 +327,4 @@ That should be enough to make you armed and dangerous, when it comes to reactive
 
 #### -Alex
 
-# [Source Code!](https://github.com/cyclic-reference/mongo-images)
+# [Source Code!](https://github.com/Unthrottled/mongo-images)

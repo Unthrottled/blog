@@ -4,19 +4,19 @@ port: 4000
 
 
 # Site settings
-title: Acari Blog
+title: Unthrottled
 email: alexsimons9999@gmail.com
 author: Alex Simons
 icon: reach_purple.png
-description: > # this means to ignore newlines until "baseurl:"
+description: >
   Programming is a lot like going out for a hike.
   It's fun, challenging at times, rewarding, and there is always something new to learn.
-  However, you can get easily get lost woods, have to trek over torturous terrain and
+  However, you can get easily get lost woods, have to trek over torturous terrain, and
   there is a high probability that you come back with a few b̴̘̱̠̪̬̉̍͋̌̅̍u̴̘͒́̃̾͝ḡ̵̺̣̈̈͐s̷̨͓̗̣̖͑̃͒́͛̈̌ attached to you.
 baseurl: "" # the subpath of your site, e.g. /blog/
-url: "https://blog.acari.com" # the base hostname & protocol for your site
+url: "https://blog.unthrottled.com"
 imageDir: /assets/images/
-github_username:  cyclic-reference
+github_username:  Unthrottled
 
 # Build settings
 # Conversion

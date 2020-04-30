@@ -11,7 +11,7 @@ Enabling the release of code early and often, shedding the fear going to product
 
 This does not mean that the monolithic architecture is inherently bad. 
 For instance, if one is working on a small project, it is probably not worth the overhead of maintaining many services, through out their lifecycle.
-That would be like using a grenade launcher to hunt deer.
+That would be like bringing a grenade launcher to hunt deer.
 Sure it gets the job done, but it is expensive and there is a high probability that it might blow up in your face. 
 Plus, as far as I am aware, deer do not shoot back.
 
@@ -62,7 +62,7 @@ Hopefully, leading to a paths where optimizations can be wired in to reduce resp
 
 #### The rest of the post references a sample project in this repository:
 
-### [https://github.com/cyclic-reference/distributed-tracing](https://github.com/cyclic-reference/distributed-tracing)    
+### [https://github.com/Unthrottled/distributed-tracing](https://github.com/Unthrottled/distributed-tracing)    
 
 Continuing off of the previous example: we have an Alpha Service. 
 Alpha Service has a dependencies on both Bravo Service and Charlie Service.
@@ -159,7 +159,7 @@ Anyways, I hope that this shows how one can debug/optimize or even start looking
 
 #### Be sure to visit the project repository!
 
-[https://github.com/cyclic-reference/distributed-tracing](https://github.com/cyclic-reference/distributed-tracing)
+[https://github.com/Unthrottled/distributed-tracing](https://github.com/Unthrottled/distributed-tracing)
 
 Here are all the things (I have not mentioned) which I found really helpful in creating this post!
 
