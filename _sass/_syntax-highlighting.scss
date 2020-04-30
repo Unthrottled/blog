@@ -4,13 +4,18 @@
 .highlight > pre {
     border-radius: 0.1rem;
 }
+
+pre, code {
+    font-family: "Victor Mono", monospace, serif !important;
+}
+
 .highlight {
     @extend %vertical-rhythm;
     color: $code-base-color;
 
-    .kn    { color: $e621-box-blue}//modifiers
+    .kn    { color: #bca3aa}//modifiers
     .kd    { color: #bca3aa}//modifiers
-    .nd    { color: #BC60CB; font-weight: 400;}//annotation
+    .nd    { color: #BC60CB; font-weight: 400; font-style: italic;}//annotation
     .c     { color: #6272a4; font-style: italic } // Comment
     .err   { color: #a61717; background-color: #e3d2d2 } // Error
     .k     { font-weight: bold } // Keyword
@@ -36,7 +41,7 @@
     .kd    { font-weight: bold } // Keyword.Declaration
     .kp    { font-weight: bold } // Keyword.Pseudo
     .kr    { font-weight: bold } // Keyword.Reserved
-    .kt    { color: #458; font-weight: bold } // Keyword.Type
+    .kt    { color: #bca3aa; font-weight: bold } // Keyword.Type
     .m     { color: #86dbfd } // Literal.Number
     .s     { color: #f1fa8c } // Literal.String
     .na    { color: #a475ef } // Name.Attribute

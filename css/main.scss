@@ -93,6 +93,20 @@ $on-laptop:        1000px;
     }
 }
 
+@font-face {
+  font-family: 'Victor Mono';
+  src: url('/assets/victor-mono/VictorMono-MediumItalic.woff') format('woff');
+  font-weight: 300;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Victor Mono';
+  src: url('/assets/victor-mono/VictorMono-Medium.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+}
+
 @mixin hexRain(){
   background-image: url(../assets/images/hex.png) !important;
   background-position: left bottom !important;
