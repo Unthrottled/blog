@@ -8,8 +8,6 @@ dl, dd, ol, ul, figure {
     padding: 0;
 }
 
-
-
 /**
  * Basic styling
  */
@@ -21,7 +19,6 @@ body {
     color: $foreground;
     background: $background-color;
     -webkit-text-size-adjust: 100%;
-    max-width: 1060px;
     overflow-x: hidden;
     display: block;
     margin: auto;
