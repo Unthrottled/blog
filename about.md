@@ -4,7 +4,7 @@ title: About
 permalink: /about/
 ---
 
-What am I?
+### What am I?
 
 Well I am not a machine, I know that for a fact. 
 
@@ -35,6 +35,12 @@ Here are a few books that might change your mind:
 
 Try going through all of those books and see if you think you can still become your ultimate self without rest.
 
+
+
 Anyways, what you have stumbled across is part of my continuous exercise in communicating.
 
 I happened to have learned a fare amount of technical things as well and hopefully you will to!
+
+-Alex Simons
+
+If you want to read more about me, feel free to visit: **[https://unthrottled.io/more](https://unthrottled.io/more)**
