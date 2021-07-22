@@ -17,7 +17,8 @@ import {
 const syncedAssets: StringDictionary<string> = getSyncedAssets();
 
 function buildKey(filePath: string): string {
-  return `${filePath.substr(assetDirectory.length + 1)}`;
+  return `${filePath.substr(assetDirectory.length + 1)}`
+  .replace(/\\/g, '/');
 }
 
 const s3 = buildS3Client();
